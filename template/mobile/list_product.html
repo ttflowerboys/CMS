@@ -1,0 +1,28 @@
+{xiao:template header.html}
+<body id="index">
+
+<header>
+	<div class="left-box"><a class="goback" href="javascript:history.back()"><label>返回</label></a></div>
+	<h1>{xiao:$catname}</h1>
+ </header>
+
+<div id="deals">
+{xiao:list catid=$catid order=updatetime page=$page pagesize=5}
+<section>
+<a href="index.php?c=index&id={xiao:$xiao['id']}">
+        <img width="122" height="74" src="{xiao:function.thumb($xiao['thumb'])}" />
+        <detail>
+            <ul>
+                <li class="brand">{xiao:$xiao['title']}</li>
+                <li class="title indent">{xiao:function.strcut($xiao['description'],44)}</li>
+            </ul>
+        </detail>
+    </a>
+</section>
+{/xiao:list}</div>
+<div id="deals-page" class="">
+    <div id="nav-more"><span class="nav-button">                <div class="listpage" >{xiao:$pagelist}</div>
+</span></div>
+
+	</div>
+{xiao:template footer.html}

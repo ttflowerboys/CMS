@@ -1,0 +1,20 @@
+{xiao:template header.html}
+<body id="index">
+<header>
+	<div class="left-box"><a class="goback" href="javascript:history.back()"><label>返回</label></a></div>
+	<h1>{xiao:$cat['catname']}</h1>
+</header>
+<div class="detail-head-title">
+    <h1 class="article-title x-centered">{xiao:$title}</h1>
+    <div class="x-centered post-time">{xiao:function.date('Y-m-d H:i:s', $time)} (<script type="text/javascript" src="{xiao:function.url('api/hits',array('id'=>$id))}"></script>)</div>
+</div>
+<div id="content">
+    <div class="detail-panel">
+    {xiao:$content}
+    </div>
+</div>
+<div id="deals-page" >
+    <div id="nav-more"><a class="nav-button" href="javascript:history.back()" >返回列表</a></div>
+</div>
+
+{xiao:template footer.html}

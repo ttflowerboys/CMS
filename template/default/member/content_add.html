@@ -1,0 +1,34 @@
+{xiao:template header.html}
+<script type="text/javascript" src="{xiao:$site_url}core/img/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="{xiao:$site_url}core/img/js/xiaocms.js"></script>
+<link rel="stylesheet" type="text/css" href="../admin/img/xiaocms.css" />
+<!--这里调用后台的js和css 大家自己做的时候还是要更改路径的 具体自己看着办吧、-->
+<div class="mainbody">
+		<div class="page bg">
+			<div class="content_info">
+                <form action="" method="post">
+                {xiao:if $data}<input type="hidden" value="{xiao:$data[catid]}" name="data[catid]">{/xiao:if}
+                <table width="100%" class="table_form" border="0" cellpadding="0" cellspacing="0">
+                <tbody>
+                <tr>
+                    <th width="120"><font color="red">*</font>&nbsp;栏目：</th>
+                    <td><select name="data[catid]">{xiao:$category}</select><a href="{xiao:php echo HTTP_REFERER;}">返回重选</a></td>
+                </tr>
+				<tr>
+					<th><font color="red">*</font>&nbsp;标题：</th>
+					<td><input type="text" class="input-text" size="50" id="title" value="{xiao:$data['title']}" name="data[title]" onBlur="ajaxtitle()">
+					<div class="onShow" id="title_text"></div></td>
+				</tr>
+                {xiao:$fields}
+                <tr>
+                    <th style="border:none">&nbsp;</th>
+                    <td style="border:none"><input type="submit" class="button" value="提 交" name="submit"></td>
+                </tr>
+                </tbody>
+                </table>
+                </form>
+		    </div>
+		   <div class="blank10 clear"></div>		
+		</div>
+</div>
+{xiao:template footer.html}

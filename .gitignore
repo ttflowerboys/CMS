@@ -1,0 +1,28 @@
+App/Runtime/
+*.docx
+~*
+
+data/tplcache/
+data/config/
+data/cache/
+data/models/
+data/bakup/
+
+
+
+# Dependency directory
+# Commenting this out is preferred by some people, see
+# https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
+node_modules
+npm-debug.log.*
+
+# bower
+src/static/bower_components
+
+dist/
+
+# Windows thumbnail db
+Thumbs.db
+
+# OS X
+.DS_Store

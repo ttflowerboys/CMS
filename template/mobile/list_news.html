@@ -1,0 +1,29 @@
+{xiao:template header.html}
+<body id="index">
+
+
+<header>
+	<div class="left-box"><a class="goback" href="javascript:history.back()"><label>返回</label></a></div>
+	<h1>{xiao:$catname}</h1>
+ </header>
+ 
+ <div id="deals">
+    <input name="list_id" id="list_id" type="hidden" value="1">
+{xiao:list catid=$catid  order=updatetime page=$page pagesize=5}
+<section class="news">
+<a href="index.php?c=index&id={xiao:$xiao['id']}">
+    <detail>
+        <ul>
+            <li class="brand">{xiao:$xiao['title']}</li>
+            <li class="title indent">{xiao:function.strcut($xiao['description'],86)}</li>
+            <li class="price"><strong>{xiao:function.date('Y-m-d H:i:s', $xiao['time'])}</strong><span>人气{xiao:$xiao['hits']}</span></li>
+        </ul>
+    </detail>
+</a>
+</section>
+{/xiao:list}</div>
+<div id="deals-page" class="">
+    <div id="nav-more"><span class="nav-button">                <div class="listpage" >{xiao:$pagelist}</div>
+</span></div>
+</div>
+{xiao:template footer.html}
