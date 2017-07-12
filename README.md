@@ -3,9 +3,12 @@
 ## 产品
 | 产品名称 | 产品LOGO | 分支 |
 |--------|--------|--------|
-| XIAOCMS商业版 | ![XIAOCMS](http://www.xiaocms.com/core/template/img/logo.png)| xiaocms |
 | XIAOCMS多语言版 | ![XIAOCMS](http://www.xiaocms.com/core/template/img/logo.png)| xiaocms-lang |
-| DedeCMS-V5.7-UTF8-SP1 | ![DedeCMS-V5.7-UTF8-SP1](http://www.dedecms.com/img/top_logo.jpg)| dedecms |
+
+## xiaocms开发指南
+* 数据表前缀：`ittc_`
+* 注意事项：本版本是`多语言`版本，需要配置好==域名==哦！
+
 
 ## 说明
 * 营销官网：`http://www.threetowns.cn`
