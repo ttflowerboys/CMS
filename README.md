@@ -3,9 +3,29 @@
 ## 产品
 | 产品名称 | 产品LOGO | 分支 |
 |--------|--------|--------|
-| XIAOCMS商业版 | ![XIAOCMS](http://www.xiaocms.com/core/template/img/logo.png)| xiaocms |
-| XIAOCMS多语言版 | ![XIAOCMS](http://www.xiaocms.com/core/template/img/logo.png)| xiaocms-lang |
 | DedeCMS-V5.7-UTF8-SP1 | ![DedeCMS-V5.7-UTF8-SP1](http://www.dedecms.com/img/top_logo.jpg)| dedecms |
+
+## 开发指南
+
+### dede:arclist
+* 文章链接：`[field:arcurl/]`
+* 文章标题：`[field:title/]`
+* 文章摘要：`[field:description/]`
+* 文章图片：`[field:litpic/]`
+* 文章点击次数：`[field:click/]`
+* 文章更新时间：`[field:pubdate function="MyDate('Y-m-d H:i:s',@me)"/]`
+* 栏目名称：`[field:typename/]`
+* 栏目连接：`[field:typeurl/]`
+* 索引自增长：`[field:global.autoindex/]`
+
+### 友情链接
+* 带图片
+`{dede:flink row='24' type='image' titlelen="24" typeid="0"}<li>[field:link /]</li>{/dede:flink}`
+
+* 带文字
+`{dede:flink row='8' type='text' titlelen="24" typeid="0"}<li>[field:link /]</li>{/dede:flink}`
+
+***
 
 ## 说明
 * 营销官网：`http://www.threetowns.cn`
