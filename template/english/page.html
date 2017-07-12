@@ -1,0 +1,12 @@
+{xiao:template header.html}
+<!--   <div class="innerBanner"></div>
+</div> -->
+<div class="w">{xiao:php $topcat = get_top_cat($catid);}
+  <h1 class="pageTit">{xiao:$topcat[catname]}</h1>
+  <div class="pageMain clearfix">
+    {xiao:template aside.html}
+    <div class="pageR">
+      <div class="postMain">{xiao:$content}</div>
+    </div>
+  </div> <!-- pageMain end -->
+{xiao:template footer.html}

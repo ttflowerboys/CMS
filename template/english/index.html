@@ -1,0 +1,28 @@
+{xiao:template header.html}
+  <div class="w">
+    <h2 class="pageTit">NEWS</h2>
+    <div class="clearfix">
+      <div class="MainL">{xiao:list catid=35 order=time num=1 status=2}
+       <div class="indexFocus"><div class="focus"><a class="pic" href="{xiao:$xiao['url']}"><img src="{xiao:function.image($xiao[thumb])}" alt="{xiao:$xiao['title']}" width="690"></a><h3 class="tit"><a href="{xiao:$xiao['url']}">{xiao:$xiao['title']}</a></h3></div><div class="time">{xiao:function.date("M.d,Y", $xiao['time'])}</div><p class="desc">{xiao:function.strcut($xiao[description],318)}</p></div>{/xiao:list} <!-- indexFocus end -->
+
+      <ul class="newsList">{xiao:list catid=36 order=time num=5}<li><a href="{xiao:$xiao['url']}">{xiao:$xiao['title']}</a><span class="time">{xiao:function.date("M.d,Y", $xiao['time'])}</span></li>{/xiao:list}
+      </ul>
+      <div class="newsListMore"><a href="{xiao:$cats[17][url]}">+more</a></div>
+      </div>
+      <div class="MainR">
+      	<div class="plan">
+      	  <a href="{xiao:$cats[33][url]}"><img src="./static/images/plan.jpg" alt="International Technology Canal"></a>
+      	  <div class="planMask"><a href="{xiao:$cats[33][url]}">International <br> Technology Canal Plan</a></div>
+      	</div>
+      	<ul class="indexIconList">
+      		<li><a href="{xiao:$cats[29][url]}"><i class="icon">&#xe900;</i><span>Innovation Exchange</span></a></li>
+      		<li class="even"><a href="{xiao:$cats[31][url]}"><i class="icon" style="font-weight: bold;">&#xe904;</i><span>Innovation Resource</span></a></li>
+      		<li><a href="{xiao:$cats[30][url]}"><i class="icon" style="text-shadow: 0 0 1px #939393;">&#xe90b;</i><span>Innovation Funding</span></a></li>
+      		<li class="even"><a href="{xiao:$cats[32][url]}"><i class="icon">&#xe90a;</i><span>Innovation Service</span></a></li>
+      	</ul>
+        <div class="indexAd"><a href="{xiao:block 9}"><img src="{xiao:block 6}" alt=""></a></div>
+      	<!-- <div class="indexBBS"><b class="en" style="margin-top: 22px;">2016 EU-China <br> Industrial Technology <br> Transfer Forum</b><a href="http://en.eucittf.org/" class="more">more</a>
+        </div> -->
+      </div>
+    </div> <!-- end -->
+{xiao:template footer.html}

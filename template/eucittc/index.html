@@ -1,0 +1,53 @@
+{xiao:template header.html}
+
+  <div class="w">
+
+    <h2 class="pageTit">新闻资讯 <span class="en"><b>/</b> NEWS</span></h2>
+
+    <div class="clearfix">
+
+      <div class="MainL">{xiao:list catid=12 order=time status=2}
+
+       <div class="indexFocus"><div class="focus"><a class="pic" href="{xiao:$xiao['url']}"><img src="{xiao:function.image($xiao[thumb])}" alt="{xiao:$xiao['title']}" width="690"></a><h3 class="tit"><a href="{xiao:$xiao['url']}">{xiao:$xiao['title']}</a></h3></div><div class="time">{xiao:function.date("Y.m.d", $xiao['time'])}</div><p class="desc">{xiao:function.strcut($xiao[description],318)}</p></div>{/xiao:list} <!-- indexFocus end -->
+
+      <ul class="newsList">{xiao:list catid=13 order=time num=5}<li><a href="{xiao:$xiao['url']}">{xiao:$xiao['title']}</a><span class="time">{xiao:function.date("Y.m.d", $xiao['time'])}</span></li>{/xiao:list}
+
+      </ul>
+
+      <div class="newsListMore"><a href="{xiao:$cats[4][url]}">+more</a></div>
+
+      </div>
+
+      <div class="MainR">
+
+      	<div class="plan">
+
+      	  <a href="{xiao:$cats[3][url]}"><img src="./static/images/plan.jpg" alt="国际技术运河计划"></a>
+
+      	  <div class="planMask"><a href="{xiao:$cats[3][url]}">International <br> Technology Canal Plan <br>国际科技运河计划</a></div>
+
+      	</div>
+
+      	<ul class="indexIconList">
+
+      		<li><a href="{xiao:$cats[10][url]}"><i class="icon">&#xe900;</i><span>创新交流</span></a></li>
+
+      		<li class="even"><a href="{xiao:$cats[26][url]}"><i class="icon" style="font-weight: bold;">&#xe904;</i><span>创新资源</span></a></li>
+
+      		<li><a href="{xiao:$cats[25][url]}"><i class="icon">&#xe909;</i><span>创新金融</span></a></li>
+
+      		<li class="even"><a href="{xiao:$cats[27][url]}"><i class="icon">&#xe90a;</i><span>创新服务</span></a></li>
+
+      	</ul>
+
+        <div class="indexAd"><a href="{xiao:block 8}"><img src="{xiao:block 7}" alt=""></a></div>
+
+      	<!-- <div class="indexBBS"><b class="en">2016 EU-China <br> Industrial Technology <br> Transfer Forum</b><b class="zn">欧盟-中国工业技术转移论坛</b><a href="http://cn.eucittf.org/" class="more">more</a>
+
+        </div> -->
+
+      </div>
+
+    </div> <!-- end -->
+
+{xiao:template footer.html}

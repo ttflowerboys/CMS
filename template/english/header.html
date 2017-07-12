@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{xiao:$site_title}</title>
+  <meta name="keywords" content="{xiao:$site_keywords}" />
+  <meta name="description" content="{xiao:$site_description}" />
+  <link rel="stylesheet" href="./static/css/style.css">
+  <style type="text/css">.nav li.subCur .sub,.nav li .sub:hover,.indexIconList li a:hover{background: #154290;}.indexIconList li a{line-height: 22px;}</style>
+</head>
+<body>
+  <div class="header">
+    <div class="w clearfix">
+  	  <h1 class="logo"><a href="{xiao:$site_url}" title="{xiao:$site_name}"><img src="./static/images/logo.gif" alt="{xiao:$site_name}"></a></h1>
+  	  <div class="sLanguage"><a href="http://cn.eucjic.org/">中</a>|<a href="http://en.eucjic.org/">English</a></div>
+  	</div>
+  </div> <!-- header end -->
+  <div class="rel">
+    <div class="navW">
+      <ul class="w nav">
+        <li><a class="sub" href="{xiao:$site_url}">HOME</a></li>{xiao:nav num=5}<li class="{xiao:if $current}subCur{/xiao:if}"><a class="sub" href="{xiao:$xiao['url']}">{xiao:$xiao['catname']}</a></li>{/xiao:nav}
+      </ul>
+    </div>    
+    <div class="banner">
+      <div class="js-sCont"><ul><li><a href="{xiao:block 11}"><img src="{xiao:block 5}" alt=""></a></li></ul></div>
+      <div class="js-sDot"><ul><li></li></ul></div>
+    </div>
+  </div> <!-- end -->

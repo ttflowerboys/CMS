@@ -1,0 +1,15 @@
+{xiao:template header.html}
+<body id="index">
+<header>
+	<h1>{xiao:$site_name}</h1>
+</header>
+<div class="cats"><ul data-role="listview" data-inset="true" >
+    {xiao:nav  }
+     <li class='column'><a href="index.php?c=index&catid={xiao:$xiao['catid']}">{xiao:$xiao['catname']}</a>
+     </li>
+	  {/xiao:nav}
+
+		</ul>
+</div>
+
+{xiao:template footer.html}

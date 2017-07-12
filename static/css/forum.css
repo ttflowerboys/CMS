@@ -1,0 +1,50 @@
+/* CSS basic */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{ margin: 0; padding: 0; }
+fieldset,img{ border: 0; }
+:focus{ outline: 0; }
+address,caption,cite,code,dfn,em,strong,th,var,optgroup{ font-style: normal; font-weight: normal; }
+h1,h2,h3,h4,h5,h6{ font-size: 100%; font-weight: normal; font-family: "Microsoft YaHei"; }
+input,button,textarea,select{ *font-size: 100%; border:none;}
+body{ background:#dedede;color:#333; font: 12px/1.5 verdana,helvetica,arial,sans-serif,"Microsoft YaHei" }
+ol,ul,li{ list-style: none; }table{ border-collapse: collapse; border-spacing: 0; }:link, :visited, ins{ text-decoration: none; }
+.rel{position: relative;}.abs{position: absolute;}.fl{float: left;}.fr{float: right;}
+.w{width: 1030px;margin: 0 auto;position: relative;}
+a{color: #5b5b5b;}
+a:hover{transition : color 0.2s linear 0s,background-color 0.3 linear 0s;color: #ff1e00;}
+.clearfix:after{content:'\0020';display:block;height:0;clear:both;visibility:hidden;}.clearfix{*zoom:1;}
+.sr-only{overflow: hidden;text-indent: -100%;}
+
+.header{padding-top: 132px;height: 310px;width: 100%;margin-bottom: 24px;border-bottom: 22px solid #ff1e00;background: #154290 url(../images/forum.png) center 86px no-repeat;}
+.header h1{font: bold 34px/52px 'Microsoft YaHei';padding-top:68px;padding-bottom: 72px;text-shadow: 2px 2px 4px #000; background: url(../images/forumLogo.png) center top no-repeat;text-align: center;color: #fff}
+.header .en{display: block;font-family: Arial;font-weight: bold;}
+.header .zn{font-weight: bold;font-size: 30px;display: block;}
+.sLanguage{position: relative;float: right;width: 166px;height: 34px;padding-left: 42px;background: url(../images/sLanguage.png) center no-repeat;}
+.sLanguage a{margin: 0 12px;font: 14px/34px 'Microsoft YaHei';text-shadow: 2px 2px 4px #000;color: #fff;}
+
+.forumL{width: 727px;float: left;}
+.forumR{width: 284px;float: right;}
+.forumTit{font-family: 'Microsoft YaHei';margin-bottom: 10px;}
+.forumTit .zn{font-size: 20px;line-height: 28px;color: #000;display: block;}
+.forumTit .en{color: #ff1e00;font-size: 15px;font-weight: normal;display: block;}
+
+.forumMain{padding: 22px;background: #fff;font: 14px/26px 'Microsoft YaHei';color: #333;}
+.forumMain p{margin-bottom: 8px;}
+.forumMain img{max-width: 100%;}
+.forumLink{width: 510px;float: left;border-right:1px solid #939393;font: 12px/32px 'Microsoft YaHei';}
+
+.qr{padding: 12px;background: #154290;margin-bottom: 20px;}
+.contactBox{padding: 18px 28px;font: 14px/30px 'Microsoft YaHei';background: #fff;color: #333;}
+.contactBox .email{height: 30px;padding-left: 26px;background: url(../images/email.gif) left center no-repeat;display: block;}
+
+/* footer */
+.footer{padding: 30px 104px 68px;margin-top: 32px;background: #fff;color: #5b5b5b}
+.copyright{margin-top: 62px;font: 12px/22px Simsun;color: #5b5b5b;text-align: center;}
+.friendLink{width: 514px;font: 13px/22px 'Microsoft YaHei';color: #212121;float: left;overflow: hidden;}
+.friendLink li{width: 232px;height: 22px;overflow: hidden;white-space: nowrap;margin: 0 12px;float: left;}
+.footer a{color: #5b5b5b;}
+.footer a:hover{color: #ff1e00;}
+.state{width: 288px;padding-left: 20px;line-height: 22px;float: right;}
+.footerA{position: relative;}
+.footer .line1,.footer .line2{position: absolute;top: 0;width: 1px;height: 100%;background: #939393;}
+.footer .line1{left: 245px;}
+.footer .line2{left: 512px;}

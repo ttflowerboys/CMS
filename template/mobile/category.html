@@ -1,0 +1,18 @@
+{xiao:template header.html}
+<body id="index">
+<header>
+	<div class="left-box"><a class="goback" href="javascript:history.back()"><label>返回</label></a></div>
+	<h1>{xiao:$catname}</h1>
+ </header>
+
+<div class="cats"><ul data-role="listview" data-inset="true" >
+    {xiao:nav parentid=$catid }
+     <li class='column'><a href="index.php?c=index&catid={xiao:$xiao['catid']}">{xiao:$xiao['catname']}</a>
+     </li>
+	  {/xiao:nav}
+
+		</ul>
+</div>
+
+{xiao:template footer.html}
+
