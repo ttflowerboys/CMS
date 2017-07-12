@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $cfg_soft_lang; ?>">
+<title>登录-<?php echo $cfg_softname; ?></title>
+<link href="css/login.css" rel="stylesheet" type="text/css" />
+<script src="../include/js/jquery/jquery.js" language="javascript" type="text/javascript"></script>
+<script type="text/javascript">
+$ = jQuery;
+function changeAuthCode() {
+    var num =     new Date().getTime();
+    var rand = Math.round(Math.random() * 10000);
+    num = num + rand;
+    $('#ver_code').css('visibility','visible');
+    if ($("#vdimgck")[0]) {
+        $("#vdimgck")[0].src = "../include/vdimgck.php?tag=" + num;
+    }
+    return false;    
+}
+</script>
+</head>
+<body>
+
+<div class="login_container">
+    <div class="login_logo"></div>
+    <div id="login">
+        <form  name="form1" method="post" action="login.php">
+            <input type="hidden" name="gotopage" value="<?php if(!empty($gotopage)) echo RemoveXSS($gotopage);?>" />
+            <input type="hidden" name="dopost" value="login" />
+            <input name='adminstyle' type='hidden' value='newdedecms' />
+            <table class="table">
+                <h3>后台管理系统 <em>V2.0</em></h3>
+                <tr>
+                    <td style="text-align:center">用户名</td>
+                    <td><input type="text" name="userid"/></td>
+                </tr>
+                <tr>
+                    <td style="text-align:center">密&nbsp;&nbsp;&nbsp;码</td>
+                    <td><input type="password" name="pwd"/></td>
+                </tr>
+                <?php
+                    if(preg_match("/6/",$safe_gdopen))
+                    {
+                ?>
+                <tr>
+                    <td style="text-align:center">验证码</td>
+                    <td><input id="vdcode" type="text" name="validate" style="text-transform:uppercase;width: 115px;"/><img id="vdimgck" align="absmiddle" onClick="this.src=this.src+'?'" alt="看不清？点击更换" src="../include/vdimgck.php"/></td>
+                </tr>
+                <?php
+                    }
+                ?>
+                <tr>
+                    <td colspan="2" style="padding:24px 0 0;text-align:center"><input class="login_btn" type="submit" onclick="this.form.submit();" value=""></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div class="ver">Copyright © <a href="http://www.threetowns.cn" target="_blank">三镇网络</a> All Rights Reserved</div>
+</div>
+</body>
+</html>

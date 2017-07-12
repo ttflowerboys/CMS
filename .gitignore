@@ -1,0 +1,9 @@
+data/cache/
+data/tplcache/
+data/sessions_*/*
+
+# Windows thumbnail db
+Thumbs.db
+
+# OS X
+.DS_Store

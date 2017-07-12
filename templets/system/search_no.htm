@@ -1,0 +1,25 @@
+<div class="searchNoResult">
+<h1>抱歉，没有找到与“<b class="J_searchK"></b>”相关的内容。</h1>
+<h3>新技能！站内搜不到？试试<a id="J_bdSearchUrl" href="http://www.baidu.com" rel="nofollow" target="_blank">百度搜索</a> 或者 <a id="J_soSearchUrl" rel="nofollow" href="http://www.so.com" target="_blank">360搜索</a>或者<a id="J_googleSearchUrl" href="http://www.google.com.hk" rel="nofollow" target="_blank">google搜索</a>可能会找到你要的结果喔！</h3>
+<p><b>如何正确搜索关键词：</b></p>
+<p>由于站内搜索有一定的局限性，它无法像搜索引擎一样，可以进行联想搜索，所以如果您搜索的词语没有在资源库里边完全匹配到，是可能搜索不到结果的。为此您可以参考以下方案进行站内搜索：</p>
+<p>1.检查输入是否正确;</p>
+<p>2.简化输入词;</p>
+<p>3.尝试其他相关词，如同义、近义词等;</p>
+</div>
+<style>/* searchNoResult */
+.searchNoResult{text-align:left;}
+.searchNoResult a{border:none;display:inline;padding: 0;margin: 0 6px;text-decoration: none;}
+.searchNoResult a:hover{background:#fff;color:#e14d43;text-decoration:underline;}
+.searchNoResult h3{margin: 16px 0;font-size: 16px;font-weight: bold;color: #028BD2;}
+.searchNoResult h3 a{color: #e14d43;}
+.searchNoResult p{font-size: 14px;color: #363b3f;line-height:30px;}</style>
+<script>
+    $(function(){
+        var searchKey = $("#searchKey").text();
+        $(".J_searchK").text(searchKey);
+        $("#J_bdSearchUrl").attr("href","https://www.baidu.com/s?wd="+searchKey+"%20site%3Awww.flowerboys.cn");
+        $("#J_soSearchUrl").attr("href","http://www.so.com/s?q="+searchKey+"&ie=utf8&src=zz_www_so_com&site=www.flowerboys.cn&rg=1");
+         $("#J_googleSearchUrl").attr("href","http://www.google.com.hk/search?sitesearch=www.flowerboys.cn&as_q"+searchKey);
+    })
+</script>
