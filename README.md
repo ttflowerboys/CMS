@@ -3,9 +3,9 @@
 ## 产品
 | 产品名称 | 产品LOGO | 分支 |
 |--------|--------|--------|
-| XIAOCMS商业版 | ![XIAOCMS](http://www.xiaocms.com/core/template/img/logo.png)| xiaocms |
-| XIAOCMS多语言版 | ![XIAOCMS](http://www.xiaocms.com/core/template/img/logo.png)| xiaocms-lang |
-| DedeCMS-V5.7-UTF8-SP1 | ![DedeCMS-V5.7-UTF8-SP1](http://www.dedecms.com/img/top_logo.jpg)| dedecms |
+| XIAOCMS商业版 | ![XIAOCMS](http://www.xiaocms.com/core/template/img/logo.png)| [xiaocms](https://github.com/ttflowerboys/CMS/tree/xiaocms) |
+| XIAOCMS多语言版 | ![XIAOCMS](http://www.xiaocms.com/core/template/img/logo.png)| [xiaocms-lang](https://github.com/ttflowerboys/CMS/tree/xiaocms-lang) |
+| DedeCMS-V5.7-UTF8-SP1 | ![DedeCMS-V5.7-UTF8-SP1](http://www.dedecms.com/img/top_logo.jpg)| [dedecms](https://github.com/ttflowerboys/CMS/tree/dedecms) |
 
 ## 说明
 * 营销官网：`http://www.threetowns.cn`
