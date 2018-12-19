@@ -145,7 +145,46 @@ class ListView
         global $cfg_list_son,$cfg_need_typeid2,$cfg_cross_sectypeid;
         if(empty($cfg_need_typeid2)) $cfg_need_typeid2 = 'N';
         
-        //统计数据库记录
+		//获得附加表的相关信息
+		$addtable  = $this->ChannelUnit->ChannelInfos['addtable'];
+		if($addtable!="")
+		{
+			$addJoin = " LEFT JOIN `$addtable` ON arc.id = ".$addtable.'.aid ';
+			$addField = '';
+			$fields = explode(',',$this->ChannelUnit->ChannelInfos['listfields']);
+			foreach($fields as $k=>$v)
+			{
+				$nfields[$v] = $k;
+			}
+			if(is_array($this->ChannelUnit->ChannelFields) && !empty($this->ChannelUnit->ChannelFields))
+			{
+				foreach($this->ChannelUnit->ChannelFields as $k=>$arr)
+				{
+					if(isset($nfields[$k]))
+					{
+						if(!empty($arr['rename'])) {
+							$addField .= ','.$addtable.'.'.$k.' as '.$arr['rename'];
+						}
+						else {
+							$addField .= ','.$addtable.'.'.$k;
+						}
+					}
+				}
+			}
+			if (isset($_REQUEST['tid']))
+			{
+				foreach($_GET as $key => $value) {
+					$filtersql .= ($key!="tid" && $key!="TotalResult" && $key!="PageNo") ? " AND $addtable.".wwwcms_filter($key)." = '".wwwcms_filter(urldecode($value))."'" : '';
+				}
+			}
+		}
+		else
+		{
+			$addField = '';
+			$addJoin = '';
+		}
+		
+		//统计数据库记录
         $this->TotalResult = -1;
         if(isset($GLOBALS['TotalResult'])) $this->TotalResult = $GLOBALS['TotalResult'];
         if(isset($GLOBALS['PageNo'])) $this->PageNo = $GLOBALS['PageNo'];
@@ -210,7 +249,7 @@ class ListView
         }
         if($this->TotalResult==-1)
         {
-            $cquery = "SELECT COUNT(*) AS dd FROM `#@__arctiny` arc WHERE ".$this->addSql;
+            $cquery = "SELECT COUNT(*) AS dd FROM `#@__arctiny` arc $addJoin WHERE ".$this->addSql.$filtersql;
             $row = $this->dsql->GetOne($cquery);
             if(is_array($row))
             {
@@ -226,19 +265,10 @@ class ListView
         $tempfile = $GLOBALS['cfg_basedir'].$GLOBALS['cfg_templets_dir']."/".$this->TypeLink->TypeInfos['templist'];
         $tempfile = str_replace("{tid}", $this->TypeID, $tempfile);
         $tempfile = str_replace("{cid}", $this->ChannelUnit->ChannelInfos['nid'], $tempfile);
-        if ( defined('DEDEMOB') )
-        {
-            $tempfile =str_replace('.htm','_m.htm',$tempfile);
-        }
         if(!file_exists($tempfile))
         {
             $tempfile = $GLOBALS['cfg_basedir'].$GLOBALS['cfg_templets_dir']."/".$GLOBALS['cfg_df_style']."/list_default.htm";
-            if ( defined('DEDEMOB') )
-            {
-                $tempfile =str_replace('.htm','_m.htm',$tempfile);
-            }
         }
-        
         if(!file_exists($tempfile)||!is_file($tempfile))
         {
             echo "模板文件不存在，无法解析文档！";
@@ -299,7 +329,7 @@ class ListView
             return $reurl;
         }
 
-        if(empty($this->TotalResult)) $this->CountRecord();
+        $this->CountRecord();
         //初步给固定值的标记赋值
         $this->ParseTempletsFirst();
         $totalpage = ceil($this->TotalResult/$this->PageSize);
@@ -400,17 +430,9 @@ class ListView
             $tempfile = str_replace("{tid}",$this->TypeID,$this->Fields['tempindex']);
             $tempfile = str_replace("{cid}",$this->ChannelUnit->ChannelInfos['nid'],$tempfile);
             $tempfile = $tmpdir."/".$tempfile;
-            if ( defined('DEDEMOB') )
-            {
-                $tempfile =str_replace('.htm','_m.htm',$tempfile);
-            }
             if(!file_exists($tempfile))
             {
                 $tempfile = $tmpdir."/".$GLOBALS['cfg_df_style']."/index_default.htm";
-                if ( defined('DEDEMOB') )
-                {
-                    $tempfile =str_replace('.htm','_m.htm',$tempfile);
-                }
             }
             $this->dtp->LoadTemplate($tempfile);
         }
@@ -436,17 +458,9 @@ class ListView
             $tempfile = str_replace("{tid}",$this->TypeID,$this->Fields['tempindex']);
             $tempfile = str_replace("{cid}",$this->ChannelUnit->ChannelInfos['nid'],$tempfile);
             $tempfile = $tmpdir."/".$tempfile;
-            if ( defined('DEDEMOB') )
-            {
-                $tempfile =str_replace('.htm','_m.htm',$tempfile);
-            }
             if(!file_exists($tempfile))
             {
                 $tempfile = $tmpdir."/".$GLOBALS['cfg_df_style']."/index_default.htm";
-                if ( defined('DEDEMOB') )
-                {
-                    $tempfile =str_replace('.htm','_m.htm',$tempfile);
-                }
             }
             $this->PartView->SetTemplet($tempfile);
         }
@@ -514,17 +528,9 @@ class ListView
             $tempfile = str_replace("{tid}",$this->TypeID,$this->Fields['tempindex']);
             $tempfile = str_replace("{cid}",$this->ChannelUnit->ChannelInfos['nid'],$tempfile);
             $tempfile = $tmpdir."/".$tempfile;
-            if ( defined('DEDEMOB') )
-            {
-                $tempfile =str_replace('.htm','_m.htm',$tempfile);
-            }
             if(!file_exists($tempfile))
             {
                 $tempfile = $tmpdir."/".$GLOBALS['cfg_df_style']."/index_default.htm";
-                if ( defined('DEDEMOB') )
-                {
-                    $tempfile =str_replace('.htm','_m.htm',$tempfile);
-                }
             }
             $this->PartView->SetTemplet($tempfile);
         }
@@ -771,39 +777,45 @@ class ListView
         else {
             $ordersql=" ORDER BY arc.sortrank $orderWay";
         }
-
-        //获得附加表的相关信息
-        $addtable  = $this->ChannelUnit->ChannelInfos['addtable'];
-        if($addtable!="")
-        {
-            $addJoin = " LEFT JOIN `$addtable` ON arc.id = ".$addtable.'.aid ';
-            $addField = '';
-            $fields = explode(',',$this->ChannelUnit->ChannelInfos['listfields']);
-            foreach($fields as $k=>$v)
-            {
-                $nfields[$v] = $k;
-            }
-            if(is_array($this->ChannelUnit->ChannelFields) && !empty($this->ChannelUnit->ChannelFields))
-            {
-                foreach($this->ChannelUnit->ChannelFields as $k=>$arr)
-                {
-                    if(isset($nfields[$k]))
-                    {
-                        if(!empty($arr['rename'])) {
-                            $addField .= ','.$addtable.'.'.$k.' as '.$arr['rename'];
-                        }
-                        else {
-                            $addField .= ','.$addtable.'.'.$k;
-                        }
-                    }
-                }
-            }
-        }
-        else
-        {
-            $addField = '';
-            $addJoin = '';
-        }
+		
+		//获得附加表的相关信息
+		$addtable  = $this->ChannelUnit->ChannelInfos['addtable'];
+		if($addtable!="")
+		{
+			$addJoin = " LEFT JOIN `$addtable` ON arc.id = ".$addtable.'.aid ';
+			$addField = '';
+			$fields = explode(',',$this->ChannelUnit->ChannelInfos['listfields']);
+			foreach($fields as $k=>$v)
+			{
+				$nfields[$v] = $k;
+			}
+			if(is_array($this->ChannelUnit->ChannelFields) && !empty($this->ChannelUnit->ChannelFields))
+			{
+				foreach($this->ChannelUnit->ChannelFields as $k=>$arr)
+				{
+					if(isset($nfields[$k]))
+					{
+						if(!empty($arr['rename'])) {
+							$addField .= ','.$addtable.'.'.$k.' as '.$arr['rename'];
+						}
+						else {
+							$addField .= ','.$addtable.'.'.$k;
+						}
+					}
+				}
+			}
+			if (isset($_REQUEST['tid']))
+			{
+			foreach($_GET as $key => $value) {
+				$filtersql .= ($key!="tid" && $key!="TotalResult" && $key!="PageNo") ? " AND $addtable.".wwwcms_filter($key)." = '".wwwcms_filter(urldecode($value))."'" : '';
+			}
+			}
+		}
+		else
+		{
+			$addField = '';
+			$addJoin = '';
+		}
 
         //如果不用默认的sortrank或id排序，使用联合查询（数据量大时非常缓慢）
         if(preg_match('/hot|click|lastpost/', $orderby))
@@ -814,14 +826,14 @@ class ListView
            FROM `#@__archives` arc
            LEFT JOIN `#@__arctype` tp ON arc.typeid=tp.id
            $addJoin
-           WHERE {$this->addSql} $ordersql LIMIT $limitstart,$row";
+           WHERE {$this->addSql} $filtersql $ordersql LIMIT $limitstart,$row";
         }
         //普通情况先从arctiny表查出ID，然后按ID查询（速度非常快）
         else
         {
             $t1 = ExecTime();
             $ids = array();
-            $query = "SELECT id FROM `#@__arctiny` arc WHERE {$this->addSql} $ordersql LIMIT $limitstart,$row ";
+            $query = "SELECT id FROM `#@__arctiny` arc $addJoin WHERE {$this->addSql} $filtersql $ordersql LIMIT $limitstart,$row ";
             $this->dsql->SetQuery($query);
             $this->dsql->Execute();
             while($arr=$this->dsql->GetArray())
@@ -1132,12 +1144,17 @@ class ListView
         $optionlist = '';
         //$hidenform = "<input type='hidden' name='tid' value='".$this->TypeID."'>\r\n";
         //$hidenform .= "<input type='hidden' name='TotalResult' value='".$this->TotalResult."'>\r\n";
+		
+		//获取筛选参数
+		foreach($_GET as $key => $value) {
+			$pageaddurl .= ($key!="tid" && $key!="TotalResult" && $key!="PageNo") ? "&".wwwcms_filter($key)."=".wwwcms_filter($value) : '';
+		}
 
         //获得上一页和下一页的链接
         if($this->PageNo != 1)
         {
-            $prepage.="<li><a href='".$purl."PageNo=$prepagenum'>上一页</a></li>\r\n";
-            $indexpage="<li><a href='".$purl."PageNo=1'>首页</a></li>\r\n";
+            $prepage.="<li><a href='".$purl."PageNo=$prepagenum".$pageaddurl."'>上一页</a></li>\r\n";
+            $indexpage="<li><a href='".$purl."PageNo=1".$pageaddurl."'>首页</a></li>\r\n";
         }
         else
         {
@@ -1145,8 +1162,8 @@ class ListView
         }
         if($this->PageNo!=$totalpage && $totalpage>1)
         {
-            $nextpage.="<li><a href='".$purl."PageNo=$nextpagenum'>下一页</a></li>\r\n";
-            $endpage="<li><a href='".$purl."PageNo=$totalpage'>末页</a></li>\r\n";
+            $nextpage.="<li><a href='".$purl."PageNo=$nextpagenum".$pageaddurl."'>下一页</a></li>\r\n";
+            $endpage="<li><a href='".$purl."PageNo=$totalpage".$pageaddurl."'>末页</a></li>\r\n";
         }
         else
         {
@@ -1182,7 +1199,7 @@ class ListView
             }
             else
             {
-                $listdd.="<li><a href='".$purl."PageNo=$j'>".$j."</a></li>\r\n";
+                $listdd.="<li><a href='".$purl."PageNo=$j".$pageaddurl."'>".$j."</a></li>\r\n";
             }
         }
 
