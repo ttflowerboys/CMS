@@ -10,13 +10,37 @@
   <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
+<div class="header">
   {dede:include filename="head.htm"/}
-
-  <div class="List_banner"></div>
+</div>
   
-<div class="commonweal">
-    <div class="block60"></div>
+<div class="commonweal_china">
     <div class="w">
+        <div class="filter_attrs">
+            <!-- <div class="attr clearfix">
+                <div class="attrKey">项目</div>
+                <div class="attrValues">
+                    <ul class="attrList clearfix">
+                        <li><a class="current" href="">全部</a></li>
+                        <li><a href="">孤儿院</a></li>
+                        <li><a href="">义教娱乐</a></li>
+                        <li><a href="">冲浪及社区服务项目</a></li>
+                    </ul>
+                </div>
+            </div> -->
+            {dede:php}AddFilter(17,1,'xiangmu');{/dede:php}
+            <div class="attr clearfix">
+                <div class="attrKey">项目</div>
+                <div class="attrValues">
+                    <ul class="attrList clearfix">
+                        <li><a class="current" href="">全部</a></li>
+                        <li><a href="">孤儿院</a></li>
+                        <li><a href="">义教娱乐</a></li>
+                        <li><a href="">冲浪及社区服务项目</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
         <ul class="commonweal_list">
             <li>
