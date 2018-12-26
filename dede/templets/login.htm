@@ -1,56 +1,85 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="zh-cn">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $cfg_soft_lang; ?>">
-<title><?php echo $cfg_softname." ".$cfg_version; ?></title>
-<link href="css/base.css" rel="stylesheet" type="text/css" />
-<link href="css/login.css" rel="stylesheet" type="text/css" />
-<script src="../include/js/jquery/jquery.js" language="javascript" type="text/javascript"></script>
-<script type="text/javascript">
-$ = jQuery;
-function changeAuthCode() {
-	var num = 	new Date().getTime();
-	var rand = Math.round(Math.random() * 10000);
-	num = num + rand;
-	$('#ver_code').css('visibility','visible');
-	if ($("#vdimgck")[0]) {
-		$("#vdimgck")[0].src = "../include/vdimgck.php?tag=" + num;
-	}
-	return false;	
-}
-</script>
+	<meta charset="<?php echo $cfg_soft_lang; ?>">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>
+		网站管理平台
+	</title>
+	<style>
+		*{padding: 0; margin: 0;box-sizing: border-box;}
+		input,button{border: 0; outline: 0;}
+		body{background-color: #fff;}
+		#admin_login{
+			position: relative;
+			background: url(./images/admin_login.png) center top no-repeat;
+			width: 690px;
+			height: 600px;
+			padding-top: 286px;
+			padding-left: 60px;
+			margin: 0 auto;
+			font-size: 0;
+		}
+		#admin_login .items{height: 32px;font-size: 14px; line-height: 32px;margin-bottom: 12px;}
+		#admin_login .login_label{width: 72px;margin-right: 5px;text-align: right; display: inline-block;}
+		#admin_login .login_ipt_text{height: 32px;width: 200px;padding: 2px 6px; border: 1px solid #ccc;border-radius: 3px;}
+		#admin_login .login_ipt_text:hover{border-color: #56b9ea;}
+		#admin_login .login-btn{height: 32px; width: 100px; border-radius: 3px;font-size: 14px; line-height: 32px; cursor: pointer; text-align: center;background: #56b9ea;color: #fff;}
+
+		#admin_login .main_content{overflow: hidden;}
+		#admin_login .main_title{font-size: 34px;line-height: 46px;margin-bottom: 12px;float: left; color: #56b9ea; font-weight: normal;}
+		#admin_login .main_form{width: 278px;margin-top: 12px;margin-right: 56px;float: right;}
+
+		.copyright{position: fixed;bottom: 30px;left: 50%;width: 1200px;margin-left: -600px;font-size: 12px;line-height: 24px;color: #333;text-align: center;}
+		.copyright span{background: url(./images/copyright_logo.png) left center no-repeat;padding-left: 32px;}
+	</style>
+	<script src="../include/js/jquery/jquery.js" language="javascript" type="text/javascript"></script>
+	<script type="text/javascript">
+		$ = jQuery;
+		function changeAuthCode() {
+			var num = new Date().getTime();
+			var rand = Math.round(Math.random() * 10000);
+			num = num + rand;
+			$('#ver_code').css('visibility', 'visible');
+			if ($("#vdimgck")[0]) {
+				$("#vdimgck")[0].src = "../include/vdimgck.php?tag=" + num;
+			}
+			return false;
+		}
+	</script>
 </head>
+
 <body>
-<div id="login-box">
-   <div class="login-top"><a href="../index.php" target="_blank" title="返回网站主页">返回网站主页</a></div>
-   <?php echo $redmsg; ?>
-   <div class="login-main">
-    <form name="form1" method="post" action="login.php">
-      <input type="hidden" name="gotopage" value="<?php if(!empty($gotopage)) echo RemoveXSS($gotopage);?>" />
-      <input type="hidden" name="dopost" value="login" />
-      <input name='adminstyle' type='hidden' value='newdedecms' />
-      <dl>
-	   <dt>用户名：</dt>
-	   <dd><input type="text" name="userid"/></dd>
-	   <dt>密&nbsp;&nbsp;码：</dt>
-	   <dd><input type="password" class="alltxt" name="pwd"/></dd>
-	   <?php
-        	if(preg_match("/6/",$safe_gdopen))
-        	{
-        ?>
-	   <dt>验证码：</dt>
-	   <dd><input id="vdcode" type="text" name="validate" style="text-transform:uppercase;"/><img id="vdimgck" align="absmiddle" onClick="this.src=this.src+'?'" style="cursor: pointer;" alt="看不清？点击更换" src="../include/vdimgck.php"/>
-           <a href="#" onClick="changeAuthCode();">看不清？ </a></dd>
-		<?php
-       		}
-		?>
-		<dt>&nbsp;</dt>
-		<dd><button type="submit" name="sm1" class="login-btn" onclick="this.form.submit();">登录</button></dd>
-	 </dl>
-	</form>
-   </div>
-   <div class="login-power">Powered by<a href="http://www.dedecms.com" title="DedeCMS官网"><strong>DedeCMS<?php echo $cfg_version; ?></strong></a>&copy; 2004-2011 <a href="http://www.desdev.cn" target="_blank">DesDev</a> Inc.</div>
-</div>
-<div class="dede-iframe"><iframe name="loginad" src="login.php?dopost=showad" frameborder="0" id="loginad" scrolling="no" marginwidth="0" marginheight="0" width="100%"></iframe></div>
+	<div id="admin_login">
+		<div class="main_content">
+			<h1 class="main_title">网站管理平台</h1>
+			<form name="form1" method="post" action="login.php" class="main_form">
+				<input type="hidden" name="gotopage" value="<?php if(!empty($gotopage)) echo RemoveXSS($gotopage);?>" />
+				<input type="hidden" name="dopost" value="login" />
+				<input name='adminstyle' type='hidden' value='newdedecms' />
+				<div class="items"><label class="login_label">用户名：</label><input class="login_ipt_text" type="text" name="userid" required></div>
+				<div class="items"><label class="login_label">密码：</label><input class="login_ipt_text" type="password" name="pwd" required></div>
+				<?php
+				if(preg_match("/6/",$safe_gdopen)){
+			?>
+				<div class="items">
+					<label class="login_label">验证码：</label><input class="login_ipt_text" type="text" id="vdcode" name="validate"
+					 required style="width: 110px;">
+					<img id="vdimgck" onClick="this.src=this.src+'?'" style="cursor: pointer;height: 32px;padding: 3px 5px;vertical-align: middle;border: 1px solid #ccc;float: right;"
+					 alt="看不清？点击更换" src="../include/vdimgck.php" title="看不清？点击更换" />
+					<!-- <a href="javascript:;" onClick="changeAuthCode();">看不清？ </a> -->
+				</div>
+				<?php
+				}
+			?>
+				<div class="items"><label class="login_label"></label><input type="submit" name="sm1" class="login-btn" value="登录"></div>
+			</form>
+		</div>
+	</div>
+	<div class="copyright">
+		<span>Copyright © <a href="http://threetowns.cn" target="_blank">Threetowns</a> Technologies Co., Ltd.1998-2015 All rights reserved.</span>
+	</div>
 </body>
 </html>
