@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{dede:field.title/}_{dede:global.cfg_webname/}</title>
+    <meta name="keywords" content="{dede:field name='keywords'/}" />
+    <meta name="description" content="{dede:field name='description' function='html2text(@me)'/}" />
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    {dede:include filename="head.htm"/}
+    <div class="List_banner"></div>
+
+    <div class="article_warpper">
+        <div class="article_tabs">
+            <div class="article_tabs_list js_article_tabs_list">
+                <ul class="w clearfix">
+                    <li class="cur"><a href="javascript:;">项目安排</a></li>
+                    <li><a href="javascript:;">申请须知</a></li>
+                    <li><a href="javascript:;">费用说明</a></li>
+                    <li><a href="javascript:;">注意事项</a></li>
+                    <li><a href="javascript:;">心路日记</a></li>
+                    <li><a href="javascript:;">我要报名</a></li>
+                </ul>
+            </div>
+            <div class="article_tabs_content js_article_tabs_content w">
+                <div class="Items clearfix" style="display: block;">
+                    <div class="fl projectList">
+                        <div class="projectListItems">
+                            <h3><i class="icon-time"></i> 项目时间</h3>
+                            <div class="des">{dede:field.projecttime/}</div>
+                        </div>
+                        <div class="projectListItems">
+                            <h3><i class="icon-cycle"></i>项目时长</h3>
+                            <div class="des">{dede:field.projectcycle/}</div>
+                        </div>
+                        <div class="projectListItems">
+                            <h3><i class="icon-address"></i>项目地点</h3>
+                            <div class="des">{dede:field.projectaddress/}</div>
+                        </div>
+                        <div class="projectListItems">
+                            <h3><i class="icon-stay"></i>当地住宿</h3>
+                            <div class="des">{dede:field.projectstay/}</div>
+                        </div>
+                        <div class="projectListItems">
+                            <h3><i class="icon-diet"></i>当地饮食</h3>
+                            <div class="des">{dede:field.projectdiet/}</div>
+                        </div>
+                        <div class="projectListItems">
+                            <h3><i class="icon-gain"></i>参与项目可获得</h3>
+                            <div class="des">
+                                <pre>{dede:field.projectgain/}</pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fr ProjectDesc">
+                        <ul>{dede:field.projectpic/}</ul>
+                        <div class="desc">{dede:field.body/}</div>
+                    </div>
+                </div>
+                <div class="Items" style="display: none;"><img src="/static/images/14890317432563.png" alt="申请须知"></div>
+                <div class="Items" style="display: none;">
+                    <div class="projectcosts">
+                        <div class="titleBox"><img src="/static/images/fy1.jpg" width="399" height="36"></div>
+                        <div class="projectcostsTable">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <th width="400">项目总时长</th>
+                                        <th>项目费用</th>
+                                        <th width="300">我要报名</th>
+                                    </tr>
+                                    <tr>
+                                        <td>两周</td>
+                                        <td>2900.00</td>
+                                        <td><a class="go_book" href="">立即报名</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>三周</td>
+                                        <td>4350.00</td>
+                                        <td><a class="go_book" href="">立即报名</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>四周</td>
+                                        <td>5800.00</td>
+                                        <td><a class="go_book" href="">立即报名</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="oncosts">
+                        <div class="titleBox" style="margin-top:20px;"><img src="/static/images/fy2.jpg" width="339"
+                                height="45"></div>
+                        <div class="oncostsDiv" style="margin:40px 0;">
+                            <div class="title"><span>关于费用-费用包括</span></div>
+                            <div class="infor">
+                                <p style="white-space: normal;">申请初期一切咨询服务</p>
+                                <p style="white-space: normal;">接机服务&nbsp;</p>
+                                <p style="white-space: normal;">义工旅行期间旅游保险费用 （保险的时间段仅为报名的义工旅行期间／仅限从大陆境内出发，不包括港澳台及海外地区）</p>
+                                <p style="white-space: normal;">项目期间住宿及餐食</p>
+                                <p><br></p>
+                            </div>
+                        </div>
+                        <div class="oncostsDiv" style="margin:40px 0;">
+                            <div class="title"><span>关于费用-费用不包括</span></div>
+                            <div class="infor">
+                                <p style="white-space: normal;">护照与签证费用&nbsp;</p>
+                                <p style="white-space: normal;">中国与摩洛哥往返机票费用&nbsp;</p>
+                                <p style="white-space: normal;">志愿服务期间外出交通费及旅行、纪念品购买等相关的费用&nbsp;</p>
+                                <p style="white-space: normal;">志愿者之家前往项目地点的公共交通费用&nbsp;</p>
+                                <p style="white-space: normal;">项目结束后的送机费用&nbsp;</p>
+                                <p><br></p>
+                            </div>
+                        </div>
+                        <div class="oncostsDiv" style="margin:40px 0;">
+                            <div class="title"><span>关于费用-注意事项</span></div>
+                            <div class="infor">
+                                <p style="white-space: normal;">项目费用支付方式： 登入网站Gapper会员账户，进入“我的申请”，在线完成支付。</p>
+                                <p style="white-space: normal;">支付期限：申请者须最迟于出发前四周完成项目全部费用的支付。若无法在出发前四周支付完毕须在出发前30天之前向Gapper摩洛哥邮箱（Morocco@gappernet.org）书面提出延迟交款申请，无申请且过期支付者将被默认退出项目，否则须额外支付100
+                                    元名额保留费。</p>
+                                <p style="white-space: normal;">【项目费用全款支付完毕者】：若有退出项目意愿，至少提前于出发日30天向Gapper提出申请，扣除押金外剩余费用全额退还；在出发前30天至15天内提出退出项目的申请，扣除押金外剩余费用半额退还；出发前14天内提出退出项目申请，费用不予退还。</p>
+                                <p style="white-space: normal;">【若报名时间距离出发时间少于30天】：必须在审核通过后两个工作日内交齐全款。如果提前出发日15天退出项目，扣除押金外剩余费用半额退还；出发前14天内提出退出项目申请，费用不予退还。</p>
+                                <p style="white-space: normal;">【预付金支付完毕剩余款项未支付者】：预付金不予退还。若提前30天明确告知退出项目，押金可保留两年使用。若无明确告知，押金不予保留。&nbsp;</p>
+                                <p style="white-space: normal;">项目进行过程中，若申请者因个人原因终止项目，费用不予退还。</p>
+                                <p><br></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Items" style="display: none;">
+                    {dede:include filename="tpl/zysx.htm"/}
+                </div>
+                <div class="Items" style="display: none;">
+                    <ul class="News_List">
+                        {dede:sql sql="SELECT arc.*,homew.* FROM `#@__archives` arc LEFT JOIN `#@__home_welfare` homew ON
+                        homew.ename=~ename~ AND homew.cname=~cname~ LIMIT 10"}
+                        <li class="clearfix">
+                            <div class="information">
+                                <div class="meta"><span class="name">作者</span>
+                                    <p>[field:cname/]</p><span class="time">[field:pubdate function="GetDateTimeMK(@me)"/]</span>
+                                </div>
+                                <div class="title"><a href="[field:id runphp=yes]$id=@me;$url=GetOneArchive($id);@me=$url['arcurl'];[/field:id]" target="_blank">[field:title/]</a></div>
+                                <div class="number">阅读：<span>[field:click/]</span></div>
+                            </div>
+                            <div class="photo"><img src="[field:litpic/]"
+                                    width="116" height="116"></div>
+                        </li>
+                        {/dede:sql}
+                    </ul>
+                </div>
+                <div class="Items" style="display: none;">f</div>
+            </div>
+
+            <a class="book_button">立即报名</a>
+        </div>
+
+    </div>
+
+    {dede:include filename="footer.htm"/}
+    <script>
+        $(function () {
+            $('.js_article_tabs_list').on('click', 'li', function () {
+                var $this = $(this),
+                    $index = $this.index();
+                $this.addClass('cur').siblings().removeClass('cur')
+                $('.js_article_tabs_content .Items').hide().eq($index).show()
+            })
+        })
+    </script>
+</body>
+
+</html>

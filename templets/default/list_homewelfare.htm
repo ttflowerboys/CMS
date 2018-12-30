@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>{dede:field.title/}_{dede:global.cfg_webname/}</title>
-  <meta name="keywords" content="{dede:field name='keywords'/}" />
-  <meta name="description" content="{dede:field name='description' function='html2text(@me)'/}" />
-  <link rel="stylesheet" href="/static/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{dede:field.title/}_{dede:global.cfg_webname/}</title>
+    <meta name="keywords" content="{dede:field name='keywords'/}" />
+    <meta name="description" content="{dede:field name='description' function='html2text(@me)'/}" />
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
+
 <body>
-  {dede:include filename="head.htm"/}
-  
-<div class="commonweal_china">
-    <div class="w">
-        <div class="filter_attrs">
-            <!-- <div class="attr clearfix">
+    {dede:include filename="head.htm"/}
+
+    <div class="commonweal_china">
+        <div class="w">
+            <div class="filter_attrs">
+                <!-- <div class="attr clearfix">
                 <div class="attrKey">项目</div>
                 <div class="attrValues">
                     <ul class="attrList clearfix">
@@ -26,83 +28,32 @@
                     </ul>
                 </div>
             </div> -->
-            {dede:php}AddFilter(17,1,'project,city');{/dede:php}
-        </div>
+                {dede:php}AddFilter(17,1,'project,city');{/dede:php}
+            </div>
 
-        <ul class="commonweal_list">
-            <li>
-                <div class="thumb"><img src="/static/images/wealpic.jpg" alt=""></div>
-                <div class="information">
-                    <div class="eName">Hainan Wenchang</div>
-                    <div class="cName">海南文昌</div>
-                    <div class="desc">联成小学前身系私塾抱才小学，始于清末光绪二十三年，迄今已走过百年以上的历程。家乡素有“精诚团结”“地灵人杰”“革命老区”之称。学校经历了起起落落，特别是1996年学生仅剩18人，究其原因主要是：经济匮乏，校舍和课堂破旧</div>
-                    <a href="" class="link">Let's go</a>
-                </div>
-            </li>
-            <li>
-                <div class="thumb"><img src="/static/images/wealpic.jpg" alt=""></div>
-                <div class="information">
-                    <div class="eName">Hainan Wenchang</div>
-                    <div class="cName">海南文昌</div>
-                    <div class="desc">联成小学前身系私塾抱才小学，始于清末光绪二十三年，迄今已走过百年以上的历程。家乡素有“精诚团结”“地灵人杰”“革命老区”之称。学校经历了起起落落，特别是1996年学生仅剩18人，究其原因主要是：经济匮乏，校舍和课堂破旧</div>
-                    <a href="" class="link">Let's go</a>
-                </div>
-            </li>
-            <li>
-                <div class="thumb"><img src="/static/images/wealpic.jpg" alt=""></div>
-                <div class="information">
-                    <div class="eName">Hainan Wenchang</div>
-                    <div class="cName">海南文昌</div>
-                    <div class="desc">联成小学前身系私塾抱才小学，始于清末光绪二十三年，迄今已走过百年以上的历程。家乡素有“精诚团结”“地灵人杰”“革命老区”之称。学校经历了起起落落，特别是1996年学生仅剩18人，究其原因主要是：经济匮乏，校舍和课堂破旧</div>
-                    <a href="" class="link">Let's go</a>
-                </div>
-            </li>
-            <li>
-                <div class="thumb"><img src="/static/images/wealpic.jpg" alt=""></div>
-                <div class="information">
-                    <div class="eName">Hainan Wenchang</div>
-                    <div class="cName">海南文昌</div>
-                    <div class="desc">联成小学前身系私塾抱才小学，始于清末光绪二十三年，迄今已走过百年以上的历程。家乡素有“精诚团结”“地灵人杰”“革命老区”之称。学校经历了起起落落，特别是1996年学生仅剩18人，究其原因主要是：经济匮乏，校舍和课堂破旧</div>
-                    <a href="" class="link">Let's go</a>
-                </div>
-            </li>
-            <li>
-                <div class="thumb"><img src="/static/images/wealpic.jpg" alt=""></div>
-                <div class="information">
-                    <div class="eName">Hainan Wenchang</div>
-                    <div class="cName">海南文昌</div>
-                    <div class="desc">联成小学前身系私塾抱才小学，始于清末光绪二十三年，迄今已走过百年以上的历程。家乡素有“精诚团结”“地灵人杰”“革命老区”之称。学校经历了起起落落，特别是1996年学生仅剩18人，究其原因主要是：经济匮乏，校舍和课堂破旧</div>
-                    <a href="" class="link">Let's go</a>
-                </div>
-            </li>
-        </ul>
-
-        <div class="tac"><img src="/static/images/commonweal_china_tips.png" alt=""></div>
-    </div>
-</div>
-
-  <div class="index_contant">
-    <div class="w">
-      <div class="index_contant_title"><img src="/static/images/index_contant_title.png" alt=""></div>
-      <div class="clearfix">
-        <div class="index_contant_left fl"><img src="/static/images/index_contant_pic.jpg"></div>
-        <div class="index_contant_right fr">
-          <form class="index_form">
-            <ul class="clearfix">
-              <li class="items"><input type="text" class="ipt_text" placeholder="姓名" required></li>
-              <li class="items"><input type="text" class="ipt_text" placeholder="邮箱"></li>
-              <li class="items"><input type="text" class="ipt_text" placeholder="微信"></li>
-              <li class="items"><input type="text" class="ipt_text" placeholder="电话"></li>
+            <ul class="commonweal_list">
+                {dede:list}
+                <li>
+                    <div class="thumb">
+                        <img src="[field:picname/]" alt="[field:title/]">
+                    </div>
+                    <div class="information">
+                        <div class="eName">[field:cname/]</div>
+                        <div class="cName">[field:ename/]</div>
+                        <div class="desc">[field:projectdesc/]</div>
+                        <a href="[field:arcurl/]" class="link">Let's go</a>
+                    </div>
+                </li>
+                {/dede:list}
             </ul>
-            <textarea class="ipt_textarea" placeholder="message"></textarea>
-            <div class="tar"><input class="ipt_submit fr" type="submit" value="提交"></div>
-          </form>
+
+            <div class="tac"><img src="/static/images/commonweal_china_tips.png" alt=""></div>
         </div>
-      </div>
     </div>
-  </div> <!-- index_contant end -->
 
-  {dede:include filename="footer.htm"/}
+    {dede:include filename="contant_form.htm"/}
+
+    {dede:include filename="footer.htm"/}
 </body>
-</html>
 
+</html>

@@ -1,0 +1,35 @@
+<div class="zysx">
+    <div class="zysxDiv">
+        <h3 class="cur"><a href="javascript:;">项目注意事项 / Project Notes</a></h3>
+        <div class="infor" style="display: block;">
+            <p style="white-space: normal;">项目期间参与者集体安排住在Gapper志愿者之家或旅社，若自行决定外出住宿而出现问题或遇到事故，Gapper概不负责。</p>
+            <p style="white-space: normal;">项目期间因出游不在志愿者之家住宿者，不予退还任何费用。</p>
+            <p style="white-space: normal;">出发前四周起不可以更改项目时间及内容。</p>
+            <p style="white-space: normal;">抵达后因为个人原因要求更换项目内容或时长者，须和当地负责人协商，Gapper不保证能够满足更换要求。&nbsp;</p>
+            <p style="white-space: normal;">项目中途因个人原因中断及退出项目者，不予以退还之前所缴费用。 &nbsp;</p>
+            <p style="white-space: normal;">由于季节性及部分不可控因素，项目内容会有调剂的可能性，望参与者能够理解和配合 。</p>
+            <p><br></p>
+        </div>
+    </div>
+    <div class="zysxDiv">
+        <h3 class=""><a href="javascript:;">关于安全 / About Security</a></h3>
+        <div class="infor" style="display: none;">
+            <p style="white-space: normal;">Gapper志愿者之家只提供给项目参与者居住，严禁参与者擅自邀请非Gapper项目参与人员进入，因为外来人员进入而导致的钱财损失及其他伤害性事件，由参与者自行负责。请自行确保财物及人身安全。</p>
+            <p style="white-space: normal;">Gapper保证申请者在志愿者之家以及服务地点的绝对安全，但无权干涉申请者自行出游。因此参与者自行出游过程中，须自己承担个人安全责任。</p>
+            <p style="white-space: normal;">摩洛哥政局较稳定，民风淳朴。民众友好善良，请参与者尽量面带微笑，多说感谢。</p>
+            <p style="white-space: normal;">请参与者出行尽量选择大路。不要轻信陌生人。夜晚尽量不出行，或结伴出行，有事及时和负责人沟通。外出时贵重物品自行锁在行李箱中。</p>
+            <p><br></p>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //注意事项显示
+    $(function () {
+        $(".zysx .zysxDiv h3").click(function () {
+            $(this).toggleClass("cur");
+            $(this).siblings(".infor").toggle();
+            $(this).parent().siblings(".zysxDiv").find("h3").removeClass("cur");
+            $(this).parent().siblings(".zysxDiv").find(".infor").hide();
+        })
+    })
+</script>

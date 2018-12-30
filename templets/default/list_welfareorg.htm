@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{dede:field.title/}_{dede:global.cfg_webname/}</title>
+    <meta name="keywords" content="{dede:field name='keywords'/}" />
+    <meta name="description" content="{dede:field name='description' function='html2text(@me)'/}" />
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    {dede:include filename="head.htm"/}
+
+    <div class="List_banner"></div>
+
+    <div class="commonweal">
+        <div class="block60"></div>
+        <div class="w">
+            <div class="clearfix">
+                <div class="OrgLeft fl">
+                    <div class="swiper-container js-pic-swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><a href=""><img src="/uploads/181229/1-1Q229103PCQ.jpg" alt="" width="570" height="300"></a></div>
+                            <div class="swiper-slide"><a href=""><img src="/uploads/181229/1-1Q2291102512Q.jpg" alt="" width="570" height="300"></a></div>
+                            <div class="swiper-slide"><a href=""><img src="/uploads/181227/1-1Q22H13546342.jpg" alt="" width="570" height="300"></a></div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+                <div class="OrgRight fr">
+                    <div class="OrgTitle">最新需求</div>
+                    <div class="swiper-container js-text-swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">1</div>
+                            <div class="swiper-slide">2</div>
+                            <div class="swiper-slide">3</div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="block60"></div>
+            <div class="filter_attrs">
+                {dede:php}AddFilter(20,1,'project');{/dede:php}
+            </div>
+
+            <ul class="commonweal_list">
+                {dede:list}
+                <li>
+                    <div class="thumb"><img src="[field:picname/]" alt="[field:title/]"></div>
+                    <div class="information">
+                        <div class="eName">[field:cname/]</div>
+                        <div class="cName">[field:ename/]</div>
+                        <div class="desc">[field:projectdesc/]</div>
+                        <a href="[field:arcurl/]" class="link">Let's go</a>
+                    </div>
+                </li>
+                {/dede:list}
+            </ul>
+        </div>
+    </div>
+
+    {dede:include filename="footer.htm"/}
+
+    <link href="https://cdn.bootcss.com/Swiper/4.4.6/css/swiper.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/Swiper/4.4.6/js/swiper.min.js"></script>
+    <script>
+
+        $(function () {
+            var mySwiper = new Swiper('.js-pic-swiper-container', {
+                loop: true,
+                speed: 400,
+                spaceBetween: 100,
+                autoplay: {
+                    delay: 5000,
+                    stopOnLastSlide: true
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true
+                }
+            })
+
+            var mySwiper = new Swiper('.js-text-swiper-container', {
+                loop: true,
+                speed: 400,
+                spaceBetween: 100,
+                autoplay: {
+                    delay: 5000,
+                    stopOnLastSlide: true
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true
+                }
+            })
+        })
+
+    </script>
+</body>
+
+</html>
