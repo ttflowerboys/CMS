@@ -213,3 +213,15 @@ function countArchives($channelid)
         return FALSE;
     }
 }
+
+//引入arc.partview.class.php类处理
+require_once(DEDEINC."/arc.partview.class.php");
+//加入以下函数 
+function pasterTempletDiy($path)
+{
+    global $cfg_basedir,$cfg_templets_skin;
+    $tmpfile = $cfg_basedir.$cfg_templets_skin."/".$path;//模版文件的路径
+    $dtp = new PartView();
+    $dtp->SetTemplet($tmpfile);
+    $dtp->Display();
+}
