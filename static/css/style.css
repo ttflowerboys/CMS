@@ -145,9 +145,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 .commonweal_list li .thumb img{width: 100%;height: 100%;}
 .commonweal_list li .information{padding: 30px;width: 50%;height: 100%;background-color: #fff; float: left;}
 .commonweal_list li:nth-child(2n) .thumb{float: left;}
-.commonweal_list .information .eName{font-size: 32px;line-height: 46px;color: #666;}
-.commonweal_list .information .cName{font-size: 36px;line-height: 52px;color: #000;}
-.commonweal_list .information .desc{font-size: 18px;line-height: 32px;color: #333;height: 128px;margin-bottom: 20px;overflow: hidden;}
+.commonweal_list .information .eName{font-size: 32px;line-height: 46px;color: #666;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+.commonweal_list .information .cName{font-size: 36px;line-height: 52px;color: #000;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+.commonweal_list .information .desc{font-size: 18px;line-height: 32px;color: #333;height: 128px;padding-top: 32px;margin-bottom: 20px;overflow: hidden;}
 .commonweal_list .information .link{width: 180px;height: 50px;font-size: 24px;line-height: 50px;border-radius: 25px; text-align: center; color: #fff;background: #379aef;display: block;float: left;}
 /* filter_attrs */
 .filter_attrs{
@@ -268,3 +268,109 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 .News_type_list{text-align: center;font-size: 0;}
 .News_type_list li{cursor: pointer; font-size: 18px;line-height: 44px; height: 44px;padding: 0 32px; margin: 0 12px; color: #3597eb; background-color: #fff; border-radius: 22px; border: 1px solid #3597eb;display: inline-block;text-align: center;}
 .News_type_list li.current{background-color: #3597eb;color: #fff;}
+
+/* article_warpper */
+.article_warpper{width: 100%;}
+.article_tabs{}
+.article_tabs_list{position: relative;margin-bottom: 25px;overflow: hidden;border-bottom: 1px dotted #3597eb;}
+.article_tabs_list li{height: 82px;width: 16.66%;float: left;text-align: center;}
+.article_tabs_list li a{line-height: 77px;font-size: 16px;padding: 0 20px;border-bottom: 5px solid transparent;color: #3597eb;display: inline-block;}
+.article_tabs_list li.cur a{border-color: #3597eb;}
+
+.article_tabs_content .Items{display: none;width: 1100px;margin: 0 auto 45px;}
+.ProjectDesc{width: 460px;overflow: hidden;}
+.ProjectDesc img{max-width: 100%;}
+.projectList{width: 600px;overflow: hidden;}
+.projectListItems{padding-bottom: 10px; border-bottom: 1px dotted #999;}
+.projectListItems h3{height: 50px;line-height: 50px;font-size: 18px;color: #000;font-weight: normal;}
+.projectListItems h3 i{width: 28px;height: 28px;float: left;overflow: hidden;margin: 11px 8px 0 0;background-repeat: no-repeat;background-position: center;}
+.projectListItems h3 i.icon-time{background-image: url(../images/icon/time.png);}
+.projectListItems h3 i.icon-cycle{background-image: url(../images/icon/cycle.png);}
+.projectListItems h3 i.icon-address{background-image: url(../images/icon/address.png);}
+.projectListItems h3 i.icon-stay{background-image: url(../images/icon/stay.png);}
+.projectListItems h3 i.icon-diet{background-image: url(../images/icon/diet.png);}
+.projectListItems h3 i.icon-gain{background-image: url(../images/icon/gain.png);}
+.projectListItems .des{padding-left: 35px;}
+.projectListItems .des,.projectListItems .des pre{font: 14px/24px 'Microsoft YaHei';color: #686868;}
+.ProjectDesc .desc{margin: 50px 20px 0;padding-left: 20px;background: url(../images/icon/start.png) no-repeat 0 8px;color: #5e5e5e;font-size: 15px;line-height: 30px;}
+
+.book_button{width: 200px;height: 45px;font-size: 16px;line-height: 45px;margin: 50px auto;text-align: center;color: #fff;border-radius: 22px; display: block;background: #3597eb;cursor: pointer;}
+.book_button:hover{color: #fff;}
+
+.zysx{ margin-top:25px;}
+.zysx .zysxDiv{border-bottom:1px dotted #4c97eb;}
+.zysx .zysxDiv h3{ height:72px; background:url(../images/zy1.png) no-repeat 1060px center;}
+.zysx .zysxDiv h3 a{ display:block; height:72px; line-height:72px; font-size:25px; font-weight:normal; color:#000;}
+.zysx .zysxDiv h3 a:hover{ color:#4c97eb;}
+.zysx .zysxDiv h3.cur{ background:url(../images/zy2.png) no-repeat 1060px center;}
+.zysx .zysxDiv h3.cur a{ color:#4c97eb;}
+.zysx .zysxDiv .infor{ font-size:18px; line-height:36px; color:#000; display:none; padding-bottom:25px;}
+
+.projectcosts .titleBox{ padding:40px 0;}
+.projectcosts .titleBox img{ display:block; margin:0 auto;}
+.projectcosts .projectcostsTable{ border:1px solid #3597eb;}
+.projectcosts .projectcostsTable th{ height:56px; background:#3597eb; font-size:20px; color:#fff; font-weight:normal;}
+.projectcosts .projectcostsTable td{ padding:24px 0; border-top:1px dotted #a5a5a5; text-align:center; font-size:19px; color:#000;}
+.projectcosts .projectcostsTable .go_book{width: 134px;height: 38px;font-size: 14px;line-height: 38px;color: #fff;background: #3597eb; display: block;margin: 0 auto;}
+
+.oncosts .titleBox{ padding:40px 0 0;}
+.oncosts .titleBox img{ display:block; margin:0 auto;}
+.oncosts .oncostsDiv{ border-bottom:1px dotted #cecece;}
+.oncosts .oncostsDiv .title { width:100%;float:left;padding-bottom:20px; }
+.oncosts .oncostsDiv .title span {
+	width:auto;float:left;background:#3597eb url(../images/icon/fee_notice_icon.jpg) no-repeat 10px;
+	height:40px;font-size:18px;color:#FFF;line-height:40px;text-indent:38px;padding-right:30px;
+}
+.oncosts .oncostsDiv .title img{ display:block;}
+.oncosts .oncostsDiv .infor{ font-size:17px; color:#000; line-height:40px; padding:25px 0;}
+
+.OrgTitle{font-size: 18px;line-height: 32px;height: 32px;margin: 8px auto;color: #3597eb; text-align: center;}
+.OrgLeft,.OrgRight{position: relative;width: 570px;height: 300px; overflow: hidden;}
+
+.OrgLeft .swiper-slide{width: 570px;height: 300px;background: #f8f8f8;overflow: hidden;}
+.OrgLeft .swiper-slide img{min-width: 100%;}
+.OrgRight .swiper-slide{width: 570px;height: 252px;background: #f8f8f8;}
+
+.PostMain{padding: 20px 36px;background: #fff;overflow: hidden;}
+.PostMain img{max-width: 100%;}
+.PostMain .title{line-height: 52px;margin-top: 25px;font-size: 30px;color: #42a4f7;text-align: center;}
+.PostMain .meta{font-size: 14px;color: #999;line-height: 20px;text-align: center;margin: 12px auto 52px;}
+.PostMain .meta .t-blue{color: #42a4f7;}
+.PostMain .meta .name{color: #eb7135;margin-right: 12px;padding: 0 10px;border: 1px solid #eb7135;border-radius: 3px;display: inline-block;}
+
+
+/**浮动样式**/
+.floatmain {
+	width:100%;height:100%;position:fixed;top:0%;left:0%;float:left;z-index:1000;
+	border-radius:1px;overflow:hidden; background:url(/static/images/heibg.png);
+}
+.floatboxs {
+	width:auto;height:100%;margin:0px auto;position:relative;
+}
+.iframeclass { width:100%;height:100%;z-index:-1;top:0px;left:0px;*background:#fff;*filter:alpha(opacity=30);_position:absolute; }
+.lktcDiv{ background:#fff; border-radius:5px; position:relative; }
+.lktcDiv .closeBtn{ width:28px; height:28px; position:absolute; top:-40px; right:0; background:url(/static/images/closeBtn.png) no-repeat; }
+
+.wszl{ padding:46px 0 40px;}
+.wszl .titleImg img{ display:block; margin:0 auto;}
+.wszl .infor{ padding:15px 20px 20px; line-height:30px; font-size:16px; color:#7a7a7a; text-align:center;}
+.wszl .btn a{ display:block; width:196px; height:50px; line-height:50px;background:#1bc1cd; border-radius:25px; margin:0 auto; font-size:20px; color:#fff; text-align:center;}
+
+/*--弹出登录--*/
+.dlzc .dlzcTit{ height:50px; line-height:50px; padding:0 44px; background:#f2f2f2; border-radius:5px 5px 0 0;}
+.dlzc .dlzcTit h3{ float:left; font-size:20px; color:#999; font-weight:normal;}
+.dlzc .dlzcTit a.gotoRegiest{ float:right; height:50px; line-height:50px; font-size:18px; color:#333; background:url(../images/zcIcon.png) no-repeat 0 center; padding-left:23px;}
+.dlzc .dlzcTit a.gotoDl{float:right; height:50px; line-height:50px; font-size:16px; color:#7aded2;}
+.dlzc .dlzcForm{ padding:35px 45px;}
+.dlzc .dlzcForm .inputDiv{ width:308px; height:47px; border:1px solid #c1c1c1; border-radius:5px; overflow:hidden; margin-bottom:20px;}
+.dlzc .dlzcForm .inputDiv p.icon{ width:50px; height:47px; float:left; overflow:hidden; border-radius:5px 0 0 5px;}
+.dlzc .dlzcForm .inputDiv input.txt{ width:238px; padding:0 0 0 10px; height:47px; line-height:47px; font-size:14px; color:#333; float:left; border:none;}
+.dlzc .dlczCz{ height:28px;}
+.dlzc .dlczCz .xieyi{ float:left; height:28px; line-height:28px;}
+.dlzc .dlczCz .xieyi label{ float:left; height:28px; line-height:28px; font-size:14px; color:#000;}
+.dlzc .dlczCz .xieyi label input{ float:left; margin:7px 10px 0 0;}
+.dlzc .dlczCz a.forget{ float:right; height:28px; line-height:28px; font-size:14px; color:#7aded2;}
+.dlzc .inputBtn{ margin-top:15px;}
+.dlzc .inputBtn .submitBtn{ height:47px; line-height:47px; background:#7aded2; border-radius:5px; border:none; width:100%; font-size:18px; color:#fff; cursor:pointer;}
+.dlzc .otherLogin{ margin:25px 45px 0; height:50px; background:url(../images/DlLine.png) no-repeat center center; text-align:center;}
+.dlzc .otherLogin img{margin:0 10px;}
