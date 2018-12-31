@@ -340,6 +340,17 @@ function ShowMsg($msg, $gourl, $onlymsg=0, $limittime=0)
 }
 
 /**
+ * $msg
+ * $status: 0,error; 1,success
+ */
+function tp_json($msg, $status, $gourl)
+{
+    $arr = array("status" => $status, "msg" => $msg, "url" => $gourl);
+    $info = json_encode($arr);
+    echo $info;
+}
+
+/**
  *  获取验证码的session值
  *
  * @return    string
