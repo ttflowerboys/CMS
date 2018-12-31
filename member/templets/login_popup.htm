@@ -1,0 +1,85 @@
+<div id="lgFromBoxs" class="alertBoxs floatmain pie">
+    <!--登录框开始-->
+    <table class="floatboxs">
+        <tr>
+            <td>&nbsp;</td>
+            <td valign="middle" width="404" height="100%">
+                <div class="lktcDiv pie">
+                    <a class="closeBtn closeAlertBoxs closeCz" href="javascript:;"></a>
+                    <div class="dlzc">
+                        <div class="dlzcTit">
+                            <h3>登陆</h3><a href="/member/register.php" class="gotoRegiest js_showAlertBtn">立即注册</a>
+                        </div>
+                        <div class="dlzcForm">
+                            <form name="loginFORM" id="loginFORM" method="post" action="/member/ajax_index_do.php">
+                                <input type="hidden" name="fmdo" value="login">
+                                <input type="hidden" name="dopost" value="login">
+                                <div class="inputDiv">
+                                    <p class="icon"><img src="/static/images/dlIcon01.jpg" width="50" height="47" /></p>
+                                    <input class="txt" name="userid" id="uname" type="text" placeholder="请输入用户名" />
+                                </div>
+                                <div class="inputDiv" style="margin-bottom:15px;">
+                                    <p class="icon"><img src="/static/images/dlIcon02.jpg" width="50" height="47" /></p>
+                                    <input class="txt" name="pwd" id="password" type="password" placeholder="设置密码" />
+                                </div>
+                                <div class="dlczCz">
+                                    <div class="xieyi"><label><input type="checkbox" checked value="2592000" name="keeptime" />自动登录</label></div>
+                                    <a href="javascript:;" data-url="/welcome/getpass/" data-do="close" class="showAlertBtn forget js_showAlertBtn">忘记密码?</a>
+                                </div>
+                                <div class="inputBtn"><input class="submitBtn" name="" id="loginSubmitBtn" type="button"
+                                        value="马上登陆" /></div>
+                            </form>
+                        </div>
+                        <div class="ht35"></div>
+                    </div>
+                </div>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        $(function () {
+            $("#loginSubmitBtn").click(function () {
+                var $this = $(this);
+                var uname = $("#uname").val();
+                var password = $("#password").val();
+                if (!IsEmpty(uname)) {
+                    layer.alert('请输入用户名！', { icon: 2 }, function (index) {
+                        layer.close(index);
+                    })
+                    return false;
+                }
+                if (!IsEmpty(password)) {
+                    layer.alert('请输入您的密码！', { icon: 2 }, function (index) {
+                        layer.close(index);
+                    })
+                    return false;
+                }
+                var FormDOM = $('#loginFORM');
+                $.ajax({
+                    url: FormDOM.attr('action'),
+                    type: 'POST',
+                    data: FormDOM.serialize(),
+                    dataType: 'json',
+                    beforeSend: function () {
+                        $this.addClass('loading');
+                        $this.text('正在登录...');
+                    },
+                    complete: function () {
+                        $this.removeClass('loading');
+                        $this.text('马上登录');
+                    },
+                }).done(function (res) {
+                    console.log(res, 61)
+                    if (res.status == 1) {
+
+                    } else {
+                        layer.alert(res.msg, { icon: 2 }, function (index) {
+                            layer.close(index);
+                        })
+                    }
+                })
+            });
+        });
+    </script>
+</div>

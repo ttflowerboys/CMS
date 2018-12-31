@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>会员登录</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <?php pasterTempletDiy("head.htm"); ?>
+    <div class="RegisterBanner"></div>
+    <div class="w" id="registerTpl">
+        <div class="Register">
+            <h3>新用户注册</h3>
+            <div class="otherLink">已有账号？<a href="javascript:;" data-url="/plus/login_popup.php" class="js_showAlertBtn">马上登录</a></div>
+            <div class="dlzcForm">
+                <form name="regsiterFORM" id="regsiterFORM" method="post" action="/member/ajax_reg_new.php">
+                <input type="hidden" id="action" name="dopost" value="regbase">
+                <input type="hidden" value="1" name="step">
+                <input type="hidden" value="个人" name="mtype">
+                <div class="inputDiv">
+                    <p class="icon"><img src="/static/images/dlIcon05.jpg" width="50" height="47"></p>
+                    <input class="txt" name="userid" id="regNickname" type="text" placeholder="用户名（3-20个字符）">
+                </div>
+                <div class="inputDiv">
+                    <p class="icon"><img src="/static/images/dlIcon03.jpg" width="50" height="47"></p>
+                    <input class="txt" name="email" id="regEmail" type="text" placeholder="请输入注册邮箱">
+                </div>
+                <div class="inputDiv">
+                    <p class="icon"><img src="/static/images/dlIcon04.jpg" width="50" height="47"></p>
+                    <input class="txt" name="userpwd" id="regPass" type="password" placeholder="设置密码">
+                </div>
+                <div class="inputDiv">
+                    <p class="icon"><img src="/static/images/dlIcon02.jpg" width="50" height="47"></p>
+                    <input class="txt" name="userpwdok" id="regrepass" type="password" placeholder="确认密码">
+                </div>
+                <div class="inputBtn">
+                    <button type="button" class="LoginSubmitBtn SubmitBtn" id="regSubmitBtns">提交</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <?php pasterTempletDiy("footer.htm"); ?>
+    <script src="/static/js/register.js"></script>
+</body>
+</html>
+
