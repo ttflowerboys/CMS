@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>会员登录</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <?php pasterTempletDiy("head.htm"); ?>
+    <div class="RegisterBanner"></div>
+    <div class="w" id="registerTpl">
+        <div class="Register">
+            <h3>用户登录</h3>
+            <div class="otherLink">没有账号？<a href="/member/register.php">免费注册</a></div>
+            <div class="dlzcForm">
+                <form name="loginFORM" id="loginFORM" method="post" action="/member/ajax_index_do.php">
+                    <input type="hidden" name="fmdo" value="login">
+                    <input type="hidden" name="dopost" value="login">
+                    <input type="hidden" value="2592000" name="keeptime" />
+                <div class="inputDiv">
+                    <p class="icon"><img src="/static/images/dlIcon05.jpg" width="50" height="47"></p>
+                    <input class="txt" name="userid" id="uname" type="text" placeholder="用户名（3-20个字符）">
+                </div>
+                <div class="inputDiv">
+                    <p class="icon"><img src="/static/images/dlIcon04.jpg" width="50" height="47"></p>
+                    <input class="txt" name="pwd" id="password" type="password" placeholder="设置密码">
+                </div>
+                <div class="inputBtn">
+                    <button type="button" class="LoginSubmitBtn SubmitBtn" id="loginSubmitBtn">提交</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <?php pasterTempletDiy("footer.htm"); ?>
+    <script src="/static/js/login.js"></script>
+</body>
+</html>
+

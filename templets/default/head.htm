@@ -3,7 +3,16 @@
     <h1 class="logo fl" title="{dede:global.cfg_webname/}"><a href="{dede:global.cfg_basehost/}">{dede:global.cfg_webname/}</a></h1>
     <div class="headerR fr">
       <div class="user fr">
-        <div class="unlogin"><a href="">登录</a>/<a href="">注册</a></div>
+          {dede:php}
+          require_once(DEDEMEMBER."/config.php");
+          $uid = $cfg_ml->M_LoginID;
+          if(!$uid)
+          {
+            echo '<div class="unlogin"><a href="javascript:;" data-url="/plus/login_popup.php" class="js_showAlertBtn">登录</a> / <a href="/member/register.php">注册</a></div>';
+          }else{
+            echo '<div class="islogin"><a href="'. $cfg_memberurl.'/index.php">'.$uid.'</a>|<a href="/member/index_do.php?fmdo=login&dopost=exit">安全退出</a></div>';
+          }
+        {/dede:php}
       </div>
       <ul class="nav clearfix fr">
         <li class="items"><a href="{dede:global.cfg_cmsurl/}/" class="sub">首页</a></li>
@@ -15,3 +24,5 @@
   </div>
 </div> <!-- header end -->
 <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.bootcss.com/layer/3.0.1/skin/default/layer.css">
+<script src="https://cdn.bootcss.com/layer/3.0.1/layer.min.js"></script>
