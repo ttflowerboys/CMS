@@ -109,7 +109,7 @@ if($uid=='')
         }
 
         $dpl = new DedeTemplate();
-        $tpl = dirname(__FILE__)."/templets/index.htm";
+        $tpl = dirname(__FILE__)."/templets/ucenter_account.htm";
         $dpl->LoadTemplate($tpl);
         $dpl->display();
     }

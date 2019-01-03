@@ -1,0 +1,40 @@
+<?php include(DEDEMEMBER."/templets/ucenter_head.htm"); ?>
+
+<div class="clearfix UCenter">
+    <div class="UCenterL fl">
+        <ul class="UCenterList">
+            <li class="cur"><a href="/member/">基本资料</a></li>
+            <li><a href="/member/account.php?type=experience">个人经历</a></li>
+            <li><a href="/member/account.php?type=emergency">紧急联系人</a></li>
+            <li><a href="/member/account.php?type=shipaddr">邮寄地址</a></li>
+        </ul>
+    </div>
+    <div class="UCenterR" style="padding: 42px;">
+        <h2 class="Title">BASIC PORFILE</h2>
+        <div class="tips">【以下信息除了“中文姓名“外，请务必用英文填写，若用中文填写，则视为无效申请】</div>
+        <p class="color92" style="margin-bottom: 36px;"><span class="t-red">*</span> Denotes Compulsory Fields <br> ※ Please Use English to Fill</p>
+        <div class="UCenterForm">
+            <form action="">
+                <div class="Items"><label class="label">中文姓名<span class="t-red">*</span></label><input type="text" class="ipt-text" disabled placeholder="中文姓名" value="<?php echo $cfg_ml->M_LoginID; ?>"></div>
+                <div class="Items"><label class="label">Given Name<span class="t-red">*</span></label><input type="text" class="ipt-text" placeholder="Given Name"></div>
+                <div class="Items"><label class="label">Surname<span class="t-red">*</span></label><input type="text" class="ipt-text" placeholder="Surname"></div>
+                <div class="Items"><label class="label">Preferred Name<span class="t-red">*</span></label><input type="text" class="ipt-text" placeholder="Preferred Name"></div>
+                <div class="Items">
+                    <label class="label">Gender<span class="t-red">*</span></label>
+                    <label class="label-radio"><input type="radio" name="gender" value="male" checked> Male</label>
+                    <label class="label-radio"><input type="radio" name="gender" value="female"> Female</label>
+                </div>
+                <div class="Items"><label class="label">Date Of Birth<span class="t-red">*</span></label><input type="text" class="ipt-text" placeholder="Date Of Birth"></div>
+                <div class="Items"><label class="label">Passport No.<span class="t-red">*</span></label><input type="text" class="ipt-text" placeholder="Passport No."></div>
+                <div class="Items"><label class="label">Contact NO.<span class="t-red">*</span></label><input type="text" class="ipt-text" placeholder="Contact NO."></div>
+                <div class="Items"><label class="label">Wechat ID<span class="t-red">*</span></label><input type="text" class="ipt-text" placeholder="Wechat ID"></div>
+                <div class="Items"><label class="label">Current Location.<span class="t-red">*</span></label><input type="text" class="ipt-text" placeholder="Current Location."></div>
+                <button type="button" class="ipt-submit">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="block60"></div>
+<?php pasterTempletDiy("footer.htm"); ?>
+</body>
+</html>
