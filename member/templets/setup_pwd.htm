@@ -1,0 +1,38 @@
+<?php include(DEDEMEMBER."/templets/ucenter_head.htm"); ?>
+
+<div class="clearfix UCenter">
+    <div class="UCenterL fl">
+        <ul class="UCenterList">
+            <li><a href="setup.php">绑定微信</a></li>
+            <li><a class="cur" href="setup.php?type=pwd">修改密码</a></li>
+        </ul>
+    </div>
+    <div class="UCenterR">
+        <div class="Register" style="padding-top: 50px;">
+            <h3 style="margin-bottom: 12px;">修改密码</h3>
+            <div class="dlzcForm">
+                <form name="regsiterFORM" id="regsiterFORM" method="post" action="/member/ajax_reg_new.php">
+                <div class="inputDiv">
+                    <p class="icon"><img src="/static/images/dlIcon04.jpg" width="50" height="47"></p>
+                    <input class="txt" name="userpwd" id="regPass" type="password" placeholder="Please enter old password">
+                </div>
+                <div class="inputDiv">
+                    <p class="icon"><img src="/static/images/dlIcon02.jpg" width="50" height="47"></p>
+                    <input class="txt" name="userpwdok" id="regrepass" type="password" placeholder="Please enter a new password">
+                </div>
+                <div class="inputDiv">
+                        <p class="icon"><img src="/static/images/dlIcon02.jpg" width="50" height="47"></p>
+                        <input class="txt" name="userpwdok" id="regrepass" type="password" placeholder="input the new password again">
+                    </div>
+                <div class="inputBtn">
+                    <button type="button" class="LoginSubmitBtn SubmitBtn" id="regSubmitBtns">Submit</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="block60"></div>
+<?php pasterTempletDiy("footer.htm"); ?>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<?php include(DEDEMEMBER."/templets/ucenter_head.htm"); ?>
+
+<div class="clearfix UCenter">
+    <div class="UCenterL fl">
+        <ul class="UCenterList">
+            <li><a href="/member/">基本资料</a></li>
+            <li><a class="cur" href="/member/account.php?type=experience">个人经历</a></li>
+            <li><a href="/member/account.php?type=emergency">紧急联系人</a></li>
+            <!-- <li><a href="/member/account.php?type=shipaddr">邮寄地址</a></li> -->
+        </ul>
+    </div>
+    <div class="UCenterR" style="padding: 42px;">
+        <h2 class="Title">EXPERIENCE</h2>
+        <div class="tips">请简单介绍一下自己，以备更好地为您提供更优质的服务，介绍包含您的学历、专业、从事过的一些社会公益经历、掌握外语的程度、技能特长。</div>
+        <p class="color92" style="margin-bottom: 36px;"><span class="t-red">*</span> Denotes Compulsory Fields <br> ※ Please Use English to Fill</p>
+        <div class="UCenterForm">
+            <form action="">
+                <div class="Items"><label class="label">Experience<span class="t-red">*</span></label><textarea class="ipt-textarea" name="" placeholder="Experience"></textarea></div>
+                <button type="button" class="ipt-submit">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="block60"></div>
+<?php pasterTempletDiy("footer.htm"); ?>
+</body>
+</html>

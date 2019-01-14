@@ -50,9 +50,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
     background: #42a4f7;
 }
 .headerR .unlogin a{color: #fff;}
-.headerR .islogin,.headerR .islogin a{font-size: 14px; color: #42a4f7;}
-.headerR .islogin a{margin: 0 5px;}
-.headerR .islogin a:hover{color: #42a4f7;}
+.headerR .islogin,.headerR .islogin a{font-size: 14px; color: #303030;}
+.headerR .islogin a.sub{margin: 0 5px;}
+.headerR .islogin a.sub:hover{color: #42a4f7;}
 .headerR .user{margin-left: 20px;}
 .header .nav .items{float: left;height: 30px;margin:0 28px;}
 .header .nav .sub{line-height: 26px;border-bottom: 2px solid transparent;color: #303030;display: inline-block;}
@@ -61,6 +61,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
     color: #42a4f7;
     border-color: #42a4f7;
 }
+
+.header .uNav{position: relative; float: left;padding-bottom: 10px;z-index: 10;}
+.header .uNav dt{height: 30px;position: relative;padding-right: 12px;background: url(../images/icon/xlsj.png) right center no-repeat;}
+.header .uNav .uname{display: inline-block;height: 30px;font-size: 15px;line-height: 30px;padding-left: 38px;background: url(../images/u_info.png) left center no-repeat;    max-width: 100px; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.header .uNav dd{position: absolute;left: 0;top: 38px;width: 100px;padding: 6px 10px;background: #f5fcfe;display: none;}
+.header .uNav dd a{display: block;font-size: 13px;line-height: 32px;text-align: center;color: #666;}
+.header .uNav dd a:hover{color: #42a4f7;}
+.header .uNav:hover dd{display: block;}
+
 .fixed_header{
     position: absolute;
     top: 0;
@@ -79,9 +88,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 .fixed_header .nav .sub:hover{
     border-color: #fff;
 }
-.fixed_header .headerR .islogin,
-.fixed_header .headerR .islogin a{color: #fff;;}
-.fixed_header .headerR .islogin a:hover{color: #42a4f7;}
+.fixed_header.header .uNav .uname{color: #fff;}
 
 .banner{width: 100%;min-width: 1200px;height: 690px;background: #fff;}
 
@@ -259,7 +266,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
     background-color: #3597eb;
     border-radius: 50%;
 }
-.News_List .information{float: left;}
+.News_List .information{float: left;min-width: 680px;}
 .News_List .photo{height: 116px;float: right;}
 .News_List .photo img{height: 100%;}
 .News_List .meta{position: relative; line-height: 22px;font-size: 14px;}
@@ -268,8 +275,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 .News_List .meta .time{color: #999;margin-left: 48px;}
 
 .News_List .title{margin: 20px auto;font-size: 20px;line-height: 32px;color: #666;}
-.News_List .number{color: #999;}
+.News_List .number{color: #999;line-height: 20px;}
 .News_List .number span{color: #3597eb;}
+.News_List .number a{display: inline-block;line-height: 20px;margin-left: 10px;}
+.News_List .number .icon-edit,.News_List .number .icon-del{width: 20px;height: 20px;display: inline-block;vertical-align: middle;margin-right: 5px;}
+.News_List .number .icon-edit{background: url(../images/editIcon.jpg) center no-repeat;}
+.News_List .number .icon-del{background: url(../images/deleteIcon.jpg) center no-repeat;}
 
 .News_type_list{text-align: center;font-size: 0;}
 .News_type_list li{cursor: pointer; font-size: 18px;line-height: 44px; height: 44px;padding: 0 32px; margin: 0 12px; color: #3597eb; background-color: #fff; border-radius: 22px; border: 1px solid #3597eb;display: inline-block;text-align: center;}
@@ -333,8 +344,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 .OrgTitle{font-size: 18px;line-height: 32px;height: 32px;margin: 8px auto;color: #3597eb; text-align: center;}
 .OrgLeft,.OrgRight{position: relative;width: 570px;height: 300px; overflow: hidden;}
 
-.OrgLeft .swiper-slide{width: 570px;height: 300px;background: #f8f8f8;overflow: hidden;}
+/* .OrgLeft .swiper-slide{width: 570px;height: 300px;background: #f8f8f8;overflow: hidden;} */
 .OrgLeft .swiper-slide img{min-width: 100%;}
+.OrgLeft .swiper-slide,
 .OrgRight .swiper-slide{width: 570px;height: 252px;background: #f8f8f8;}
 
 .PostMain{padding: 20px 36px;background: #fff;overflow: hidden;}
@@ -416,7 +428,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 .LoginSubmitBtn {
     height: 47px;
     line-height: 47px;
-    background: #7aded2;
+    background: #53a4f7;
     border-radius: 5px;
     border: none;
     width: 100%;
@@ -432,3 +444,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 .submitSuccess .pic02{ display:block; margin:40px auto 0;}
 .submitSuccess a.btn{ display:block;width:138px; height:38px; line-height:38px; background:#1bc1cd; border-radius:19px; font-size:18px; color:#fff; margin:40px auto 0; text-align:center;}
 .submitSuccess .WzInfor{ font-size:18px; color:#000; line-height:40px; padding:20px 0; text-align:center;}
+
+.row{width: 100%;overflow: hidden;}
+.row .col-2{width: 50%;float: left;}

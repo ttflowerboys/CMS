@@ -30,9 +30,10 @@ $(function () {
                 $this.text('马上登录');
             },
         }).done(function (res) {
-            console.log(res, 61)
             if (res.status == 1) {
-
+                layer.msg(res.msg,{ icon: 1 },function(){
+                    window.location = '/member/';
+                })
             } else {
                 layer.alert(res.msg, { icon: 2 }, function (index) {
                     layer.close(index);

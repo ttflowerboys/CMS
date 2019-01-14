@@ -13,7 +13,7 @@
 .UCenterMenu{ height: 82px; background: url(../images/line01.jpg) repeat-x bottom;}
 .UCenterMenu li{width: 20%;float: left;overflow: hidden;height: 82px;text-align: center;}
 .UCenterMenu li a {height: 82px;line-height: 82px;overflow: hidden;font-size: 16px;padding: 0 20px;color: #333;display: inline-block;border-bottom: 5px solid transparent;}
-.UCenterMenu li.cur a { border-bottom-color: #53a4f7; color: #53a4f7;}
+.UCenterMenu li a.cur { border-bottom-color: #53a4f7; color: #53a4f7;}
 
 .UCenter{width: 1100px;margin: 0 auto;}
 .UCenter .UCenterL{width: 120px;}
@@ -21,7 +21,7 @@
 .UCenterList{}
 .UCenterList li{height: 50px;line-height: 50px;font-size: 16px;color: #fff;margin-bottom: 1px;border-radius: 25px 0 0 25px; text-align: center;overflow: hidden;}
 .UCenterList li a{display: block;color: #333;background: #eaeaea;}
-.UCenterList li a:hover,.UCenterList li.cur a{background: #42a4f7;color: #fff;}
+.UCenterList li a:hover,.UCenterList li a.cur{background: #42a4f7;color: #fff;}
 
 .t-red{color: #f00;}
 .UCenterR .Title{
@@ -29,13 +29,24 @@
     line-height: 38px;
     color: #000;
 }
-.UCenterR .tips{color: #1bc1cd;font-size: 18px;line-height: 32px;margin-bottom: 12px;}
+.UCenterR .tips{color: #53a4f7;font-size: 18px;line-height: 32px;margin-bottom: 12px;}
 .UCenterR .color92{line-height: 30px;font-size: 18px;color: #929292;}
 
 .UCenterForm{width: 800px;margin: 0 auto;}
-.UCenterForm .Items{margin-bottom: 20px;overflow: hidden;height: 50px;line-height: 50px;}
-.UCenterForm .Items .label{width: 398px;height: 50px;font-size: 18px;line-height: 50px;margin-right: 14px;color: #fff;padding-left: 60px; display: block;float: left;background: #fff url(../images/ucenter_label.png) top left no-repeat;}
+.UCenterForm .Items{margin-bottom: 20px;overflow: hidden;line-height: 50px;padding-left: 412px;}
+.UCenterForm .Items .label{width: 398px;height: 50px;font-size: 19px;line-height: 50px;margin-left: -412px;color: #fff;padding-left: 60px; display: block;float: left;background: #fff url(../images/ucenter_label.png) top left no-repeat;}
 .UCenterForm .Items:nth-child(2n) .label{background: none;color: #000;}
-.UCenterForm .Items .ipt-text{width: 388px;height: 50px;font-size: 15px;line-height: 40px;color: #666; padding: 5px 20px;border: 1px solid #929292;border-radius: 3px;float: right;}
+.UCenterForm .Items .ipt-text,
+.UCenterForm .Items .ipt-textarea{width: 100%;height: 50px;font-size: 15px;line-height: 40px;color: #666; padding: 5px 20px;border: 1px solid #929292;border-radius: 3px;float: right;}
+.UCenterForm .Items .ipt-textarea{height: 200px;resize: none;}
 .UCenterForm .Items .label-radio{font-size: 18px;color: #000;margin-right: 20px;cursor: pointer;}
+.UCenterForm .Items .ipt-checkbox{font-size: 18px;line-height: 32px;color: #000;cursor: pointer;display: block;margin-bottom: 12px;}
 .UCenterForm .ipt-submit{height: 50px;width: 160px;text-align: center;font-weight: bold;cursor: pointer; font-size: 22px;color: #fff;display: block;margin: 0 auto;border-radius: 25px; background: #42a4f7;}
+.UCenterForm .subItems{padding-left: 80px;padding-right: 10px;margin-bottom: 10px;}
+.UCenterForm .subItems span{margin-left: -80px;font-size: 18px; color: #000;}
+.UCenterForm .subItems .ipt-text{}
+
+/* ucenter-table */
+.ucenter-table{width: 100%;}
+.ucenter-table th{line-height: 30px;padding: 10px 0;border-bottom: 1px solid #ccc;color: #333;font-size: 16px;font-weight: normal;}
+.ucenter-table td{padding: 20px 0;text-align: center;font-size: 14px;background: url(../images/orderline.jpg) repeat-x bottom;}

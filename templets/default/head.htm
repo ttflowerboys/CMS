@@ -10,7 +10,18 @@
           {
             echo '<div class="unlogin"><a href="javascript:;" data-url="/plus/login_popup.php" class="js_showAlertBtn">登录</a> / <a href="/member/register.php">注册</a></div>';
           }else{
-            echo '<div class="islogin"><a href="'. $cfg_memberurl.'/index.php">'.$uid.'</a>|<a href="/member/index_do.php?fmdo=login&dopost=exit">安全退出</a></div>';
+            echo '<div class="islogin">
+              <dl class="uNav">
+                <dt><a class="uname" href="'. $cfg_memberurl.'/index.php">'.$uid.'</a></dt>
+                <dd>
+                  <a href="/member/">个人资料</a>
+                  <a href="/member/orders.php">我的订单</a>
+                  <a href="/member/travelnotes.php">我的日记</a>
+                  <a href="/member/maillog.php">我的信箱</a>
+                  <a href="/member/setup.php">设置</a>
+                  <a href="/member/index_do.php?fmdo=login&dopost=exit">安全退出</a>
+                </dd>
+              </dl></div>';
           }
         {/dede:php}
       </div>
