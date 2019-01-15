@@ -77,6 +77,13 @@ function IsPass(strg){
     return true;
 }
 
+// 验证微信号
+function IsWechat(str){
+    if(!str) return false;
+    var reg = new RegExp('^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}$');
+    if(!reg.test(str)) return false;
+    return false;
+}
 
 
 
