@@ -75,6 +75,23 @@ function CheckUserID($uid, $msgtitle='用户名', $ckhas=TRUE)
 }
 
 /**
+ * 微信号
+ */
+function CheckWechat($wechat, $msgtitle='Wechat', $ckhas=TRUE){
+    global $dsql;
+    if(!preg_match("/^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}$/",$wechat))
+    {
+        return $msgtitle.' is error!';
+    }
+    if($ckhas)
+    {
+        $row = $dsql->GetOne("SELECT * FROM `#@__member_person` WHERE wechat LIKE '$wechat' ");
+        if(is_array($row)) return $msgtitle." already exist!";
+    }
+    return 'ok';
+}
+
+/**
  *  保存一则消息记录
  *
  * @access    public
