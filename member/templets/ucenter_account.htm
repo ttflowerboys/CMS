@@ -14,27 +14,78 @@
         <div class="tips">【以下信息除了“中文姓名“外，请务必用英文填写，若用中文填写，则视为无效申请】</div>
         <p class="color92" style="margin-bottom: 36px;"><span class="t-red">*</span> Denotes Compulsory Fields <br> ※ Please Use English to Fill</p>
         <div class="UCenterForm">
-            <form action="">
-                <div class="Items"><label class="label">中文姓名<span class="t-red">*</span></label><input type="text" class="ipt-text" disabled placeholder="中文姓名" value="<?php echo $cfg_ml->M_LoginID; ?>"></div>
-                <div class="Items"><label class="label">Given Name<span class="t-red">*</span></label><input type="text" class="ipt-text" placeholder="Given Name"></div>
-                <div class="Items"><label class="label">Surname<span class="t-red">*</span></label><input type="text" class="ipt-text" placeholder="Surname"></div>
-                <div class="Items"><label class="label">Preferred Name<span class="t-red">*</span></label><input type="text" class="ipt-text" placeholder="Preferred Name"></div>
+            <form action="ajax_account.php">
+                <input type="hidden" name="dopost" value="account">
+                <div class="Items"><label class="label">中文姓名<span class="t-red">*</span></label><input type="text" class="ipt-text" disabled value="<?php echo $cfg_ml->M_LoginID; ?>"></div>
+                <div class="Items"><label class="label">Given Name<span class="t-red">*</span></label><input type="text" name="givenname" class="ipt-text" value="<?php echo $minfos['givenname']; ?>"></div>
+                <div class="Items"><label class="label">Surname<span class="t-red">*</span></label><input type="text" name="surname" class="ipt-text" value="<?php echo $minfos['surname']; ?>"></div>
+                <div class="Items"><label class="label">Preferred Name<span class="t-red">*</span></label><input type="text" name="preferredname" class="ipt-text" value="<?php echo $minfos['preferredname']; ?>"></div>
                 <div class="Items">
                     <label class="label">Gender<span class="t-red">*</span></label>
-                    <label class="label-radio"><input type="radio" name="gender" value="male" checked> Male</label>
-                    <label class="label-radio"><input type="radio" name="gender" value="female"> Female</label>
+                    <label class="label-radio"><input type="radio" name="sex" value="男" checked> Male</label>
+                    <label class="label-radio"><input type="radio" name="sex" value="女"> Female</label>
                 </div>
-                <div class="Items"><label class="label">Date Of Birth<span class="t-red">*</span></label><input type="text" class="ipt-text" placeholder="Date Of Birth"></div>
-                <div class="Items"><label class="label">Passport No.<span class="t-red">*</span></label><input type="text" class="ipt-text" placeholder="Passport No."></div>
-                <div class="Items"><label class="label">Contact NO.<span class="t-red">*</span></label><input type="text" class="ipt-text" placeholder="Contact NO."></div>
-                <div class="Items"><label class="label">Wechat ID<span class="t-red">*</span></label><input type="text" class="ipt-text" placeholder="Wechat ID"></div>
-                <div class="Items"><label class="label">Current Location.<span class="t-red">*</span></label><input type="text" class="ipt-text" placeholder="Current Location."></div>
-                <button type="button" class="ipt-submit">Update</button>
+                <div class="Items"><label class="label">Date Of Birth<span class="t-red">*</span></label><input type="text" class="ipt-text" name="birthday" value="<?php echo $minfos['birthday']; ?>"></div>
+                <div class="Items"><label class="label">Passport No.<span class="t-red">*</span></label><input type="text" class="ipt-text" name="passportno" value="<?php echo $minfos['passportno']; ?>"></div>
+                <div class="Items"><label class="label">Contact NO.<span class="t-red">*</span></label><input type="text" class="ipt-text" name="contactno" value="<?php echo $minfos['contactno']; ?>"></div>
+                <div class="Items"><label class="label">Wechat ID<span class="t-red">*</span></label><input type="text" class="ipt-text" name="wechat" value="<?php echo $minfos['wechat']; ?>"></div>
+                <div class="Items"><label class="label">Current Location.<span class="t-red">*</span></label><input type="text" class="ipt-text" name="location"></div>
+                <button type="button" class="ipt-submit js_ucenter_account">Update</button>
             </form>
         </div>
     </div>
 </div>
 <div class="block60"></div>
 <?php pasterTempletDiy("footer.htm"); ?>
+
+<script>
+    $(function () {
+    $(".js_ucenter_account").on("click", function () {
+        var $this = $(this),
+            FormDOM = $this.parent('form');
+        var regNickname = $("#regNickname").val();
+        var regEmail = $("#regEmail").val();
+        var regPass = $("#regPass").val();
+        var regrepass = $("#regrepass").val();
+        // if (!IsEmpty(regNickname)) {
+        //     layer.alert('用户名不能为空！', { icon: 2 }, function(index){
+        //         layer.close(index);
+        //     })
+        //     return false;
+        // }
+        
+        $.ajax({
+            url: FormDOM.attr('action'),
+            type: 'POST',
+            data: FormDOM.serialize(),
+            dataType: 'json',
+            beforeSend: function(){
+                $this.addClass('loading');
+                $this.text('Loading...');
+            },
+            complete: function(){
+                $this.removeClass('loading');
+                $this.text('Update');
+            },
+        }).done(function(res){
+            if(res.status == 1){
+                layer.alert(res.msg, { icon: 1 }, function(index){
+
+                })
+            }else{
+                layer.alert(res.msg, { icon: 2 }, function(index){
+                    layer.close(index);
+                    var URL = res.url;
+                    if(URL){
+                        setTimeout(function(){
+                            window.location = res.url
+                        }, 10)
+                    }
+                })
+            }
+        })
+    });
+})
+</script>
 </body>
 </html>
