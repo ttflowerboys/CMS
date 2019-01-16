@@ -34,11 +34,14 @@
 
 .UCenterForm{width: 800px;margin: 0 auto;}
 .UCenterForm .Items{margin-bottom: 20px;overflow: hidden;line-height: 50px;padding-left: 412px;}
-.UCenterForm .Items .label{width: 398px;height: 50px;font-size: 19px;line-height: 50px;margin-left: -412px;color: #fff;padding-left: 60px; display: block;float: left;background: #fff url(../images/ucenter_label.png) top left no-repeat;}
-.UCenterForm .Items:nth-child(2n) .label{background: none;color: #000;}
+.UCenterForm .Items .label{width: 398px;height: 50px;font-size: 19px;line-height: 50px;margin-left: -412px;color: #fff;padding-left: 60px; display: block;float: left;background: #fff url(../images/ucenter_label.png) right top no-repeat;}
+.UCenterForm .Items:nth-child(2n) .label{background-image: none;color: #000;}
+.UCenterForm .Items.Items-small{padding-left: 312px;}
+.UCenterForm .Items.Items-small .label{margin-left: -312px;width: 298px;}
+.UCenterForm .Items.hasBg .label{background-image: url(../images/ucenter_label.png);color: #fff;}
 .UCenterForm .Items .ipt-text,
-.UCenterForm .Items .ipt-textarea{width: 100%;height: 50px;font-size: 15px;line-height: 40px;color: #666; padding: 5px 20px;border: 1px solid #929292;border-radius: 3px;float: right;}
-.UCenterForm .Items .ipt-textarea{height: 200px;resize: none;}
+.UCenterForm .Items .ipt-textarea{width: 100%;height: 50px;font-size: 15px;line-height: 40px;color: #666; padding: 5px 20px;border: 1px solid #929292;border-radius: 3px;float: right;font-family: 'Microsoft YaHei';}
+.UCenterForm .Items .ipt-textarea{height: 200px;line-height: 20px;resize: none;font-size: 14px;padding: 6px 10px;}
 .UCenterForm .Items .label-radio{font-size: 18px;color: #000;margin-right: 20px;cursor: pointer;}
 .UCenterForm .Items .ipt-checkbox{font-size: 18px;line-height: 32px;color: #000;cursor: pointer;display: block;margin-bottom: 12px;}
 .UCenterForm .ipt-submit{height: 50px;width: 160px;text-align: center;font-weight: bold;cursor: pointer; font-size: 22px;color: #fff;display: block;margin: 0 auto;border-radius: 25px; background: #42a4f7;}
@@ -48,5 +51,5 @@
 
 /* ucenter-table */
 .ucenter-table{width: 100%;}
-.ucenter-table th{line-height: 30px;padding: 10px 0;border-bottom: 1px solid #ccc;color: #333;font-size: 16px;font-weight: normal;}
+.ucenter-table th{padding: 10px 0;border-bottom: 1px solid #ccc;color: #333;font: normal 16px/30px 'Microsoft YaHei';}
 .ucenter-table td{padding: 20px 0;text-align: center;font-size: 14px;background: url(../images/orderline.jpg) repeat-x bottom;}

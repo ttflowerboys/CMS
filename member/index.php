@@ -108,7 +108,7 @@ if($uid=='')
         //     $feeds[] = $row;
         // }
 
-        $minfos = $dsql->GetOne("SELECT * FROM `#@__member` WHERE mid='".$cfg_ml->M_ID."'; ");
+        $minfos = $dsql->GetOne("SELECT * FROM `#@__member_person` WHERE mid='".$cfg_ml->M_ID."'; ");
         $dpl = new DedeTemplate();
         $tpl = dirname(__FILE__)."/templets/ucenter_account.htm";
         $dpl->LoadTemplate($tpl);

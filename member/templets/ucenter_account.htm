@@ -22,14 +22,14 @@
                 <div class="Items"><label class="label">Preferred Name<span class="t-red">*</span></label><input type="text" name="preferredname" class="ipt-text" value="<?php echo $minfos['preferredname']; ?>"></div>
                 <div class="Items">
                     <label class="label">Gender<span class="t-red">*</span></label>
-                    <label class="label-radio"><input type="radio" name="sex" value="男" checked> Male</label>
-                    <label class="label-radio"><input type="radio" name="sex" value="女"> Female</label>
+                    <label class="label-radio"><input type="radio" name="sex" value="男" <?php if($minfos['sex']=='男') echo " checked='checked' "; ?>> Male</label>
+                    <label class="label-radio"><input type="radio" name="sex" value="女" <?php if($minfos['sex']=='女') echo " checked='checked' "; ?>> Female</label>
                 </div>
                 <div class="Items"><label class="label">Date Of Birth<span class="t-red">*</span></label><input type="text" class="ipt-text" name="birthday" value="<?php echo $minfos['birthday']; ?>"></div>
                 <div class="Items"><label class="label">Passport No.<span class="t-red">*</span></label><input type="text" class="ipt-text" name="passportno" value="<?php echo $minfos['passportno']; ?>"></div>
                 <div class="Items"><label class="label">Contact NO.<span class="t-red">*</span></label><input type="text" class="ipt-text" name="contactno" value="<?php echo $minfos['contactno']; ?>"></div>
                 <div class="Items"><label class="label">Wechat ID<span class="t-red">*</span></label><input type="text" class="ipt-text" name="wechat" value="<?php echo $minfos['wechat']; ?>"></div>
-                <div class="Items"><label class="label">Current Location.<span class="t-red">*</span></label><input type="text" class="ipt-text" name="location"></div>
+                <div class="Items"><label class="label">Current Location.<span class="t-red">*</span></label><input type="text" class="ipt-text" name="location" value="<?php echo $minfos['address']; ?>"></div>
                 <button type="button" class="ipt-submit js_ucenter_account">Update</button>
             </form>
         </div>
@@ -40,19 +40,11 @@
 
 <script>
     $(function () {
+
+    
     $(".js_ucenter_account").on("click", function () {
         var $this = $(this),
             FormDOM = $this.parent('form');
-        var regNickname = $("#regNickname").val();
-        var regEmail = $("#regEmail").val();
-        var regPass = $("#regPass").val();
-        var regrepass = $("#regrepass").val();
-        // if (!IsEmpty(regNickname)) {
-        //     layer.alert('用户名不能为空！', { icon: 2 }, function(index){
-        //         layer.close(index);
-        //     })
-        //     return false;
-        // }
         
         $.ajax({
             url: FormDOM.attr('action'),
@@ -60,20 +52,14 @@
             data: FormDOM.serialize(),
             dataType: 'json',
             beforeSend: function(){
-                $this.addClass('loading');
-                $this.text('Loading...');
+                tools.loading_show($this)
             },
             complete: function(){
-                $this.removeClass('loading');
-                $this.text('Update');
+                tools.loading_hide($this)
             },
         }).done(function(res){
             if(res.status == 1){
                 layer.alert(res.msg, { icon: 1 }, function(index){
-
-                })
-            }else{
-                layer.alert(res.msg, { icon: 2 }, function(index){
                     layer.close(index);
                     var URL = res.url;
                     if(URL){
@@ -81,6 +67,10 @@
                             window.location = res.url
                         }, 10)
                     }
+                })
+            }else{
+                layer.alert(res.msg, { icon: 2 }, function(index){
+                    layer.close(index);
                 })
             }
         })

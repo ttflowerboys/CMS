@@ -14,14 +14,64 @@
         <div class="tips">请简单介绍一下自己，以备更好地为您提供更优质的服务，介绍包含您的学历、专业、从事过的一些社会公益经历、掌握外语的程度、技能特长。</div>
         <p class="color92" style="margin-bottom: 36px;"><span class="t-red">*</span> Denotes Compulsory Fields <br> ※ Please Use English to Fill</p>
         <div class="UCenterForm">
-            <form action="">
-                <div class="Items"><label class="label">Experience<span class="t-red">*</span></label><textarea class="ipt-textarea" name="" placeholder="Experience"></textarea></div>
-                <button type="button" class="ipt-submit">Update</button>
+            <form action="ajax_account.php">
+                <input type="hidden" name="dopost" value="experience">
+                <div class="Items hasBg Items-small"><label class="label">Experience<span class="t-red">*</span></label><textarea class="ipt-textarea" name="experience" placeholder="No less than 200 characters"><?php echo $minfos['experience']; ?></textarea></div>
+                <button type="button" class="ipt-submit js_ucenter_experience">Update</button>
             </form>
         </div>
     </div>
 </div>
 <div class="block60"></div>
 <?php pasterTempletDiy("footer.htm"); ?>
+<script>
+        $(function () {
+       
+        $(".js_ucenter_experience").on("click", function () {
+            var $this = $(this),
+                FormDOM = $this.parent('form');
+            
+            var expVal = $.trim(FormDOM.find("textarea[name=experience]").val());
+            if(!expVal.length){
+                layer.alert('Please enter your travel expectation!', { icon: 2 }, function(index){
+                    layer.close(index);
+                })
+                return false;
+            }else if(expVal.length<200){
+                layer.alert('Expectation of not less than 200 characters!', {icon: 2})
+                return false;
+            }
+            
+            $.ajax({
+                url: FormDOM.attr('action'),
+                type: 'POST',
+                data: FormDOM.serialize(),
+                dataType: 'json',
+                beforeSend: function(){
+                    tools.loading_show($this)
+                },
+                complete: function(){
+                    tools.loading_hide($this)
+                },
+            }).done(function(res){
+                if(res.status == 1){
+                    layer.alert(res.msg, { icon: 1 }, function(index){
+                        layer.close(index);
+                        var URL = res.url;
+                        if(URL){
+                            setTimeout(function(){
+                                window.location = res.url
+                            }, 10)
+                        }
+                    })
+                }else{
+                    layer.alert(res.msg, { icon: 2 }, function(index){
+                        layer.close(index);
+                    })
+                }
+            })
+        });
+    })
+    </script>
 </body>
 </html>

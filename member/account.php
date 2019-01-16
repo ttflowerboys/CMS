@@ -35,7 +35,7 @@ if($uid=='')
     else
     {
         /** 用户信息 **/
-        $minfos = $dsql->GetOne("SELECT * FROM `#@__member` WHERE mid='".$cfg_ml->M_ID."'; ");
+        $minfos = $dsql->GetOne("SELECT * FROM `#@__member_person` WHERE mid='".$cfg_ml->M_ID."'; ");
 
         $dpl = new DedeTemplate();
         switch ($type) {

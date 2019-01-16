@@ -14,16 +14,79 @@
         <div class="tips">【以下信息除了“中文姓名“外，请务必用英文填写，若用中文填写，则视为无效申请】</div>
         <p class="color92" style="margin-bottom: 36px;"><span class="t-red">*</span> Denotes Compulsory Fields <br> ※ Please Use English to Fill</p>
         <div class="UCenterForm">
-            <form action="">
-                <div class="Items"><label class="label">Name<span class="t-red">*</span></label><input type="text" class="ipt-text" placeholder="Name"></div>
-                <div class="Items"><label class="label">Relationship<span class="t-red">*</span></label><input type="text" class="ipt-text" placeholder="Relationship"></div>
-                <div class="Items"><label class="label">Contact NO.<span class="t-red">*</span></label><input type="text" class="ipt-text" placeholder="Contact NO."></div>
-                <button type="button" class="ipt-submit">Update</button>
+            <form action="ajax_account.php">
+                <input type="hidden" name="dopost" value="emergency">
+                <div class="Items"><label class="label">Name<span class="t-red">*</span></label><input name="emename" type="text" class="ipt-text" value="<?php echo $minfos['emename']; ?>" placeholder="Name"></div>
+                <div class="Items"><label class="label">Relationship<span class="t-red">*</span></label><input name="emerelationship" type="text" class="ipt-text" value="<?php echo $minfos['emerelationship']; ?>" placeholder="Relationship"></div>
+                <div class="Items"><label class="label">Contact NO.<span class="t-red">*</span></label><input name="emecontact" type="text" class="ipt-text" value="<?php echo $minfos['emecontact']; ?>" placeholder="Contact NO."></div>
+                <button type="button" class="ipt-submit js_ucenter_emergency">Update</button>
             </form>
         </div>
     </div>
 </div>
 <div class="block60"></div>
 <?php pasterTempletDiy("footer.htm"); ?>
+
+<script>
+$(function () {
+
+    $(".js_ucenter_emergency").on("click", function () {
+        var $this = $(this),
+            FormDOM = $this.parent('form');
+
+        var nameVal = $.trim(FormDOM.find("input[name=emename]").val());
+        if (!nameVal.length) {
+            layer.alert('Please enter contacter name.', { icon: 2 }, function (index) {
+                layer.close(index);
+            })
+            return false;
+        }
+        var relationshipVal = $.trim(FormDOM.find("input[name=emerelationship]").val());
+        if (!relationshipVal.length) {
+            layer.alert('Please enter relationship!', { icon: 2 }, function (index) {
+                layer.close(index);
+            })
+            return false;
+        }
+        var contactVal = $.trim(FormDOM.find("input[name=emecontact]").val());
+        if (!contactVal.length) {
+            layer.alert('Please enter contact No.', { icon: 2 }, function (index) {
+                layer.close(index);
+            })
+            return false;
+        }
+        
+
+        $.ajax({
+            url: FormDOM.attr('action'),
+            type: 'POST',
+            data: FormDOM.serialize(),
+            dataType: 'json',
+            beforeSend: function () {
+                tools.loading_show($this)
+            },
+            complete: function () {
+                tools.loading_hide($this)
+            },
+        }).done(function (res) {
+            if (res.status == 1) {
+                layer.alert(res.msg, { icon: 1 }, function (index) {
+                    layer.close(index);
+                    var URL = res.url;
+                    if (URL) {
+                        setTimeout(function () {
+                            window.location = res.url
+                        }, 10)
+                    }
+                })
+            } else {
+                layer.alert(res.msg, { icon: 2 }, function (index) {
+                    layer.close(index);
+                })
+            }
+        })
+    });
+})
+</script>
 </body>
 </html>
