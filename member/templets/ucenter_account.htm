@@ -25,7 +25,7 @@
                     <label class="label-radio"><input type="radio" name="sex" value="男" <?php if($minfos['sex']=='男') echo " checked='checked' "; ?>> Male</label>
                     <label class="label-radio"><input type="radio" name="sex" value="女" <?php if($minfos['sex']=='女') echo " checked='checked' "; ?>> Female</label>
                 </div>
-                <div class="Items"><label class="label">Date Of Birth<span class="t-red">*</span></label><input type="text" class="ipt-text" name="birthday" value="<?php echo $minfos['birthday']; ?>"></div>
+                <div class="Items"><label class="label">Date Of Birth<span class="t-red">*</span></label><input type="text" class="ipt-text hasDateIcon js_laydate" name="birthday" value="<?php echo $minfos['birthday']; ?>"></div>
                 <div class="Items"><label class="label">Passport No.<span class="t-red">*</span></label><input type="text" class="ipt-text" name="passportno" value="<?php echo $minfos['passportno']; ?>"></div>
                 <div class="Items"><label class="label">Contact NO.<span class="t-red">*</span></label><input type="text" class="ipt-text" name="contactno" value="<?php echo $minfos['contactno']; ?>"></div>
                 <div class="Items"><label class="label">Wechat ID<span class="t-red">*</span></label><input type="text" class="ipt-text" name="wechat" value="<?php echo $minfos['wechat']; ?>"></div>
@@ -38,9 +38,14 @@
 <div class="block60"></div>
 <?php pasterTempletDiy("footer.htm"); ?>
 
+<script src="/static/js/plugins/laydate/laydate.js"></script>
 <script>
     $(function () {
-
+    laydate.render({
+        elem: '.js_laydate'
+        ,format: 'yyyy-MM-dd'
+        ,lang: 'en'
+    });
     
     $(".js_ucenter_account").on("click", function () {
         var $this = $(this),

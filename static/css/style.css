@@ -92,6 +92,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 
 .banner{width: 100%;min-width: 1200px;height: 690px;background: #fff;}
 
+.hasDateIcon{background-image: url(../images/icon/dateIcon.png);background-repeat: no-repeat;background-position: right center;}
+
 .banner-swiper-container{}
 .banner-swiper-container .swiper-slide{height: 690px;background-position: center top;background-repeat: no-repeat;}
 .banner-swiper-container .swiper-slide1{background-image: url(../images/banner.jpg);}
