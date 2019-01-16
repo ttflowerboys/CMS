@@ -11,28 +11,83 @@
         <div class="Register" style="padding-top: 50px;">
             <h3 style="margin-bottom: 12px;">修改密码</h3>
             <div class="dlzcForm">
-                <form name="regsiterFORM" id="regsiterFORM" method="post" action="/member/ajax_reg_new.php">
-                <div class="inputDiv">
-                    <p class="icon"><img src="/static/images/dlIcon04.jpg" width="50" height="47"></p>
-                    <input class="txt" name="userpwd" id="regPass" type="password" placeholder="Please enter old password">
-                </div>
-                <div class="inputDiv">
-                    <p class="icon"><img src="/static/images/dlIcon02.jpg" width="50" height="47"></p>
-                    <input class="txt" name="userpwdok" id="regrepass" type="password" placeholder="Please enter a new password">
-                </div>
-                <div class="inputDiv">
-                        <p class="icon"><img src="/static/images/dlIcon02.jpg" width="50" height="47"></p>
-                        <input class="txt" name="userpwdok" id="regrepass" type="password" placeholder="input the new password again">
+                <form action="/member/ajax_setup.php">
+                    <input type="hidden" name="dopost" value="pwd">
+                    <div class="inputDiv">
+                        <p class="icon"><img src="/static/images/dlIcon04.jpg" width="50" height="47"></p>
+                        <input class="txt" name="oldpwd" type="password" placeholder="Please enter old password">
                     </div>
-                <div class="inputBtn">
-                    <button type="button" class="LoginSubmitBtn SubmitBtn" id="regSubmitBtns">Submit</button>
-                </div>
-            </form>
+                    <div class="inputDiv">
+                        <p class="icon"><img src="/static/images/dlIcon02.jpg" width="50" height="47"></p>
+                        <input class="txt" name="userpwd" type="password" placeholder="Please enter a new password">
+                    </div>
+                    <div class="inputDiv">
+                        <p class="icon"><img src="/static/images/dlIcon02.jpg" width="50" height="47"></p>
+                        <input class="txt" name="userpwdok" type="password" placeholder="input the new password again">
+                    </div>
+                    <div class="inputBtn">
+                        <button type="button" class="LoginSubmitBtn SubmitBtn js_setup_pwd">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
 <div class="block60"></div>
 <?php pasterTempletDiy("footer.htm"); ?>
+<script>
+$(function(){
+    $(".js_setup_pwd").on("click", function () {
+        var $this = $(this),
+            FormDOM = $this.closest('form');
+        
+        var opwdVal = $.trim(FormDOM.find("input[name=oldpwd]").val());
+        if(!opwdVal.length){
+            layer.alert('Please enter old password.', { icon: 2 }); return false;
+        }
+        var pwdVal = $.trim(FormDOM.find("input[name=userpwd]").val());
+        if(!pwdVal.length){
+            layer.alert('Please enter a new password.', { icon: 2 }); return false;
+        }
+        var pwdokVal = $.trim(FormDOM.find("input[name=userpwdok]").val());
+        if(!pwdokVal.length){
+            layer.alert('Please input the new password again.', { icon: 2 });  return false;
+        }
+
+        if(pwdVal != pwdokVal){
+            layer.alert('你两次输入的新密码不一致！', { icon: 2 });  return false;
+        }
+        
+        $.ajax({
+            url: FormDOM.attr('action'),
+            type: 'POST',
+            data: FormDOM.serialize(),
+            dataType: 'json',
+            beforeSend: function(){
+                tools.loading_show($this)
+            },
+            complete: function(){
+                tools.loading_hide($this)
+            },
+        }).done(function(res){
+            if(res.status == 1){
+                layer.alert(res.msg, { icon: 1 }, function(index){
+                    layer.close(index);
+                    var URL = res.url;
+                    if(URL){
+                        setTimeout(function(){
+                            window.location = res.url
+                        }, 10)
+                    }
+                })
+            }else{
+                layer.alert(res.msg, { icon: 2 }, function(index){
+                    layer.close(index);
+                })
+            }
+        })
+    });
+})
+</script>
 </body>
 </html>
