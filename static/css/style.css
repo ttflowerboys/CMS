@@ -21,6 +21,7 @@ a{color: #666;}a:hover{transition : color 0.2s linear 0s,background-color 0.3s l
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {display: block;}
 .block60{clear: both;height: 60px;}
 .grayBg{background-color: #f4f4f4;}
+.t-blue{color: #42a4f7;}
 /* header style */
 .header{
     position: relative;
@@ -417,30 +418,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
     overflow: hidden;
     border-radius: 5px 0 0 5px;
 }
-.Register .dlzcForm .inputDiv input.txt{
-    padding: 0 10px;
-    height: 45px;
-    line-height: 45px;
-    font-size: 14px;
-    color: #333;
-    float: left;
-    border: none;
-    width: 332px;
-}
-.LoginSubmitBtn {
-    height: 47px;
-    line-height: 47px;
-    background: #53a4f7;
-    border-radius: 5px;
-    border: none;
-    width: 100%;
-    font-size: 18px;
-    color: #fff;
-    cursor: pointer;
-}
-.color1bc1cd {
-    color: #1bc1cd !important;
-}
+.Register .dlzcForm .inputDiv input.txt{ padding: 0 10px; height: 45px; line-height: 45px; font-size: 14px; color: #333; float: left; border: none; width: 332px;}
+.LoginSubmitBtn { height: 47px; line-height: 47px; background: #53a4f7; border-radius: 5px; border: none; width: 100%; font-size: 18px; color: #fff; cursor: pointer;}
+.color1bc1cd { color: #1bc1cd !important;}
 .submitSuccess{ padding:70px 0;}
 .submitSuccess .pic01{ display:block; margin:0 auto;}
 .submitSuccess .pic02{ display:block; margin:40px auto 0;}
@@ -449,3 +429,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 
 .row{width: 100%;overflow: hidden;}
 .row .col-2{width: 50%;float: left;}
+
+
+/* TravelTitle */
+.TravelTitle{font: 18px/32px 'Microsoft YaHei';color: #42a4f7;text-align: center;margin: 62px auto;}
+.TravelTitle h2{padding-top: 66px;background: url(../images/releaseTravel.png) center top no-repeat;}
+.TravelTitle .cn{font-size: 32px;}

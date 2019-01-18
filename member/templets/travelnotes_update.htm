@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>会员中心_
+        <?php echo $cfg_webname; ?>
+    </title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/ucenter.css">
+    <style>
+        .header{ border-bottom: 2px solid #42a4f7;}
+    </style>
+    <!-- member/templets/archives_add.htm -->
+</head>
+
+<body>
+    <?php pasterTempletDiy("head.htm"); ?>
+    <div class="block60"></div>
+    <div class="UCenterForm">
+        <div class="TravelTitle">
+            <h2><strong class="cn">发布日志</strong><br>RELEASE TRAVEL</h2>
+        </div>
+        <div class="Items">
+            <label class="label">标题<span class="t-red">*</span></label>
+            <input type="text" name="preferredname" class="ipt-text" placeholder="请填写游记标题">
+        </div>
+        <div class="Items">
+            <label class="label">项目国家<span class="t-blue">（请选择游记所在城市）</span></label>
+            <input type="text" name="preferredname" class="ipt-text">
+        </div>
+        <div class="Items">
+            <label class="label">游记简述<span class="t-red">*</span></label>
+            <textarea class="ipt-textarea" name="experience" style="height: 160px;"></textarea>
+        </div>
+        <div class="Items hasBg">
+            <label class="label">封面</label>
+            <input type="file" id="up_img" name="icon" style="display:none;">
+            <div class="photo"><img id="imgShow" src="/static/images/nopic.png" width="200" height="140" style="border:1px solid #CCC;padding:1px;" /></div>
+
+        </div>
+        <div class="Tips">请编辑游记内容<span class="t-blue">（审核通过后可获得积分，版权归<?php echo $cfg_webname; ?>旅行所有）</span></div>
+
+
+    </div>
+
+<div class="block60"></div>
+<?php pasterTempletDiy("footer.htm"); ?>
+
+</body>
+</html>

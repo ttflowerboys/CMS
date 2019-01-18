@@ -34,16 +34,19 @@
 
 .UCenterForm{width: 800px;margin: 0 auto;}
 .UCenterForm .Items{margin-bottom: 20px;overflow: hidden;line-height: 50px;padding-left: 412px;}
-.UCenterForm .Items .label{width: 398px;height: 50px;font-size: 19px;line-height: 50px;margin-left: -412px;color: #fff;padding-left: 60px; display: block;float: left;background: #fff url(../images/ucenter_label.png) right top no-repeat;}
-.UCenterForm .Items:nth-child(2n) .label{background-image: none;color: #000;}
+.UCenterForm .Items .label{width: 398px;height: 50px;font-size: 19px;line-height: 50px;margin-left: -412px;color: #fff;padding-left: 60px; border-radius: 4px;display: block;float: left;background: #fff url(../images/ucenter_label.png) right top no-repeat;}
+.UCenterForm .Items:nth-child(odd) .label{background-image: none;color: #000;}
+.UCenterForm .Items .label span{font-size: 14px;margin-left: 5px;}
 .UCenterForm .Items.Items-small{padding-left: 312px;}
-.UCenterForm .Items.Items-small .label{margin-left: -312px;width: 298px;}
+.UCenterForm .Items.Items-small .label{margin-left: -312px;width: 298px;padding-left: 45px;}
 .UCenterForm .Items.hasBg .label{background-image: url(../images/ucenter_label.png);color: #fff;}
 .UCenterForm .Items .ipt-text,
 .UCenterForm .Items .ipt-textarea{width: 100%;height: 50px;font-size: 15px;line-height: 40px;color: #666; padding: 5px 20px;border: 1px solid #929292;border-radius: 3px;float: right;font-family: 'Microsoft YaHei';}
 .UCenterForm .Items .ipt-textarea{height: 200px;line-height: 20px;resize: none;font-size: 14px;padding: 6px 10px;}
 .UCenterForm .Items .label-radio{font-size: 18px;color: #000;margin-right: 20px;cursor: pointer;}
 .UCenterForm .Items .ipt-checkbox{font-size: 18px;line-height: 32px;color: #000;cursor: pointer;display: block;margin-bottom: 12px;}
+.UCenterForm .Tips{font-size: 18px;margin: 32px auto;color: #000;}
+.UCenterForm .Tips span{font-size: 16px;color: #666;}
 .UCenterForm .ipt-submit{height: 50px;width: 160px;text-align: center;font-weight: bold;cursor: pointer; font-size: 22px;color: #fff;display: block;margin: 0 auto;border-radius: 25px; background: #42a4f7;}
 .UCenterForm .subItems{padding-left: 80px;padding-right: 10px;margin-bottom: 10px;}
 .UCenterForm .subItems span{margin-left: -80px;font-size: 18px; color: #000;}
