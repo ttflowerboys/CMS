@@ -82,9 +82,10 @@ function AddFilter($channelid, $type=1, $fieldsnamef, $defaulttid, $loadtype='au
                 $href1 = explode($ctag->GetName().'=', $filterarr);
 				$href2 = explode('&', $href1[1]);
 				$fields_value = $href2[0];
-				$dede_addonfields .= '<div class="attr clearfix"><div class="attrKey">'.$ctag->GetAtt('itemname').'</div>';
+				// $dede_addonfields .= '<div class="attr clearfix"><div class="attrKey">'.$ctag->GetAtt('itemname').'</div>';
 				switch ($type) {
 					case 1:
+						$dede_addonfields .= '<div class="attr clearfix"><div class="attrKey">'.$ctag->GetAtt('itemname').'</div>';
 						$dede_addonfields .= '<div class="attrValues"><ul class="attrList clearfix">';
 						$dede_addonfields .= (preg_match("/&".$ctag->GetName()."=/is",$filterarr,$regm) ? '<li><a href="'.str_replace("&".$ctag->GetName()."=".$fields_value,"",$filterarr).'">全部</a></li>' : '<li><span class="current">全部</span></li>');
 					
@@ -108,6 +109,20 @@ function AddFilter($channelid, $type=1, $fieldsnamef, $defaulttid, $loadtype='au
 							';
 						}
 						$dede_addonfields .= '</select><br/>
+						';
+					break;
+
+					case 3:
+						$dede_addonfields .= '<select class="select" name="'.$ctag->GetName().'">
+							'.'<option value="">国家区域</option>';
+						$addonfields_items = explode(",",$ctag->GetAtt('default'));
+						for ($i=0; $i<count($addonfields_items); $i++)
+						{
+							$href = $addonfields_items[$i];
+							$dede_addonfields .= '<option value="'.$href.'"'.($fields_value==urlencode($addonfields_items[$i]) ? ' selected="selected"' : '').'>'.$addonfields_items[$i].'</option>
+							';
+						}
+						$dede_addonfields .= '</select>
 						';
 					break;
 				}
