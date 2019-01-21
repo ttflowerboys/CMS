@@ -15,7 +15,6 @@
         <p class="color92" style="margin-bottom: 36px;"><span class="t-red">*</span> Denotes Compulsory Fields <br> ※ Please Use English to Fill</p>
         <div class="UCenterForm">
             <form action="ajax_account.php">
-                <input type="hidden" name="dopost" value="account">
                 <div class="Items"><label class="label">中文姓名<span class="t-red">*</span></label><input type="text" class="ipt-text" disabled value="<?php echo $cfg_ml->M_LoginID; ?>"></div>
                 <div class="Items"><label class="label">Given Name<span class="t-red">*</span></label><input type="text" name="givenname" class="ipt-text" value="<?php echo $minfos['givenname']; ?>"></div>
                 <div class="Items"><label class="label">Surname<span class="t-red">*</span></label><input type="text" name="surname" class="ipt-text" value="<?php echo $minfos['surname']; ?>"></div>
@@ -30,6 +29,7 @@
                 <div class="Items"><label class="label">Contact NO.<span class="t-red">*</span></label><input type="text" class="ipt-text" name="contactno" value="<?php echo $minfos['contactno']; ?>"></div>
                 <div class="Items"><label class="label">Wechat ID<span class="t-red">*</span></label><input type="text" class="ipt-text" name="wechat" value="<?php echo $minfos['wechat']; ?>"></div>
                 <div class="Items"><label class="label">Current Location.<span class="t-red">*</span></label><input type="text" class="ipt-text" name="location" value="<?php echo $minfos['address']; ?>"></div>
+                <input type="hidden" name="dopost" value="account">
                 <button type="button" class="ipt-submit js_ucenter_account">Update</button>
             </form>
         </div>
