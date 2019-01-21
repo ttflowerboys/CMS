@@ -21,6 +21,7 @@ if ( preg_match("#PHP (.*) Development Server#",$_SERVER['SERVER_SOFTWARE']) )
         header('Location:'.$_SERVER['REQUEST_URI'].'/');
     }
 }
+
 //会员后台
 if($uid=='')
 {

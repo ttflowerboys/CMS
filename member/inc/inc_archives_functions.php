@@ -242,6 +242,41 @@ function PrintAutoFieldsAdd(&$fieldset, $loadtype='all', $isprint=TRUE)
 }
 
 /**
+ *  载入自定义表单(用于发布)
+ *
+ * @access    public
+ * @param     string  $fieldset
+ * @param     string  $loadtype
+ * @param     bool    $isprint   是否打印
+ * @return    string
+ */
+function PrintAutoFieldsAdd1(&$fieldset, $loadtype='all', $isprint=TRUE)
+{
+    global $cfg_cookie_encode;
+    $dtp = new DedeTagParse();
+    $dtp->SetNameSpace('field','<','>');
+    $dtp->LoadSource($fieldset);
+    $dede_addonfields = '';
+    $addonfieldsname = '';
+    if(is_array($dtp->CTags))
+    {
+        foreach($dtp->CTags as $tid=>$ctag)
+        {
+            if($loadtype!='autofield' ||  $ctag->GetAtt('autofield')==1 )
+            {
+                $dede_addonfields .= ( $dede_addonfields=="" ? $ctag->GetName().",".$ctag->GetAtt('type') : ";".$ctag->GetName().",".$ctag->GetAtt('type') );
+                $addonfieldsname .= ",".$ctag->GetName();
+                if ($isprint) echo  GetFormItemA($ctag);
+            }
+        }
+    }
+    echo "<input type='hidden' name='dede_addonfields' value=\"".$dede_addonfields."\">\r\n";
+    echo "<input type=\"hidden\" name=\"dede_fieldshash\" value=\"".md5($dede_addonfields.$cfg_cookie_encode)."\" />";
+    // 增加一个返回
+    return $addonfieldsname;
+}
+
+/**
  *  载入自定义表单(用于编辑)
  *
  * @param     string  $fieldset

@@ -120,16 +120,16 @@ function CheckNotAllow()
     if(empty($cfg_ml->M_ID)) return ;
     if($cfg_ml->M_Spacesta == -2)
     {
-        ShowMsg("你已经被禁言，请与管理员联系！", "-1");
+        tp_json("你已经被禁言，请与管理员联系！", 0);
         exit();
     }else if($cfg_ml->M_Spacesta == -10)
     {
-        ShowMsg("系统开启了邮件审核机制，因此你的帐号需要审核后才能发信息！", "-1");
+        tp_json("系统开启了邮件审核机制，因此你的帐号需要审核后才能发信息！", 0);
         exit();
     }
     else if($cfg_ml->M_Spacesta < 0)
     {
-        ShowMsg('系统开启了审核机制，因此你的帐号需要管理员审核后才能发信息！', '-1');
+        tp_json('系统开启了审核机制，因此你的帐号需要管理员审核后才能发信息！', 0);
         exit();
     }
 }
