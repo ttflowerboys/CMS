@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/static/css/ucenter.css">
     <style>
         .header{ border-bottom: 2px solid #42a4f7;}
+        .UCenterForm .Items .select{width: 160px;float: left;}
     </style>
     <!-- member/templets/archives_add.htm -->
 </head>
@@ -19,40 +20,115 @@
 <body>
     <?php pasterTempletDiy("head.htm"); ?>
     <div class="block60"></div>
-    <div class="UCenterForm">
+    <div class="w">
         <div class="TravelTitle">
             <h2><strong class="cn">发布日志</strong><br>RELEASE TRAVEL</h2>
         </div>
-        <div class="Items">
-            <label class="label">标题<span class="t-red">*</span></label>
-            <input type="text" name="preferredname" class="ipt-text" placeholder="请填写游记标题">
+        <div class="UCenterForm">
+            <form action="/member/ajax_travelnotes.php" enctype="multipart/form-data">
+                <div class="Items">
+                    <label class="label">标题<span class="t-red">*</span></label>
+                    <input type="text" name="title" class="ipt-text" placeholder="请填写游记标题">
+                </div>
+                <div class="Items">
+                    <label class="label">项目国家<span class="t-blue">（请选择游记所在城市）</span></label>
+                    {dede:php}AddFilter(22,3,'country');{/dede:php}
+                </div>
+                <div class="Items">
+                    <label class="label">游记简述<span class="t-red">*</span></label>
+                    <textarea class="ipt-textarea" name="description" style="height: 160px;"></textarea>
+                </div>
+                <div class="Items hasBg">
+                    <label class="label">封面</label>
+                    <input type="file" id="up_img" name="litpic" style="display:none;">
+                    <div class="photo js_choosePhoto"><img id="imgShow" src="/static/images/nopic.png" width="200" height="140" style="border:1px solid #CCC;padding:1px;" /></div>
+                </div>
+                <div class="Tips">请编辑心路日志内容<span class="t-blue">（审核通过后可获得积分，版权归<?php echo $cfg_webname; ?>旅行所有）</span></div>
+                <script id="contentBody" name="body" type="text/plain"></script>
+                <div class="block60"></div>
+                <input type="hidden" name="dopost" value="save">
+                <input type="hidden" name="typeid" value="<?php echo $typeid; ?>">
+                <input type="hidden" name="channelid" value="<?php echo $channelid; ?>" />
+                <input type="hidden" name="writer" value="<?php echo $cfg_ml->M_LoginID?>">
+                <?php
+                    PrintAutoFieldsAdd1($cInfos['fieldset'],'autofield', FALSE);
+                ?>
+                <button type="button" class="ipt-submit js_update_travelnotes">Update</button>
+            </form>
         </div>
-        <div class="Items">
-            <label class="label">项目国家<span class="t-blue">（请选择游记所在城市）</span></label>
-            <input type="text" name="preferredname" class="ipt-text">
-        </div>
-        <div class="Items">
-            <label class="label">游记简述<span class="t-red">*</span></label>
-            <textarea class="ipt-textarea" name="experience" style="height: 160px;"></textarea>
-        </div>
-        <div class="Items hasBg">
-            <label class="label">封面</label>
-            <input type="file" id="up_img" name="icon" style="display:none;">
-            <div class="photo"><img id="imgShow" src="/static/images/nopic.png" width="200" height="140" style="border:1px solid #CCC;padding:1px;" /></div>
-
-        </div>
-        <div class="Tips">请编辑游记内容<span class="t-blue">（审核通过后可获得积分，版权归<?php echo $cfg_webname; ?>旅行所有）</span></div>
-        <script id="content" name="content" type="text/plain"></script>
-
     </div>
 
 <div class="block60"></div>
 <?php pasterTempletDiy("footer.htm"); ?>
 <!-- ueditor -->
+<script src="/static/js/tools.js"></script>
+<script src="/static/js/plugins/uploadPreview/uploadPreview.js"></script>
+
 <script type="text/javascript" src="/static/js/plugins/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" src="/static/js/plugins/ueditor/ueditor.all.js"></script>
 <script type="text/javascript" src="/static/js/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
-<script type="text/javascript">var editor=UE.getEditor('content',{ initialFrameHeight:300 , toolbars:[ ['fullscreen', 'source', 'fontfamily', 'fontsize', 'forecolor', 'backcolor', '|', 'undo', 'redo', '|', 'bold', 'italic', 'underline', 'strikethrough', 'pasteplain', '|', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'insertimage', 'insertvideo', 'map', 'link', 'unlink' ] ] });</script>
+<script type="text/javascript">var editor=UE.getEditor('contentBody',{ initialFrameHeight:300 , toolbars:[ ['fullscreen', 'source', 'fontfamily', 'fontsize', 'forecolor', 'backcolor', '|', 'undo', 'redo', '|', 'bold', 'italic', 'underline', 'strikethrough', 'pasteplain', '|', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'insertimage', 'insertvideo', 'map', 'link', 'unlink' ] ] });</script>
+<script>
+$(function(){
+    $(".js_choosePhoto").on("click", "img",function(){
+		$("#up_img").click();
+    });
+    
+    new uploadPreview({ UpBtn:"up_img", DivShow:"imgdiv", ImgShow:"imgShow" });
 
+    $('.js_update_travelnotes').on('click',function(){
+        var $this = $(this),
+            FormDOM = $this.closest('form');
+
+        var postTitle = $.trim(FormDOM.find("[name='title']").val()),
+            postCountry = $.trim(FormDOM.find("[name='country']").val()),
+            postDesc = $.trim(FormDOM.find("[name=body]").val());
+
+            if(!postTitle.length){
+                layer.alert('请输入游记标题！!', { icon: 2 }, function(index){ layer.close(index); });return false;
+            }
+            if(!postCountry.length){
+                layer.alert('请选择国家区域!', { icon: 2 }, function(index){ layer.close(index); });return false;
+            }
+            if(!postDesc.length){
+                layer.alert('请输入信息内容！!', { icon: 2 }, function(index){ layer.close(index); });return false;
+            }
+        
+        // 处理
+        var formData = new FormData($('form')[0]);
+        
+        $.ajax({
+            url: FormDOM.attr('action'),
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            beforeSend: function(){
+                tools.loading_show($this)
+            },
+            complete: function(){
+                tools.loading_hide($this)
+            }
+        }).done(function(res){
+            var result = JSON.parse(res);
+            if(result.status == 1){
+                layer.alert(result.msg, { icon: 1 }, function(index){
+                    layer.close(index);
+                    var URL = result.url;
+                    if(URL){
+                        setTimeout(function(){
+                            window.location = result.url
+                        }, 10)
+                    }
+                })
+            }else{
+                layer.alert(result.msg, { icon: 2 }, function(index){
+                    layer.close(index);
+                })
+            }
+        })
+    })
+})
+</script>
 </body>
 </html>

@@ -7,10 +7,21 @@
  * @link           http://www.dedecms.com
  */
 require_once(dirname(__FILE__)."/config.php");
+require_once(DEDEINC."/dedetag.class.php");
+require_once(DEDEINC."/userlogin.class.php");
+require_once(DEDEINC."/customfields.func.php");
+require_once(DEDEMEMBER."/inc/inc_catalog_options.php");
+require_once(DEDEMEMBER."/inc/inc_archives_functions.php");
 
 $uid=empty($uid)? "" : RemoveXSS($uid); 
 if(empty($action)) $action = '';
 if(empty($aid)) $aid = '';
+/**
+ * 设置 channelid ，默认模型ID
+ * typeid，栏目分类
+ */
+$channelid = isset($channelid) && is_numeric($channelid) ? $channelid : 22;
+$typeid = isset($typeid) && is_numeric($typeid) ? $typeid : 4;
 
 $menutype = 'mydede';
 if ( preg_match("#PHP (.*) Development Server#",$_SERVER['SERVER_SOFTWARE']) )
@@ -31,9 +42,26 @@ if($uid=='')
     }
     else
     {
+
         $dpl = new DedeTemplate();
         switch ($type) {
             case 'update':
+                $cInfos = $dsql->GetOne("SELECT * FROM `#@__channeltype` WHERE id='$channelid'; ");
+                //如果限制了会员级别或类型，则允许游客投稿选项无效
+                if($cInfos['sendrank']>0 || $cInfos['usertype']!='') CheckRank(0,0);
+                //检查会员等级和类型限制
+                if($cInfos['sendrank'] > $cfg_ml->M_Rank)
+                {
+                    $row = $dsql->GetOne("SELECT membername FROM `#@__arcrank` WHERE rank='".$cInfos['sendrank']."' ");
+                    tp_json("对不起，需要[".$row['membername']."]才能在这个频道发布文档！",0);
+                    exit();
+                }
+                if($cInfos['usertype']!='' && $cInfos['usertype'] != $cfg_ml->M_MbType)
+                {
+                    tp_json("对不起，需要[".$cInfos['usertype']."帐号]才能在这个频道发布文档！",0);
+                    exit();
+                }
+
                 $tpl = dirname(__FILE__)."/templets/travelnotes_update.htm";
                 break;
             default:
@@ -43,80 +71,5 @@ if($uid=='')
         $dpl->LoadTemplate($tpl);
         $dpl->display();
         
-    }
-}
-
-/*-----------------------------
-//会员空间主页
-function space_index(){  }
-------------------------------*/
-else
-{
-    require_once(DEDEMEMBER.'/inc/config_space.php');
-    if($action == '')
-    {
-        include_once(DEDEINC."/channelunit.func.php");
-        $dpl = new DedeTemplate();
-        $tplfile = DEDEMEMBER."/space/{$_vars['spacestyle']}/index.htm";
-
-        //更新最近访客记录及站点统计记录
-        $vtime = time();
-        $last_vtime = GetCookie('last_vtime');
-        $last_vid = GetCookie('last_vid');
-        if(empty($last_vtime))
-        {
-            $last_vtime = 0;
-        }
-        if($vtime - $last_vtime > 3600 || !preg_match('#,'.$uid.',#i', ','.$last_vid.',') )
-        {
-            if($last_vid!='')
-            {
-                $last_vids = explode(',',$last_vid);
-                $i = 0;
-                $last_vid = $uid;
-                foreach($last_vids as $lsid)
-                {
-                    if($i>10)
-                    {
-                        break;
-                    }
-                    else if($lsid != $uid)
-                    {
-                        $i++;
-                        $last_vid .= ','.$last_vid;
-                    }
-                }
-            }
-            else
-            {
-                $last_vid = $uid;
-            }
-            PutCookie('last_vtime', $vtime, 3600*24, '/');
-            PutCookie('last_vid', $last_vid, 3600*24, '/');
-            if($cfg_ml->IsLogin() && $cfg_ml->M_LoginID != $uid)
-            {
-                $vip = GetIP();
-                $arr = $dsql->GetOne("SELECT * FROM `#@__member_vhistory` WHERE mid='{$_vars['mid']}' AND vid='{$cfg_ml->M_ID}' ");
-                if(is_array($arr))
-                {
-                    $dsql->ExecuteNoneQuery("UPDATE `#@__member_vhistory` SET vip='$vip',vtime='$vtime',count=count+1 WHERE mid='{$_vars['mid']}' AND vid='{$cfg_ml->M_ID}' ");
-                }
-                else
-                {
-                    $query = "INSERT INTO `#@__member_vhistory`(mid,loginid,vid,vloginid,count,vip,vtime)
-                             VALUES('{$_vars['mid']}','{$_vars['userid']}','{$cfg_ml->M_ID}','{$cfg_ml->M_LoginID}','1','$vip','$vtime'); ";
-                    $dsql->ExecuteNoneQuery($query);
-                }
-            }
-            $dsql->ExecuteNoneQuery("UPDATE `#@__member_tj` SET homecount=homecount+1 WHERE mid='{$_vars['mid']}' ");
-        }
-        $dpl->LoadTemplate($tplfile);
-        $dpl->display();
-        exit();
-    }
-    else
-    {
-        require_once(DEDEMEMBER.'/inc/space_action.php');
-        exit();
     }
 }
