@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{dede:field.title/}_{dede:global.cfg_webname/}</title>
+  <meta name="keywords" content="{dede:field name='keywords'/}" />
+  <meta name="description" content="{dede:field name='description' function='html2text(@me)'/}" />
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  {dede:include filename="head.htm"/}
+  
+<div class="grayBg">
+    <div class="block60"></div>
+    <div class="w PostMain">
+		<h1 class="title">{dede:field.title/}</h1>
+		<div class="meta">
+			阅读:<span class="t-blue"><script src="{dede:field name='phpurl'/}/count.php?view=yes&aid={dede:field name='id'/}&mid={dede:field name='mid'/}" type='text/javascript' language="javascript"></script></span>
+			<span class="name">作者</span><span class="t-blue">{dede:field.writer/}</span>
+			{dede:field.pubdate function="MyDate('Y-m-d H:i',@me)"/}
+		</div>
+		<div class="content">
+				{dede:field.body/}
+		</div>
+    </div>
+    <div class="block60"></div>
+</div>
+
+  {dede:include filename="footer.htm"/}
+</body>
+</html>

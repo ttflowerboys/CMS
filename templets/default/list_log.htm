@@ -45,14 +45,13 @@
                     <div class="information">
                         <div class="meta">
                             <span class="name">作者</span>
-                            <p>仪时间义工旅行</p>
+                            <p>[field:writer/]</p>
                             <span class="time">[field:pubdate function="GetDateTimeMK(@me)"/]</span>
                         </div>
                         <div class="title"><a href="[field:arcurl/]">[field:title/]</a></div>
                         <div class="number">阅读：<span>[field:click/]</span></div>
                     </div>
-                    <div class="photo">[field:array runphp='yes']@me = (empty(@me['litpic']) ? "" : "<a href='{@me['
-                            arcurl']}'><img width='116' height='116' src='{@me[' litpic']}' /></a>"); [/field:array]</div>
+                    <div class="photo"><img width="116" src="[field:litpic/]" alt="[field:title/]"></div>
                 </li>
                 {/dede:list}
             </ul>
