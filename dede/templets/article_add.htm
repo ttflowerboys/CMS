@@ -4,7 +4,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $cfg_soft_lang; ?>">
 <title>增加文章</title>
 <style type="text/css">
-<!--
 body { background-image: url(images/allbg.gif); }
 .multipic {
 	border: 1px dashed #FC6;
@@ -17,7 +16,6 @@ body { background-image: url(images/allbg.gif); }
 .albCt img{
 	cursor:pointer;
 }
--->
 </style>
 <link href="css/base.css" rel="stylesheet" type="text/css">
 <link href='css/tb-box.css' rel='stylesheet' type='text/css' />
@@ -31,7 +29,6 @@ body { background-image: url(images/allbg.gif); }
 <script language="javascript" src="../include/js/jquery/ui.draggable.js"></script>
 <script lang='javascript' src='js/tb-box.js'></script>
 <script language="javascript">
-<!--
 var swfu = null;
 var arctype = 'article';
 function checkSubmit()
@@ -153,7 +150,6 @@ function delAlbPicOld(picfile, pid){
 	myajax.SendGet2('swfupload.php?dopost=delold&picfile='+picfile);
 	$Obj('thumbnailsEdit').removeChild(tgobj);
 }
--->
 </script>
 </head>
 <body topmargin="8">
@@ -573,9 +569,9 @@ function delAlbPicOld(picfile, pid){
 					}
 				 </script>    </td>
           <td width="90">发布选项：</td>
-          <td width="379"><input name="ishtml" type="radio" class="np" value="1" checked="1" />
+          <td width="379"><input name="ishtml" type="radio" class="np" value="1" />
 生成HTML
-  <input type="radio" name="ishtml" class="np" value="0"/>
+  <input type="radio" name="ishtml" class="np" value="0" checked/>
 仅动态浏览 </td>
         </tr>
       </table></td>
