@@ -13,8 +13,20 @@
 
 <body>
     {dede:include filename="head.htm"/}
-    <div class="List_banner"></div>
-
+        
+    {dede:field name='array' runphp='yes'}
+        if(@me['banner'] == "")
+            @me = "<div class='show_banner'>";
+        else
+            @me = "<div class='show_banner' style='background-image:url(\"{@me["banner"]}\")'>";
+    {/dede:field}
+        <div class="w1000">
+            <div class="eName">{dede:field.ename/}</div>
+            <div class="cName">{dede:field.cname/}</div>
+            <a class="trigger_book" href="javascript:;">立即报名</a>
+        </div>
+    </div>
+    
     <div class="article_warpper">
         <div class="article_tabs">
             <div class="article_tabs_list js_article_tabs_list">
