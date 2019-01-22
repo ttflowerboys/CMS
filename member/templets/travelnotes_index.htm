@@ -19,11 +19,11 @@
                         </div>
                         <div class="title">
                             <?php
-                                if($fields['arcrank']>=0) echo "[已审核]";
+                                if($fields['arcrank']>=0) echo "<span style='color: #59ba5b;'>[已审核]</span>";
                                 else if($fields['arcrank']==-2) echo "<span style='color: red'>[被退回]</span>";
                                 else echo "<span style='color: blue;'>[未审核]</span>";
                             ?>
-                            <a href='<?php echo $cfg_phpurl; ?>/view.php?aid=<?php echo $fields[' id']; ?>' target='_blank'><?php echo $fields['title']; ?></a></div>
+                            <a href="<?php echo $cfg_phpurl; ?>/view.php?aid=<?php echo $fields['id']; ?>" target="_blank"><?php echo $fields['title']; ?></a></div>
                         <div class="number">
                             阅读：<span><?php echo $fields['click']; ?></span>
                             <div class="fr">

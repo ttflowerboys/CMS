@@ -79,19 +79,19 @@ else if($dopost=='save')
             }
         }
         
-        if (empty($dede_fieldshash) || $dede_fieldshash != md5($dede_addonfields.$cfg_cookie_encode))
-        {
-            showMsg('数据校验不对，程序返回', '-1');
-            exit();
-        }
+        // if (empty($dede_fieldshash) || $dede_fieldshash != md5($dede_addonfields.$cfg_cookie_encode))
+        // {
+        //     showMsg('数据校验不对，程序返回', '-1');
+        //     exit();
+        // }
         
-        // 这里对前台提交的附加数据进行一次校验
-        $fontiterm = PrintAutoFieldsAdd($cInfos['fieldset'],'autofield', FALSE);
-        if ($fontiterm != $inadd_f)
-        {
-            ShowMsg("提交表单同系统配置不相符,请重新提交！", "-1");
-            exit();
-        }
+        // // 这里对前台提交的附加数据进行一次校验
+        // $fontiterm = PrintAutoFieldsAdd($cInfos['fieldset'],'autofield', FALSE);
+        // if ($fontiterm != $inadd_f)
+        // {
+        //     ShowMsg("提交表单同系统配置不相符,请重新提交！", "-1");
+        //     exit();
+        // }
     }
     
     $body = AnalyseHtmlBody($body,$description);

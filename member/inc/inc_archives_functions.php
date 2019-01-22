@@ -306,6 +306,35 @@ function PrintAutoFieldsEdit(&$fieldset, &$fieldValues, $loadtype='all')
 }
 
 /**
+ *  载入自定义表单(用于编辑)
+ *
+ * @param     string  $fieldset
+ * @param     string  $fieldValues
+ * @param     string  $loadtype
+ * @return    string
+ */
+function PrintAutoFieldsEdit1(&$fieldset, &$fieldValues, $loadtype='all')
+{
+    $dtp = new DedeTagParse();
+    $dtp->SetNameSpace("field","<",">");
+    $dtp->LoadSource($fieldset);
+    $dede_addonfields = "";
+    if(is_array($dtp->CTags))
+    {
+        foreach($dtp->CTags as $tid=>$ctag)
+        {
+            if($loadtype!='autofield'
+            || ($loadtype=='autofield' && $ctag->GetAtt('autofield')==1) )
+            {
+                $dede_addonfields .= ( $dede_addonfields=='' ? $ctag->GetName().",".$ctag->GetAtt('type') : ";".$ctag->GetName().",".$ctag->GetAtt('type') );
+                // echo GetFormItemValueA($ctag,$fieldValues[$ctag->GetName()]);
+            }
+        }
+    }
+    echo "<input type='hidden' name='dede_addonfields' value=\"".$dede_addonfields."\">\r\n";
+}
+
+/**
  *  创建指定ID的文档
  *
  * @param     int  $aid
