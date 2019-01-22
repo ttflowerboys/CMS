@@ -14,6 +14,7 @@ i{ font-style: normal;}
 :link, :visited, ins{ text-decoration: none; }
 .rel{position: relative;}.abs{position: absolute;}.fl{float: left;}.fr{float: right;}
 .w{width: 1200px;min-width:1200px;margin: 0 auto;position: relative;}
+.w1000{width: 1000px;min-width:1000px;margin: 0 auto;position: relative;}
 a{color: #666;}a:hover{transition : color 0.2s linear 0s,background-color 0.3s linear 0s;color: #63b2f5;}
 .clearfix:after{content:'\0020';display:block;height:0;clear:both;visibility:hidden;}
 .clearfix{*zoom:1;}
@@ -222,12 +223,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 }
 
 .List_banner,
-.News_banner{
+.News_banner,
+.show_banner{
     width: 100%;
     min-width: 1200px;
     height: 690px;
     background: #747f9e url(../images/welfare_banner.jpg) center top no-repeat;
 }
+.show_banner{height: 570px;padding-top: 125px;}
+.show_banner .eName{font-size: 45px; line-height: 45px; margin-bottom: 10px;; color: #fff; font-family: Arial;}
+.show_banner .cName{font-size: 60px;line-height: 70px;padding-bottom: 12px;color: #fff;}
+.show_banner .trigger_book{width: 134px;height: 38px;margin-top: 42px;display: block;color: #fff;font-size: 16px;text-align: center;line-height: 38px;border-radius: 19px;background: #42a4f7;}
 .News_banner{
     height: 850px;
     padding-top: 310px;
@@ -270,8 +276,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
     border-radius: 50%;
 }
 .News_List .information{float: left;min-width: 680px;}
-.News_List .photo{height: 116px;float: right;}
-.News_List .photo img{height: 100%;}
+.News_List .photo{height: 116px;line-height: 116px;float: right;}
+.News_List .photo img{vertical-align: middle;display: inline-block;max-width: 100%;max-height: 100%;border-radius: 12px;}
 .News_List .meta{position: relative; line-height: 22px;font-size: 14px;}
 .News_List .meta .name{color: #eb7135;margin-right: 12px;padding: 0 10px;border: 1px solid #eb7135;border-radius: 3px;display: inline-block;}
 .News_List .meta p{color: #3597eb; display: inline-block;}
@@ -280,7 +286,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 .News_List .title{margin: 20px auto;font-size: 20px;line-height: 32px;color: #666;}
 .News_List .number{color: #999;line-height: 20px;}
 .News_List .number span{color: #3597eb;}
-.News_List .number a{display: inline-block;line-height: 20px;margin-left: 10px;}
+.News_List .number a{display: inline-block;font-size: 16px;line-height: 20px;margin-left: 10px; color: #42a4f7;}
 .News_List .number .icon-edit,.News_List .number .icon-del{width: 20px;height: 20px;display: inline-block;vertical-align: middle;margin-right: 5px;}
 .News_List .number .icon-edit{background: url(../images/editIcon.jpg) center no-repeat;}
 .News_List .number .icon-del{background: url(../images/deleteIcon.jpg) center no-repeat;}
