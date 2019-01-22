@@ -9,28 +9,90 @@
     </div>
     <div class="UCenterR">
         <ul class="News_List">
-            <li class="clearfix">
-                <div class="information">
-                    <div class="meta">
-                        <span class="name">作者</span>
-                        <p>仪时间义工旅行</p>
-                        <span class="time">2018-12-29 22:51:21</span>
-                    </div>
-                    <div class="title"><span style="color:blue;">[待审核]  </span> <a href="/news/2018/1229/11.html">四川大熊猫保护：换一种玩法过暑假</a></div>
-                    <div class="number">
-                        阅读：<span>164</span>
-                        <div class="fr">
-                            <a href=""><i class="icon-edit"></i>编辑</a>
-                            <a href=""><i class="icon-del"></i>删除</a>
+                {dede:datalist}
+                <li class="clearfix">
+                    <div class="information">
+                        <div class="meta">
+                            <span class="name">作者</span>
+                            <p><?php echo $fields['writer'];?></p>
+                            <span class="time"><?php echo GetDateTimeMK($fields['senddate']); ?></span>
+                        </div>
+                        <div class="title">
+                            <?php
+                                if($fields['arcrank']>=0) echo "[已审核]";
+                                else if($fields['arcrank']==-2) echo "<span style='color: red'>[被退回]</span>";
+                                else echo "<span style='color: blue;'>[未审核]</span>";
+                            ?>
+                            <a href='<?php echo $cfg_phpurl; ?>/view.php?aid=<?php echo $fields[' id']; ?>' target='_blank'><?php echo $fields['title']; ?></a></div>
+                        <div class="number">
+                            阅读：<span><?php echo $fields['click']; ?></span>
+                            <div class="fr">
+                                <?php
+                                    if($fields['arcrank']<0 || $dtime - $fields['senddate'] < $maxtime) {
+                                ?>
+                                <a href="javascript:editArc(<?php echo $fields['id']?>,<?php echo $fields['channel']?>);"><i class="icon-edit"></i>编辑</a>
+                                <a href="javascript:delArc(<?php echo $fields['id']?>);"><i class="icon-del"></i>删除</a>
+                                <?php
+                                    } else {
+                                        echo "<span class='gray'>改 | 删</span>";
+                                    }
+                                ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="photo"><a href=""><img width="116" height="116" src=""></a></div>
-            </li>
+                    <?php
+                        if(IsPicArchives($fields['litpic'])){
+                    ?>
+                        <div class="photo"><img width="116" src="<?php echo $fields['litpic']; ?>" alt="<?php echo $fields['title']; ?>"></div>
+                    <?php
+                        }
+                    ?>
+                </li>
+             {/dede:datalist}
         </ul>
     </div>
 </div>
 <div class="block60"></div>
 <?php pasterTempletDiy("footer.htm"); ?>
+<script type="text/javascript">
+    function viewArc(aid){
+        window.open("{dede:global.cfg_phpurl /}/view.php?aid="+aid);
+    }
+    function editArc(aid,channelid){
+        location = "travelnotes.php?type=edit&aid="+aid;
+    }
+    function delArc(aid){
+        layer.alert('你确定要删除这篇文档吗?', { icon: 3 }, function(index){
+            layer.close(index);
+            $.ajax({
+                url: "ajax_travelnotes_do.php",
+                type: 'POST',
+                data: {
+                    aid: aid,
+                    dopost: 'delArc'
+                },
+                dataType: 'json',
+                beforeSend: function(){
+                    tools.loading_show()
+                },
+                complete: function(){
+                    tools.loading_hide()
+                }
+            }).done(function(res){
+                if(res.status == 1){
+                    layer.alert(res.msg, { icon: 1 }, function(index){
+                        layer.close(index);
+                        window.location.reload()
+                    })
+                }else{
+                    layer.alert(res.msg, { icon: 2 }, function(index){
+                        layer.close(index);
+                    })
+                }
+            })
+            
+        })
+    }
+  </script>
 </body>
 </html>

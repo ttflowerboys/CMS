@@ -13,7 +13,16 @@ require_once(DEDEINC."/customfields.func.php");
 require_once(DEDEMEMBER."/inc/inc_catalog_options.php");
 require_once(DEDEMEMBER."/inc/inc_archives_functions.php");
 
-$uid=empty($uid)? "" : RemoveXSS($uid); 
+/**
+ * copy from member/content_list.php
+ */
+CheckRank(0,0);
+require_once(DEDEINC."/typelink.class.php");
+require_once(DEDEINC."/datalistcp.class.php");
+require_once(DEDEMEMBER."/inc/inc_list_functions.php");
+setcookie("ENV_GOBACK_URL",$dedeNowurl,time()+3600,"/");
+
+$uid=empty($uid)? "" : RemoveXSS($uid);
 if(empty($action)) $action = '';
 if(empty($aid)) $aid = '';
 /**
@@ -42,7 +51,6 @@ if($uid=='')
     }
     else
     {
-
         $dpl = new DedeTemplate();
         switch ($type) {
             case 'update':
@@ -63,13 +71,115 @@ if($uid=='')
                 }
 
                 $tpl = dirname(__FILE__)."/templets/travelnotes_update.htm";
+                $dpl->LoadTemplate($tpl);
+                $dpl->display();
+                break;
+            case 'edit':
+                //读取归档信息
+                $arcQuery = "SELECT arc.*,ch.addtable,ch.fieldset,arc.mtype as mtypeid,ch.arcsta
+                FROM `#@__archives` arc LEFT JOIN `#@__channeltype` ch ON ch.id=arc.channel
+                WHERE arc.id='$aid' And arc.mid='".$cfg_ml->M_ID."'; ";
+                $row = $dsql->GetOne($arcQuery);
+                if(!is_array($row))
+                {
+                    ShowMsg("读取文章信息出错!","-1");
+                    exit();
+                }
+                else if($row['arcrank']>=0)
+                {
+                    $dtime = time();
+                    $maxtime = $cfg_mb_editday * 24 *3600;
+                    if($dtime - $row['senddate'] > $maxtime)
+                    {
+                        ShowMsg("这篇文档已经锁定，你不能再修改它！","-1");
+                        exit();
+                    }
+                }
+                $addRow = $dsql->GetOne("SELECT * FROM `{$row['addtable']}` WHERE aid='$aid'; ");
+                $tpl = DEDEMEMBER."/templets/travelnotes_edit.htm";
+                $dpl->LoadTemplate($tpl);
+                $dpl->display();
                 break;
             default:
-                $tpl = dirname(__FILE__)."/templets/travelnotes_index.htm";
+                $positionname = '';
+                $menutype = 'content';
+                $mid = $cfg_ml->M_ID;
+                $tl = new TypeLink($cid);
+                $cInfos = $tl->dsql->GetOne("Select arcsta,issend,issystem,usertype From `#@__channeltype`  where id='$channelid'; ");
+                if(!is_array($cInfos))
+                {
+                    ShowMsg('模型不存在', '-1');
+                    exit();
+                }
+                $arcsta = $cInfos['arcsta'];
+                $dtime = time();
+                $maxtime = $cfg_mb_editday * 24 *3600;
+
+                //禁止访问无权限的模型
+                if($cInfos['usertype'] !='' && $cInfos['usertype']!=$cfg_ml->M_MbType)
+                {
+                    ShowMsg('你无权限访问该部分', '-1');
+                    exit();
+                }
+
+                if($cid==0)
+                {
+                    $row = $tl->dsql->GetOne("Select typename From #@__channeltype where id='$channelid'");
+                    if(is_array($row))
+                    {
+                        $positionname = $row['typename'];
+                    }
+                }
+                else
+                {
+                    $positionname = str_replace($cfg_list_symbol,"",$tl->GetPositionName())." ";
+                }
+                $whereSql = " where arc.channel = '$channelid' And arc.mid='$mid' ";
+                if($keyword!='')
+                {
+                    $keyword = cn_substr(trim(preg_replace("#[><\|\"\r\n\t%\*\.\?\(\)\$ ;,'%-]#", "", stripslashes($keyword))),30);
+                    $keyword = addslashes($keyword);
+                    $whereSql .= " And (arc.title like '%$keyword%') ";
+                }
+                if($cid!=0) $whereSql .= " And arc.typeid in (".GetSonIds($cid).")";
+
+
+                //增加分类查询
+                if($arcrank == '1'){
+                    $whereSql .= " And arc.arcrank >= 0";
+                }else if($arcrank == '-1'){
+                    $whereSql .= " And arc.arcrank = -1";
+                }else if($arcrank == '-2'){
+                    $whereSql .= " And arc.arcrank = -2";
+                }
+
+                $classlist = '';
+                $dsql->SetQuery("SELECT * FROM `#@__mtypes` WHERE `mid` = '$cfg_ml->M_ID';");
+                $dsql->Execute();
+                while ($row = $dsql->GetArray())
+                {
+                    $classlist .= "<option value='content_list.php?channelid=".$channelid."&mtypesid=".$row['mtypeid']."'>".$row['mtypename']."</option>\r\n";
+                }
+                if($mtypesid != 0 )
+                {
+                    $whereSql .= " And arc.mtype = '$mtypesid'";
+                }
+                $query = "select arc.id,arc.typeid,arc.senddate,arc.flag,arc.ismake,arc.channel,arc.arcrank,
+                        arc.click,arc.title,arc.color,arc.litpic,arc.pubdate,arc.mid,arc.writer,tp.typename,ch.typename as channelname
+                        from `#@__archives` arc
+                        left join `#@__arctype` tp on tp.id=arc.typeid
+                        left join `#@__channeltype` ch on ch.id=arc.channel
+                    $whereSql order by arc.senddate desc ";
+                $dlist = new DataListCP();
+                $dlist->pageSize = 20;
+                $dlist->SetParameter("dopost","listArchives");
+                $dlist->SetParameter("keyword",$keyword);
+                $dlist->SetParameter("cid",$cid);
+                $dlist->SetParameter("channelid",$channelid);
+                $dlist->SetTemplate(DEDEMEMBER."/templets/travelnotes_index.htm");
+                $dlist->SetSource($query);
+                $dlist->Display();
                 break;
         }
-        $dpl->LoadTemplate($tpl);
-        $dpl->display();
-        
     }
 }
