@@ -10,6 +10,7 @@ body { background-image: url(images/allbg.gif); }
 <script language="javascript" src="../include/js/dedeajax2.js"></script>
 <script language='javascript' src="js/main.js"></script>
 <script type="text/javascript" src="js/calendar/calendar.js"></script>
+<script type="text/javascript" src="js/plugins/jquery/1.12.4/jquery.min.js"></script>
 <script language="javascript">
 function checkSubmit()
 {
@@ -208,17 +209,18 @@ function checkSubmit()
     </tr>
    <?php } ?>
     <tr>
+        <td height="24" bgcolor="#F9FCEF" class="bline2"><b>&nbsp;项目信息：</b></td>
+    </tr>
+    <tr>
      <td><?php PrintAutoFieldsAdd($cInfos['fieldset'],'autofield'); ?></td>
     </tr>
     <tr>
         <td height="24" bgcolor="#F9FCEF" class="bline2"><b>&nbsp;费用说明：</b></td>
     </tr>
     <tr>
-        <td>
-            <div>
-                <div style="line-height:36px">项目总时长：<input type="text" name="priceitem[]" style="width:280px">  项目费用：<input type="text" name="pricenum[]" style="width:150px"></div>
-                <div style="line-height:36px">项目总时长：<input type="text" name="priceitem[]" style="width:280px">  项目费用：<input type="text" name="pricenum[]" style="width:150px"></div>
-            </div>
+        <td class="bline2">
+            <div class="js_price_content"></div>
+            <div class="add_content"><button type="button" class="default_button js_add_items">添加费用</button></div>
         </td>
     </tr>
     
@@ -389,5 +391,19 @@ function checkSubmit()
   </tr>
 </table>
 </form>
+
+<script>
+$(function(){
+    $('.js_add_items').on('click',function(){
+        $('.js_price_content').append('<div class="lh36">项目总时长：<input type="text" name="priceitem[]" style="width:280px">  项目费用：<input type="text" name="pricenum[]" style="width:150px"> <button type="button" class="default_button js_del_items">删除</button></div>');
+        $('.js_del_items').off('click').on('click',function(){
+            $(this).closest('div').remove()
+        })
+    })
+    $('.js_del_items').on('click',function(){
+        $(this).closest('div').remove()
+    })
+})
+</script>
 </body>
 </html>
