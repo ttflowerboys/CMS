@@ -160,6 +160,7 @@ else if($dopost=='save')
 
     //跳转网址的文档强制为动态
     if(preg_match("#j#", $flag)) $ismake = -1;
+
     //保存到主表
     $query = "INSERT INTO `#@__archives`(id,typeid,typeid2,sortrank,flag,ismake,channel,arcrank,click,money,title,shorttitle,
 color,writer,source,litpic,pubdate,senddate,mid,voteid,notpost,description,keywords,filename,dutyadmin,weight)
@@ -174,13 +175,30 @@ color,writer,source,litpic,pubdate,senddate,mid,voteid,notpost,description,keywo
         exit();
     }
 
+    // 处理费用说明
+    $prices = '';
+    //其它链接处理
+    foreach($priceitem as $key => $v){
+        if(!empty($v)){
+            // 价格周期
+            $priceitems = stripslashes($v);
+            // 价格
+            $pricenums = stripslashes($pricenum[$key]);
+
+            if($priceitems){
+                $prices .= "{dede:link text='$priceitems'} $pricenums {/dede:link}\r\n";
+            }
+        }
+    }
+    $prices = addslashes($prices);
+
     //保存到附加表
     $cts = $dsql->GetOne("SELECT addtable FROM `#@__channeltype` WHERE id='$channelid' ");
     $addtable = trim($cts['addtable']);
     if(!empty($addtable))
     {
         $useip = GetIP();
-        $query = "INSERT INTO `{$addtable}`(aid,typeid,redirecturl,userip{$inadd_f}) Values('$arcID','$typeid','$redirecturl','$useip'{$inadd_v})";
+        $query = "INSERT INTO `{$addtable}`(aid,typeid,redirecturl,userip,pricelists{$inadd_f}) Values('$arcID','$typeid','$redirecturl','$useip','$prices'{$inadd_v})";
         if(!$dsql->ExecuteNoneQuery($query))
         {
             $gerr = $dsql->GetError();
@@ -212,8 +230,8 @@ color,writer,source,litpic,pubdate,senddate,mid,voteid,notpost,description,keywo
     }
     ClearMyAddon($arcID, $title);
     //返回成功信息
-    $msg = "    　　请选择你的后续操作：
-    <a href='archives_add.php?cid=$typeid'><u>继续发布文档</u></a>
+    $msg = "请选择你的后续操作：
+    <a href='welfare_add.php?cid=$typeid'><u>继续发布文档</u></a>
     &nbsp;&nbsp;
     <a href='$artUrl' target='_blank'><u>查看文档</u></a>
     &nbsp;&nbsp;
