@@ -45,8 +45,30 @@ if($dopost!='save')
     }
     $addtable = $cInfos['addtable'];
     $addRow = $dsql->GetOne("SELECT * FROM `$addtable` WHERE aid='$aid'");
+    // 处理费用说明
+    $nForm = '';
+    if($addRow['pricelists'] != '')
+    {
+        $dtp = new DedeTagParse();
+        $dtp->LoadSource($addRow['pricelists']);
+        if(is_array($dtp->CTags))
+        {
+            foreach($dtp->CTags as $ctag)
+            {
+                if($ctag->GetName()=='link')
+                {
+                    $nForm .= '<div class="lh36">项目总时长：<input type="text" name="priceitem[]" style="width:280px" value="'.$ctag->GetAtt("text").'">
+                    项目费用：<input type="text" name="pricenum[]" value="'.trim($ctag->GetInnerText()).'" style="width:150px"> <button type="button" class="default_button js_del_items">删除</button></div>';
+                }
+            }
+        }
+        $dtp->Clear();
+    }
+
     $channelid = $arcRow['channel'];
     $tags = GetTags($aid);
+    $arcRow=XSSClean($arcRow);
+    $addRow=XSSClean($addRow);
     include DedeInclude("templets/welfare_edit.htm");
     exit();
 }
@@ -192,12 +214,27 @@ else if($dopost=='save')
         exit();
     }
 
+    // 处理费用说明
+    $prices = '';
+    foreach($priceitem as $key => $v){
+        if(!empty($v)){
+            // 价格周期
+            $priceitems = stripslashes($v);
+            // 价格
+            $pricenums = stripslashes($pricenum[$key]);
+            if($priceitems){
+                $prices .= "{dede:link text='$priceitems'} $pricenums {/dede:link}\r\n";
+            }
+        }
+    }
+    $prices = addslashes($prices);
+    
     $cts = $dsql->GetOne("SELECT addtable From `#@__channeltype` WHERE id='$channelid' ");
     $addtable = trim($cts['addtable']);
     if($addtable!='')
     {
         $useip = GetIP();
-        $iquery = "UPDATE `$addtable` SET typeid='$typeid'{$inadd_f},redirecturl='$redirecturl',userip='$useip' WHERE aid='$id' ";
+        $iquery = "UPDATE `$addtable` SET typeid='$typeid'{$inadd_f},redirecturl='$redirecturl',userip='$useip',pricelists='$prices' WHERE aid='$id' ";
         if(!$dsql->ExecuteNoneQuery($iquery))
         {
             ShowMsg("更新附加表 `$addtable`  时出错，请检查原因！","javascript:;");
@@ -224,6 +261,7 @@ else if($dopost=='save')
         $artUrl = $cfg_phpurl."/view.php?aid=$id";
     }
     ClearMyAddon($id, $title);
+
     //返回成功信息
     $msg = "
     　　请选择你的后续操作：

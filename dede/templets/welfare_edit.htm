@@ -10,6 +10,7 @@ body { background-image: url(images/allbg.gif); }
 <script language="javascript" src="../include/js/dedeajax2.js"></script>
 <script language="javascript" src="js/main.js"></script>
 <script type="text/javascript" src="js/calendar/calendar.js"></script>
+<script type="text/javascript" src="js/plugins/jquery/1.12.4/jquery.min.js"></script>
 <script language="javascript">
 function checkSubmit()
 {
@@ -50,7 +51,7 @@ function checkSubmit()
         </table></td>
     </tr>
   </table>
-<form name="form1" action="archives_edit.php" enctype="multipart/form-data" method="post" onSubmit="return checkSubmit();">
+<form name="form1" action="welfare_edit.php" enctype="multipart/form-data" method="post" onSubmit="return checkSubmit();">
 <input type="hidden" name="channelid" value="<?php echo $channelid?>" />
 <input type="hidden" name="id" value="<?php echo $aid?>" />
 <input type="hidden" name="dopost" value="save" />
@@ -185,8 +186,19 @@ if($cfg_need_typeid2=='Y') {
       </td>
     </tr>
   <?php  }}  ?>
-  
-  <tr><td> <?php PrintAutoFieldsEdit($cInfos['fieldset'],$addRow); ?></td></tr>
+  <tr><td height="24" bgcolor="#F9FCEF" class="bline2"><b>&nbsp;项目信息：</b></td></tr>
+  <tr><td> <?php PrintAutoFieldsEdit($cInfos['fieldset'],$addRow, 'autofield'); ?></td></tr>
+  <tr><td height="24" bgcolor="#F9FCEF" class="bline2"><b>&nbsp;费用说明：</b></td></tr>
+  <tr>
+    <td class="bline2">
+        <div class="js_price_content"><?php
+          echo $nForm;
+            ?></div>
+        <div class="add_content"><button type="button" class="default_button js_add_items">添加费用</button></div>
+    </td>
+  </tr>
+
+
     <tr>
       <td width="400%" height="24">
       <table width="800" border="0" cellspacing="0" cellpadding="0">
@@ -343,5 +355,18 @@ if($cfg_need_typeid2=='Y') {
   </tr>
 </table>
 </form>
+<script>
+$(function(){
+  $('.js_add_items').on('click',function(){
+    $('.js_price_content').append('<div class="lh36">项目总时长：<input type="text" name="priceitem[]" style="width:280px">  项目费用：<input type="text" name="pricenum[]" style="width:150px"> <button type="button" class="default_button js_del_items">删除</button></div>');
+    $('.js_del_items').off('click').on('click',function(){
+      $(this).closest('div').remove()
+    })
+  })
+  $('.js_del_items').on('click',function(){
+    $(this).closest('div').remove()
+  })
+})
+</script>
 </body>
 </html>
