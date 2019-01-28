@@ -29,23 +29,11 @@
 2.去除对jquery插件的依赖.
 */
 
-/*
-*author:周祥
-*date:2014年12月12日
-*work:图片预览插件
-*/
+// 图片预览插件
 var uploadPreview = function(setting) {
-    /*
-    *author:周祥
-    *date:2014年12月11日
-    *work:this(当前对象)
-    */
+    // this(当前对象)
     var _self = this;
-    /*
-    *author:周祥
-    *date:2014年12月11日
-    *work:判断为null或者空值
-    */
+    // 判断为null或者空值
     _self.IsNull = function(value) {
         if (typeof (value) == "function") { return false; }
         if (value == undefined || value == null || value == "" || value.length == 0) {
@@ -53,11 +41,7 @@ var uploadPreview = function(setting) {
         }
         return false;
     }
-    /*
-    *author:周祥
-    *date:2014年12月11日
-    *work:默认配置
-    */
+    // 默认配置
     _self.DefautlSetting = {
         UpBtn: "",
         DivShow: "",
@@ -68,11 +52,7 @@ var uploadPreview = function(setting) {
         ErrMsg: "选择文件错误,图片类型必须是(gif,jpeg,jpg,bmp,png)中的一种",
         callback: function() { }
     };
-    /*
-    *author:周祥
-    *date:2014年12月11日
-    *work:读取配置
-    */
+    // 读取配置
     _self.Setting = {
         UpBtn: _self.IsNull(setting.UpBtn) ? _self.DefautlSetting.UpBtn : setting.UpBtn,
         DivShow: _self.IsNull(setting.DivShow) ? _self.DefautlSetting.DivShow : setting.DivShow,
@@ -83,11 +63,7 @@ var uploadPreview = function(setting) {
         ErrMsg: _self.IsNull(setting.ErrMsg) ? _self.DefautlSetting.ErrMsg : setting.ErrMsg,
         callback: _self.IsNull(setting.callback) ? _self.DefautlSetting.callback : setting.callback
     };
-    /*
-    *author:周祥
-    *date:2014年12月11日
-    *work:获取文本控件URL
-    */
+    // 获取文本控件URL
     _self.getObjectURL = function(file) {
         var url = null;
         if (window.createObjectURL != undefined) {
@@ -99,11 +75,7 @@ var uploadPreview = function(setting) {
         }
         return url;
     }
-    /*
-    *author:周祥
-    *date:2014年12月11日
-    *work:绑定事件
-    */
+    // work:绑定事件
     _self.Bind = function() {
         document.getElementById(_self.Setting.UpBtn).onchange = function() {
             if (this.value) {
@@ -134,10 +106,6 @@ var uploadPreview = function(setting) {
             }
         }
     }
-    /*
-    *author:周祥
-    *date:2014年12月11日
-    *work:执行绑定事件
-    */
+    // 执行绑定事件
     _self.Bind();
 }

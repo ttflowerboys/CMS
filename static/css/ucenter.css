@@ -6,9 +6,13 @@
     background: #ccc url(../images/ucenter_banner.jpg) center top no-repeat;
 }
 .UCenterBanner .profile{}
-.UCenterBanner .profile .face{width: 120px;height: 120px;overflow: hidden;border-radius: 50%;margin: 0 auto 22px;}
+.UCenterBanner .profile .face{position: relative; width: 120px;height: 120px;overflow: hidden;border-radius: 50%;margin: 0 auto 22px;}
 .UCenterBanner .profile .face img{width: 100%;height: 100%;}
 .UCenterBanner .profile .info{line-height: 48px;text-shadow: 1px 1px 1px #011960;color: #fff;font-size: 30px;text-align: center;margin-top: 10px;}
+.UCenterBanner .face .img-cover{width: 100%;height: 100%;position: absolute;left: 0;top: 0;border-radius: 50%;background: rgba(0,0,0,.7);display: none;text-align: center;color: #fff;font-size: 14px;cursor: pointer;}
+.UCenterBanner .face .img-cover .camera{display: block;width: 32px;height: 32px; margin: 32px auto 6px; background: url(../images/icon/camera.png);}
+.UCenterBanner .face:hover .img-cover{display: block;}
+.UCenterBanner .face .upload-btn { width: 100%; height: 100%; position: absolute; opacity: 0; left: 0; top: 0; cursor: pointer;}
 
 .UCenterMenu{ height: 82px; background: url(../images/line01.jpg) repeat-x bottom;}
 .UCenterMenu li{width: 20%;float: left;overflow: hidden;height: 82px;text-align: center;}
