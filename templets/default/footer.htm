@@ -1,8 +1,43 @@
 <div class="footer">
-	<div class="w">
+	<div class="w1000">
 		<div class="footer_logo"><a href="{dede:global.cfg_basehost/}"><img src="/static/images/logo.png" alt=""></a></div>
-
-		<!-- <div class="copyright">{dede:global.cfg_powerby/}&nbsp;&nbsp;{dede:global.cfg_beian/}</div> -->
+		<ul class="footer_nav">
+			<li class="items"><a href="{dede:global.cfg_cmsurl/}/" class="sub">首页</a></li>
+			{dede:channel type='top' row='5'}
+			<li class="items"><a class="sub" href='[field:typeurl/]' [field:rel/]>[field:typename/]</a></li>
+			{/dede:channel}
+		</ul>
+		<div class="clearfix">
+			<div class="fl clearfix">
+				<dl class="footer_dl fl">
+					<dt>{dede:type typeid=5}<a href="[field:typelink /]">[field:typename /]</a>{/dede:type}</dt>
+					<dd>{dede:type typeid=5}<a href="[field:typelink /]"><span>What’s 义时间</span></a>{/dede:type}</dd>
+					<dd>{dede:type typeid=5}<a href="[field:typelink /]"><span>我们的价值</span></a>{/dede:type}</dd>
+					<dd>{dede:type typeid=5}<a href="[field:typelink /]"><span>我们的故事</span></a>{/dede:type}</dd>
+				</dl>
+				<dl class="footer_dl fl">
+					<dt><a href="javascript:;">网站条款</a></dt>
+					<dd>版权声明</dd>
+					<dd>免责声明</dd>
+				</dl>
+				<dl class="footer_dl fl">
+					<dt>联系我们</dt>
+					<dd>400 606 5502</dd>
+					<dd><a href="mailto:info@gappernet.org">info@gappernet.org</a></dd>
+				</dl>
+			</div>
+			<div class="fr">
+				<dl class="footer_dl"><dt>社交平台</dt></dl>
+				<div class="block12"></div>
+				<ul class="footer_social">
+					<li><a href=""><img src="/static/images/social/f1.png" alt=""></a></li>
+					<li><a href=""><img src="/static/images/social/f2.png" alt=""></a></li>
+					<li><a href=""><img src="/static/images/social/f4.png" alt=""></a></li>
+					<li><a href=""><img src="/static/images/social/f5.png" alt=""></a></li>
+					<li><a href=""><img src="/static/images/social/f6.png" alt=""></a></li>
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>
 

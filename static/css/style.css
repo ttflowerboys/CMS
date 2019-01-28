@@ -21,6 +21,7 @@ a{color: #666;}a:hover{transition : color 0.2s linear 0s,background-color 0.3s l
 .tac{text-align: center;}
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {display: block;}
 .block60{clear: both;height: 60px;}
+.block12{clear: both;height: 12px;}
 .grayBg{background-color: #f4f4f4;}
 .t-blue{color: #42a4f7;}
 /* header style */
@@ -151,7 +152,20 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 .index_form .ipt_submit:hover{opacity: .8;}
 
 .footer{padding-top: 92px;height: 468px;background: #000 url(../images/footer_bg.jpg) center top no-repeat;}
-.footer_logo{padding-bottom: 46px;text-align: center;border-bottom: 1px solid #9b9b9b;}
+.footer_logo{padding-bottom: 46px;text-align: center;border-bottom: 1px solid #fff;}
+
+.footer_nav{padding: 10px 0;text-align: center;margin-bottom: 46px; border-bottom: 1px solid #fff;font-size: 0;}
+.footer_nav li{font-size: 14px;line-height: 32px; display: inline-block;margin: 0 22px;}
+.footer_nav li a{color: #fff;}
+
+.footer_dl{min-width: 180px;color: #fff;}
+.footer_dl a{color: #fff;}
+.footer_dl dt{position: relative;margin-bottom: 5px;padding-left: 12px;font-size: 14px;line-height: 22px;}
+.footer_dl dt::before{position: absolute; left: 0; top: 3px; content: ""; width: 3px; height: 16px; background: #f1f1f1;}
+.footer_dl dd{padding-left: 12px; font-size: 12px; line-height: 32px;}
+
+.footer_social{overflow: hidden;}
+.footer_social li{float: left;margin-right: 30px;}
 
 .commonweal{background: #fff;}
 .commonweal_china{padding-top: 1000px;background: #2a5991 url(../images/commonweal_china.jpg) center top no-repeat;}
