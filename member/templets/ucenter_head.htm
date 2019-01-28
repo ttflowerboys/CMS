@@ -16,7 +16,16 @@
     <?php pasterTempletDiy("head.htm"); ?>
     <div class="UCenterBanner">
         <div class="w profile">
-            <div class="face"><img src="/static/images/face.jpg" alt=""></div>
+            <div class="face">
+                <form action="edit_face_do.php" method="post" enctype="multipart/form-data" id="upload_face">
+                    <input type="hidden" name="dopost" value="save">
+                    <div class="img-cover">
+                        <span class="camera"></span>更换头像
+                        <input class="upload-btn" id="js_upload-btn" type="file" name="face">
+                    </div>
+                </form>
+                <img src="<?php echo $cfg_ml->fields['face']; ?>" alt="" id="js_face-show">
+            </div>
             <div class="info">亲爱的
                 <?php echo $cfg_ml->M_LoginID; ?> <br>欢迎您来到义时间的奇妙公益世界！</div>
         </div>
@@ -55,3 +64,45 @@
             }
         })
     </script>
+
+<script src="/static/js/plugins/uploadPreview/uploadPreview.js"></script>
+<script>
+$(function(){
+    new uploadPreview({ UpBtn:"js_upload-btn", ImgShow:"js_face-show"});
+    $('#js_upload-btn').on('change', function(){
+        face.upload()
+    })
+    var face = {
+        upload: function(){
+            var FormDOM = $('#upload_face')
+            $.ajax({
+                url: FormDOM.attr('action'),
+                type: 'POST',
+                data: new FormData($('#upload_face')[0]),
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    tools.loading_show()
+                },
+                complete: function(){
+                    tools.loading_hide()
+                }
+            }).done(function(res){
+                var result = JSON.parse(res);
+                if(result.status == 1){
+                    layer.alert(result.msg, { icon: 1 }, function(index){
+                        layer.close(index);
+                    })
+                }else{
+                    layer.alert(result.msg, { icon: 2 }, function(index){
+                        layer.close(index);
+                    })
+                }
+            }).fail(function(err){
+
+            })
+        }
+    }
+    
+})
+</script>
