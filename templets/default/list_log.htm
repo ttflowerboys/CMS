@@ -36,29 +36,49 @@
         <div class="block60"></div>
         <div class="w">
             <ul class="News_type_list">
-                <li class="current">最新文章</li>
-                <li>最热文章</li>
+                <li class="current" data-target="news_new">最新文章</li>
+                <li data-target="news_hot">最热文章</li>
             </ul>
             <div class="block60"></div>
-            <ul class="News_List">
-                {dede:list pagesize='10'}
-                <li class="clearfix">
-                    <div class="information">
-                        <div class="meta">
-                            <span class="name">作者</span>
-                            <p>[field:writer/]</p>
-                            <span class="time">[field:pubdate function="GetDateTimeMK(@me)"/]</span>
+            <div class="newsItems" id="news_new">
+                <ul class="News_List">
+                    {dede:list pagesize='10' orderby="pubdate"}
+                    <li class="clearfix">
+                        <div class="information">
+                            <div class="meta">
+                                <span class="name">作者</span>
+                                <p>[field:writer/]</p>
+                                <span class="time">[field:pubdate function="GetDateTimeMK(@me)"/]</span>
+                            </div>
+                            <div class="title"><a href="[field:arcurl/]">[field:title/]</a></div>
+                            <div class="number">阅读：<span>[field:click/]</span></div>
                         </div>
-                        <div class="title"><a href="[field:arcurl/]">[field:title/]</a></div>
-                        <div class="number">阅读：<span>[field:click/]</span></div>
-                    </div>
-                    <div class="photo"><img width="116" src="[field:litpic/]" alt="[field:title/]"></div>
-                </li>
-                {/dede:list}
-            </ul>
-            <ul class="pagelist" style="text-align: center;">
-                {dede:pagelist listitem="info,index,end,pre,next,pageno" listsize="5"/}
-            </ul>
+                        <div class="photo"><img width="116" src="[field:litpic/]" alt="[field:title/]"></div>
+                    </li>
+                    {/dede:list}
+                </ul>
+                <ul class="pagelist" style="text-align: center;">
+                    {dede:pagelist listitem="info,index,end,pre,next,pageno" listsize="5"/}
+                </ul>
+            </div>
+            <div class="newsItems" id="news_hot" style="display: none;">
+                <ul class="News_List">
+                    {dede:list orderby='click'}
+                    <li class="clearfix">
+                        <div class="information">
+                            <div class="meta">
+                                <span class="name">作者</span>
+                                <p>[field:writer/]</p>
+                                <span class="time">[field:pubdate function="GetDateTimeMK(@me)"/]</span>
+                            </div>
+                            <div class="title"><a href="[field:arcurl/]">[field:title/]</a></div>
+                            <div class="number">阅读：<span>[field:click/]</span></div>
+                        </div>
+                        <div class="photo"><img width="116" src="[field:litpic/]" alt="[field:title/]"></div>
+                    </li>
+                    {/dede:list}
+                </ul>
+            </div>
         </div>
         <div class="block60"></div>
     </div>
@@ -66,6 +86,21 @@
 
 
     {dede:include filename="footer.htm"/}
+    <script>
+        $(function(){
+            $('.News_type_list').on('click', 'li', function(){
+                var $this = $(this),
+                    target = $this.data('target')
+                tools.loading_show()
+                setTimeout(function(){
+                    $this.addClass('current').siblings().removeClass('current');
+                    $('.newsItems').hide()
+                    $('#'+target).show()
+                    tools.loading_hide()
+                },1000)
+            })
+        })
+    </script>
 </body>
 
 </html>
