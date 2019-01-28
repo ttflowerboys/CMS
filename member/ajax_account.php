@@ -81,8 +81,8 @@ if(!$cfg_ml->IsLogin()){
         $formatexp = trim($experience);
         if(formatexp==''){
             tp_json("Please enter your travel expectation!",0); exit(); 
-        }else if(strlen($formatexp)<200){
-            tp_json('Expectation of not less than 200 characters!',0);exit();
+        }else if(strlen($formatexp)<20){
+            tp_json('Expectation of not less than 20 characters!',0);exit();
         }
 
         $query = "UPDATE `#@__member_person` SET experience='$formatexp' where mid='".$cfg_ml->M_ID."' ";

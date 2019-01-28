@@ -15,7 +15,7 @@
         <p class="color92" style="margin-bottom: 36px;"><span class="t-red">*</span> Denotes Compulsory Fields <br> ※ Please Use English to Fill</p>
         <div class="UCenterForm">
             <form action="ajax_account.php">
-                <div class="Items hasBg Items-small"><label class="label">Experience<span class="t-red">*</span></label><textarea class="ipt-textarea" name="experience" placeholder="No less than 200 characters"><?php echo $minfos['experience']; ?></textarea></div>
+                <div class="Items hasBg Items-small"><label class="label">Experience<span class="t-red">*</span></label><textarea class="ipt-textarea" name="experience" placeholder="No less than 20 characters"><?php echo $minfos['experience']; ?></textarea></div>
                 <input type="hidden" name="dopost" value="experience">
                 <button type="button" class="ipt-submit js_ucenter_experience">Update</button>
             </form>
@@ -37,8 +37,8 @@
                     layer.close(index);
                 })
                 return false;
-            }else if(expVal.length<200){
-                layer.alert('Expectation of not less than 200 characters!', {icon: 2})
+            }else if(expVal.length<20){
+                layer.alert('Expectation of not less than 20 characters!', {icon: 2})
                 return false;
             }
             
