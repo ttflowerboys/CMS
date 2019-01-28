@@ -102,6 +102,12 @@ if($cfg_mb_open=='N')
 $keeptime = isset($keeptime) && is_numeric($keeptime) ? $keeptime : -1;
 $cfg_ml = new MemberLogin($keeptime);
 
+// 设置默认头像
+if(empty($cfg_ml->fields['face'])) 
+{
+    $cfg_ml->fields['face'] = '/static/images/face.jpg';
+}
+
 //判断用户是否登录
 $myurl = '';
 if($cfg_ml->IsLogin())
