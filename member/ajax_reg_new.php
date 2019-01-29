@@ -37,24 +37,6 @@ if($step == 1)
     if($dopost=='regbase')
     {
         $svali = GetCkVdValue();
-        // if(preg_match("/1/", $safe_gdopen)){
-        //     if(strtolower($vdcode)!=$svali || $svali=='')
-        //     {
-        //         ResetVdValue();
-        //         ShowMsg('验证码错误！', '-1');
-        //         exit();
-        //     }
-        // }
-        
-        // $faqkey = isset($faqkey) && is_numeric($faqkey) ? $faqkey : 0;
-        // if($safe_faq_reg == '1')
-        // {
-        //     if($safefaqs[$faqkey]['answer'] != $rsafeanswer || $rsafeanswer=='')
-        //     {
-        //         ShowMsg('验证问题答案错误', '-1');
-        //         exit();
-        //     }
-        // }
         
         $userid = trim($userid);
         $pwd = trim($userpwd);
@@ -159,18 +141,6 @@ if($step == 1)
             tp_json("用户名已存在！", 0);
             exit();
         }
-        // if($safequestion==0)
-        // {
-        //     $safeanswer = '';
-        // }
-        // else
-        // {
-        //     if(strlen($safeanswer)>30)
-        //     {
-        //         tp_json('你的新安全问题的答案太长了，请控制在30字节以内！', '-1');
-        //         exit();
-        //     }
-        // }
     
         //会员的默认金币
         $dfscores = 0;
@@ -241,7 +211,6 @@ if($step == 1)
             $cfg_ml = new MemberLogin(7*3600);
             $rs = $cfg_ml->CheckUser($userid, $userpwd);
 
-            
             //邮件验证
             if($cfg_mb_spacesta==-10)
             {
@@ -264,6 +233,9 @@ if($step == 1)
                     require_once(DEDEINC.'/mail.class.php');
                     $smtp = new smtp($cfg_smtp_server,$cfg_smtp_port,true,$cfg_smtp_usermail,$cfg_smtp_password);
                     $smtp->debug = false;
+                    if(!$smtp->smtp_sockopen($cfg_smtp_server)){
+                        tp_json('邮件发送失败,请联系管理员',0); exit();
+                    }
                     $smtp->sendmail($email,$cfg_webname,$cfg_smtp_usermail, $mailtitle, $mailbody, $mailtype);
                 }
                 else
@@ -271,7 +243,7 @@ if($step == 1)
                     @mail($email, $mailtitle, $mailbody, $headers);
                 }
             }//End 邮件验证
-            
+
             if($cfg_mb_reginfo == 'Y' && $spaceSta >=0)
             {
                 // ShowMsg("完成基本信息的注册，接下来完善详细资料...","index_do.php?fmdo=user&dopost=regnew&step=2",0,1000);
