@@ -26,6 +26,7 @@ if(!$cfg_ml->IsLogin()){
     // 1. 基本资料
     if($dopost=='account')
     {
+        if($uname==''){ tp_json("请输入中文姓名",0); exit(); }
         if($givenname==''){ tp_json("Please enter your given name!",0); exit(); }
         if($surname==''){ tp_json("Please enter your Surname!",0); exit(); }
         if($preferredname==''){ tp_json("Please enter your Preferred Name!",0); exit(); }
@@ -41,6 +42,11 @@ if(!$cfg_ml->IsLogin()){
         $row=$dsql->GetOne("SELECT  * FROM `#@__member_person` WHERE mid='".$cfg_ml->M_ID."'");
         $addupquery = '';
 
+        if($uname != $row['uname']) {
+            $rs = CheckUserID($uname,'中文姓名',FALSE);
+            if($rs!='ok') { tp_json($rs,0); exit(); }
+            $addupquery .= ",uname='$uname'";
+        }
         if($givenname != $row['givenname']) {
             $rs = CheckUserID($givenname,'Given Name',FALSE);
             if($rs!='ok') { tp_json($rs,0); exit(); }
