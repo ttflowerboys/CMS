@@ -76,6 +76,11 @@ if(!$cfg_ml->IsLogin()){
         }
         if($location != $row['location']){  $addupquery .= ",address='$location'"; }
 
+        // 更新用户资料状态
+        if($cfg_ml->fields['spacesta'] != '2' && $cfg_ml->fields['spacesta'] != '-10'){
+            $query = "UPDATE `#@__member` SET spacesta=2 where mid='".$cfg_ml->M_ID."' ";
+            $dsql->ExecuteNoneQuery($query);
+        }
         $query1 = "UPDATE `#@__member_person` SET sex='$sex'{$addupquery} where mid='".$cfg_ml->M_ID."' ";
         $dsql->ExecuteNoneQuery($query1);
 
