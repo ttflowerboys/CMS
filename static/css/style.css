@@ -455,3 +455,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 .TravelTitle{font: 18px/32px 'Microsoft YaHei';color: #42a4f7;text-align: center;margin: 62px auto;}
 .TravelTitle h2{padding-top: 66px;background: url(../images/releaseTravel.png) center top no-repeat;}
 .TravelTitle .cn{font-size: 32px;}
+
+.wszl{ padding:46px 0 40px;}
+.wszl .titleImg img{ display:block; margin:0 auto;}
+.wszl .infor{ padding:15px 20px 20px; line-height:30px; font-size:16px; color:#7a7a7a; text-align:center;}
+.wszl .btn a{ display:block; width:196px; height:50px; line-height:50px;background:#1bc1cd; border-radius:25px; margin:0 auto; font-size:20px; color:#fff; text-align:center;}

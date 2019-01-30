@@ -139,7 +139,8 @@ function CheckRank($rank=0, $money=0, $needinfo=TRUE)
             //如果启用注册详细信息
             if($cfg_ml->fields['spacesta'] == 0 || $cfg_ml->fields['spacesta'] == 1)
             {
-                ShowMsg("尚未完成详细资料，请完善...","{$cfg_memberurl}/index_do.php?fmdo=user&dopost=regnew&step=2",0,1000);
+                ShowMsg("尚未完成详细资料，请完善...","/member/",0,1000);
+                // require_once(dirname(__FILE__)."/templets/info_popup.htm");
                 exit;
             }
         }
