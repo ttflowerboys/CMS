@@ -314,7 +314,11 @@ else if($fmdo=='login')
         }
         #/aip}}        
         
-        if($rs==0)
+        if($rs==-10){
+            tp_json("请先完成邮箱验证！", 0);
+            exit();
+        }
+        else if($rs==0)
         {
             ResetVdValue();
             tp_json("用户名不存在！", 0);

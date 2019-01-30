@@ -498,7 +498,7 @@ class MemberLogin
         }
 
         //matt=10 是管理员关连的前台帐号，为了安全起见，这个帐号只能从后台登录，不能直接从前台登录
-        $row = $dsql->GetOne("SELECT mid,matt,pwd,logintime FROM `#@__member` WHERE userid LIKE '$loginuser' ");
+        $row = $dsql->GetOne("SELECT mid,matt,pwd,logintime,spacesta FROM `#@__member` WHERE userid LIKE '$loginuser' ");
         if(is_array($row))
         {
             if($this->GetShortPwd($row['pwd']) != $this->GetEncodePwd($loginpwd))
@@ -510,6 +510,9 @@ class MemberLogin
                 //管理员帐号不允许从前台登录
                 if($row['matt']==10) {
                     return -2;
+                }
+                else if($row['spacesta'] == -10){
+                    return -10;
                 }
                 else {
                     $this->PutLoginInfo($row['mid'], $row['logintime']);
