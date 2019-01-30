@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>会员注册成功</title>
   <link rel="stylesheet" href="/static/css/style.css">
+  <style>.header{ border-bottom: 2px solid #42a4f7;}</style>
 </head>
 <body>
     <?php pasterTempletDiy("head.htm"); ?>
-    <div class="RegisterBanner"></div>
     <div class="submitSuccess w">
         <img class="pic01" src="/static/images/tj_1.jpg">
         <div class="WzInfor">我们已将确认邮件发于你的邮箱<span class="color1bc1cd">
@@ -27,8 +27,8 @@
         </span>
             <br>请您注意查收，进行邮箱验证完成注册！
         </div>
-        <?php if($cfg_mb_spacesta=="-10") echo '<div class="tac" style="color:#ff6600">由于系统开启了邮件审核机制，因此你的帐号需要审核后才能发信息!</div>';?>
-        <a href="<?php echo $cfg_cmspath; ?>/member/" class="btn">确定</a>
+        <!-- <?php if($cfg_mb_spacesta=="-10") echo '<div class="tac" style="color:#ff6600">由于系统开启了邮件审核机制，因此你的帐号需要审核后才能发信息!</div>';?> -->
+        <a href="/" class="btn">确定</a>
     </div>
     <?php pasterTempletDiy("footer.htm"); ?>
 </body>

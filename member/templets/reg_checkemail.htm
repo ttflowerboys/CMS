@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>会员注册成功</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <style>.header{ border-bottom: 2px solid #42a4f7;}</style>
+</head>
+<body>
+    <?php pasterTempletDiy("head.htm"); ?>
+    <div class="submitSuccess w">
+        <img class="pic01" src="/static/images/act_success.jpg">
+        <div class="WzInfor">我们已将确认邮件发于你的邮箱<span class="color1bc1cd">
+                <?php echo $email; ?>
+        </span>
+            <br>你的账号已被成功激活，点击按钮回到个人中心。
+        </div>
+        <a href="/member/" class="btn">个人中心</a>
+    </div>
+    <?php pasterTempletDiy("footer.htm"); ?>
+</body>
+</html>

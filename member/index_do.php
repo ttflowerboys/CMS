@@ -70,13 +70,13 @@ else if($fmdo=='checkMail')
     }
     if($row['spacesta'] != -10)
     {
-        ShowMsg('你的帐号不在邮件验证状态，本操作无效！', '-1');
-        exit();
+        $dsql->ExecuteNoneQuery("UPDATE `#@__member` SET spacesta=0 WHERE mid='{$mid}' ");
     }
-    $dsql->ExecuteNoneQuery("UPDATE `#@__member` SET spacesta=0 WHERE mid='{$mid}' ");
+    
     // 清除会员缓存
     $cfg_ml->DelCache($mid);
-    ShowMsg('操作成功，请重新登录系统！', 'login.php');
+    $email = $row['email'];
+    require_once(dirname(__FILE__)."/templets/reg_checkemail.htm");
     exit();
 }
 /*********************

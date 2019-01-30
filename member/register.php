@@ -18,11 +18,14 @@ if($cfg_mb_allowreg=='N')
 
 if(empty($dopost)) $dopost = '';
 if(empty($fmdo)) $fmdo = '';
+if(empty($token)) $token = '';
 
 //success
 if($fmdo=='user' && $dopost == 'success'){
     include(DEDEMEMBER."/templets/reg-success.htm");
     exit();
+}else if($fmdo == 'activation'){
+    exit($token);
 }else{
     include(dirname(__FILE__)."/templets/register.htm");
     exit();
