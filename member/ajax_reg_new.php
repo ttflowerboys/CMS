@@ -205,11 +205,11 @@ if($step == 1)
                 $dsql->ExecuteNoneQuery("INSERT INTO `{$membermodel->table}` (`mid`) VALUES ('{$mid}');");
             }
             
-            //----------------------------------------------
+            //---------------------------
             //模拟登录
             //---------------------------
-            $cfg_ml = new MemberLogin(7*3600);
-            $rs = $cfg_ml->CheckUser($userid, $userpwd);
+            // $cfg_ml = new MemberLogin(7*3600);
+            // $rs = $cfg_ml->CheckUser($userid, $userpwd);
 
             //邮件验证
             if($cfg_mb_spacesta==-10)
@@ -218,18 +218,19 @@ if($step == 1)
                 $url = $cfg_basehost.(empty($cfg_cmspath) ? '/' : $cfg_cmspath)."/member/index_do.php?fmdo=checkMail&mid={$mid}&userhash={$userhash}&do=1";
                 $url = preg_replace("#http:\/\/#i", '', $url);
                 $url = 'http://'.preg_replace("#\/\/#", '/', $url);
-                $mailtitle = "{$cfg_webname}--会员邮件验证通知";
+                $mailtitle = "{$userid}, please activate your account.";
                 $mailbody = '';
-                $mailbody .= "尊敬的用户[{$uname}]，您好：\r\n";
-                $mailbody .= "欢迎注册成为[{$cfg_webname}]的会员。\r\n";
-                $mailbody .= "要通过注册，还必须进行最后一步操作，请点击或复制下面链接到地址栏访问这地址：\r\n\r\n";
-                $mailbody .= "{$url}\r\n\r\n";
-                $mailbody .= "Power by 内容管理系统！\r\n";
+                $mailbody .= "Dear {$userid},<br><br>";
+                $mailbody .= "A warm welcome to {$cfg_webname}.<br><br>";
+                $mailbody .= "You received this email because you have registered with {$cfg_webname} using login username \"{$userid}\" at ". date('Y-m-d H:i:s',$logintime)."<br><br>";
+                $mailbody .= "Please click on the following link to activate your account.<br><br>";
+                $mailbody .= "<a href=\"{$url}\">Click this activation</a><br><br>";
+                $mailbody .= "Cheers,<br> {$cfg_webname}！<br>";
           
                 $headers = "From: ".$cfg_adminemail."\r\nReply-To: ".$cfg_adminemail;
                 if($cfg_sendmail_bysmtp == 'Y' && !empty($cfg_smtp_server))
                 {        
-                    $mailtype = 'TXT';
+                    $mailtype = 'HTML';
                     require_once(DEDEINC.'/mail.class.php');
                     $smtp = new smtp($cfg_smtp_server,$cfg_smtp_port,true,$cfg_smtp_usermail,$cfg_smtp_password);
                     $smtp->debug = false;
