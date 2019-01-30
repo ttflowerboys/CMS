@@ -29,13 +29,14 @@ if($fmdo=='sendMail')
     $url = $cfg_basehost.(empty($cfg_cmspath) ? '/' : $cfg_cmspath)."/member/index_do.php?fmdo=checkMail&mid={$cfg_ml->fields['mid']}&userhash={$userhash}&do=1";
     $url = preg_replace("#http:\/\/#i", '', $url);
     $url = 'http://'.preg_replace("#\/\/#i", '/', $url);
-    $mailtitle = "{$cfg_webname}--会员邮件验证通知";
+    $mailtitle = "{$cfg_ml->fields['userid']}, please activate your account.";
     $mailbody = '';
-    $mailbody .= "尊敬的用户[{$cfg_ml->fields['uname']}]，您好：\r\n";
-    $mailbody .= "欢迎注册成为[{$cfg_webname}]的会员。\r\n";
-    $mailbody .= "要通过注册，还必须进行最后一步操作，请点击或复制下面链接到地址栏访问这地址：\r\n\r\n";
-    $mailbody .= "{$url}\r\n\r\n";
-    $mailbody .= "Power by http://www.dedecms.com 织梦内容管理系统！\r\n";
+    $mailbody .= "Dear {$cfg_ml->fields['userid']},<br><br>";
+    $mailbody .= "A warm welcome to {$cfg_webname}.<br><br>";
+    $mailbody .= "You received this email because you have registered with {$cfg_webname} using login username \"{$cfg_ml->fields['userid']}\" at ". date('Y-m-d H:i:s',$cfg_ml->fields['logintime'])."<br><br>";
+    $mailbody .= "Please click on the following link to activate your account.<br><br>";
+    $mailbody .= "<a href=\"{$url}\">Click this activation</a><br><br>";
+    $mailbody .= "Cheers,<br> {$cfg_webname}！<br>";
   
     $headers = "From: ".$cfg_adminemail."\r\nReply-To: ".$cfg_adminemail;
     if($cfg_sendmail_bysmtp == 'Y' && !empty($cfg_smtp_server))
@@ -50,6 +51,7 @@ if($fmdo=='sendMail')
     {
         @mail($cfg_ml->fields['email'], $mailtitle, $mailbody, $headers);
     }
+
     ShowMsg('成功发送邮件，请稍后登录你的邮箱进行接收！', '/member');
     exit();
 }
