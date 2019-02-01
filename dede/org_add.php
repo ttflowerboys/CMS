@@ -153,6 +153,32 @@ else if($dopost=='save')
         }
     }
 
+    /*---------------------
+    function _getformupload()
+    通过swfupload正常上传的图片
+    ---------------------*/
+    $imgurls = "";
+    if(is_array($_SESSION['bigfile_info']))
+    {
+        foreach($_SESSION['bigfile_info'] as $k=>$v)
+        {
+            $truefile = $cfg_basedir.$v;
+            if(strlen($v)<2 || !file_exists($truefile)) continue;
+            $info = '';
+            $imginfos = GetImageSize($truefile, $info);
+            $litpicname = $pagestyle > 2 ? GetImageMapDD($v, $cfg_ddimg_width) : '';
+            if(!$hasone && $ddisfirst==1 && $litpic=='')
+            {
+                 $litpic = empty($litpicname) ? GetImageMapDD($v, $cfg_ddimg_width) : $litpicname;
+                 $hasone = TRUE;
+            }
+            $imginfo =  !empty(${'picinfook'.$k}) ? ${'picinfook'.$k} : '';
+            $imgurls .= "{dede:img ddimg='$v' text='$imginfo' width='".$imginfos[0]."' height='".$imginfos[1]."'} $v {/dede:img}\r\n";
+        }
+    }
+
+    $imgurls = addslashes($imgurls);
+
     //处理图片文档的自定义属性
     if($litpic!='' && !preg_match("#p#", $flag))
     {
@@ -185,7 +211,7 @@ color,writer,source,litpic,pubdate,senddate,mid,voteid,notpost,description,keywo
     if(!empty($addtable))
     {
         $useip = GetIP();
-        $query = "INSERT INTO `{$addtable}`(aid,typeid,redirecturl,userip{$inadd_f}) Values('$arcID','$typeid','$redirecturl','$useip'{$inadd_v})";
+        $query = "INSERT INTO `{$addtable}`(aid,typeid,redirecturl,photos,userip{$inadd_f}) Values('$arcID','$typeid','$redirecturl','$imgurls','$useip'{$inadd_v})";
         if(!$dsql->ExecuteNoneQuery($query))
         {
             $gerr = $dsql->GetError();

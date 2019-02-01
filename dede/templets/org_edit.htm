@@ -4,16 +4,45 @@
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $cfg_soft_lang; ?>">
 <title>更改文档</title>
 <style type="text/css">
-<!--
 body { background-image: url(images/allbg.gif); }
--->
 </style>
 <link href="css/base.css" rel="stylesheet" type="text/css">
+<style>
+  .tabs_table{
+      border:0;
+      text-align: center;
+      margin: 0 auto;
+      border-collapse: separate;
+      border-spacing: 0;
+      width: 98%;
+  }
+  .tabs_table td{padding: 0;}
+  .tabs_table .td{width: 84px;height: 24px;text-align: center;cursor: pointer; background: url(images/itemnote2.gif) no-repeat;}
+  .tabs_table .td.cur{background-image: url(images/itemnote1.gif);}
+  
+  .table_content{
+      text-align: center;
+      width: 98%;
+      margin: 0 auto;
+      border-collapse: separate;
+      border-spacing: 2;
+      border:1px solid #cfcfcf;
+      background-color: #fff;
+  }
+  .table_content td{padding: 2px;text-align: left;}
+  .swfuploadBox{
+      display: inline;
+      border: solid 1px #7FAAFF;
+      background-color: #C5D9FF;
+      padding: 2px;
+      vertical-align: top;
+  }
+  </style>
+
 <script language="javascript" src="../include/js/dedeajax2.js"></script>
 <script language="javascript" src="js/main.js"></script>
 <script type="text/javascript" src="js/calendar/calendar.js"></script>
 <script language="javascript">
-<!--
 function checkSubmit()
 {
    if(document.form1.title.value==""){
@@ -22,7 +51,6 @@ function checkSubmit()
 	 return false;
   }
 }
--->
 </script>
 </head>
 <body topmargin="8">
@@ -32,28 +60,26 @@ function checkSubmit()
       <td width="30%" align='right'><?php echo $backurl; ?><a href="catalog_main.php">[<u>栏目管理</u>]</a>&nbsp;</td>
     </tr>
   </table>
-  <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" id="head1" >
-    <tr>
-      <td colspan="2">
-        <table border="0" cellpadding="0" cellspacing="0">
-          <tr>
-            <td width="84" height="24" align="center" background="images/itemnote1.gif">&nbsp;常规信息&nbsp;</td>
-            <td width="84" align="center" background="images/itemnote2.gif"><a href="#" onClick="ShowItem2()"><u>高级参数</u></a></td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-  <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" id="head2" style="display:none">
-    <tr>
-      <td colspan="2"> <table height="24" border="0" cellpadding="0" cellspacing="0">
-          <tr>
-            <td width="84" align="center" background="images/itemnote2.gif"><a href="#" onClick="ShowItem1()"><u>常规信息</u></a>&nbsp;</td>
-            <td width="84" align="center" background="images/itemnote1.gif">高级参数</td>
-          </tr>
-        </table></td>
-    </tr>
-  </table>
+  
+  <table class="tabs_table">
+    <tbody>
+        <tr>
+            <td colspan="2">
+                <table cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td class="js_tabs_hd td cur" data-target="needset">&nbsp;常规信息&nbsp;</td>
+                            <td class="js_tabs_hd td" data-target="photo">相册</td>
+                            <td class="js_tabs_hd td">荣誉</td>
+                            <td class="js_tabs_hd td" data-target="adset">高级参数</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
 <form name="form1" action="archives_edit.php" enctype="multipart/form-data" method="post" onSubmit="return checkSubmit();">
 <input type="hidden" name="channelid" value="<?php echo $channelid?>" />
 <input type="hidden" name="id" value="<?php echo $aid?>" />
@@ -352,5 +378,17 @@ if($cfg_need_typeid2=='Y') {
   </tr>
 </table>
 </form>
+<script src="js/plugins/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(function(){
+    $('.js_tabs_hd').on('click',function(){
+        var $this = $(this),
+            target = $this.data('target');
+        $this.addClass('cur').siblings().removeClass('cur')
+        $('.js_table_content').hide()
+        $('#'+target).show()
+    })
+})
+</script>
 </body>
 </html>
