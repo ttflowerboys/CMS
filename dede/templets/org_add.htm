@@ -7,6 +7,30 @@
 body { background-image: url(images/allbg.gif); }
 </style>
 <link href="css/base.css" rel="stylesheet" type="text/css">
+<style>
+.tabs_table{
+    border:0;
+    text-align: center;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 98%;
+}
+.tabs_table td{padding: 0;}
+.tabs_table .td{width: 84px;height: 24px;text-align: center;cursor: pointer; background: url(images/itemnote2.gif) no-repeat;}
+.tabs_table .td.cur{background-image: url(images/itemnote1.gif);}
+
+.table_content{
+    text-align: center;
+    width: 98%;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 2;
+    border:1px solid #cfcfcf;
+    background-color: #fff;
+}
+.table_content td{padding: 2px;text-align: left;}
+</style>
 <script language="javascript" src="../include/js/dedeajax2.js"></script>
 <script language='javascript' src="js/main.js"></script>
 <script type="text/javascript" src="js/calendar/calendar.js"></script>
@@ -32,36 +56,30 @@ function checkSubmit()
     </tr>
   </table>
 
-  <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" id="head1">
-    <tr>
-      <td colspan="2" >
-        <table width="800" border="0" cellpadding="0" cellspacing="0">
-          <tr>
-            <td width="84" height="24" align="center" background="images/itemnote1.gif">&nbsp;常规信息&nbsp;</td>
-            <td width="84" align="center" background="images/itemnote2.gif"><a href="#" onClick="ShowItem2()"><u>高级参数</u></a></td>
-            <td>&nbsp;</td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-
-  <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" id="head2" style="display:none">
-    <tr>
-      <td colspan="2"> <table height="24" border="0" cellpadding="0" cellspacing="0">
-          <tr>
-            <td width="84" align="center" background="images/itemnote2.gif"><a href="#" onClick="ShowItem1()"><u>常规信息</u></a>&nbsp;</td>
-            <td width="84" align="center" background="images/itemnote1.gif">高级参数</td>
-          </tr>
-        </table></td>
-    </tr>
-  </table>
+    <table class="tabs_table">
+        <tbody>
+            <tr>
+                <td colspan="2">
+                    <table cellspacing="0" cellpadding="0" border="0">
+                        <tbody>
+                            <tr>
+                                <td class="js_tabs_hd td cur" data-target="needset">&nbsp;常规信息&nbsp;</td>
+                                <td class="js_tabs_hd td" data-target="photo">相册</td>
+                                <td class="js_tabs_hd td">荣誉</td>
+                                <td class="js_tabs_hd td" data-target="adset">高级参数</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
 <form name="form1" action="archives_add.php" enctype="multipart/form-data" method="post" onSubmit="return checkSubmit()">
   <input type="hidden" name="channelid" value="<?php echo $channelid?>" />
   <input type="hidden" name="cid" value="<?php echo $cid?>" />
   <input type="hidden" name="dopost" value="save" />
-  <table width="98%"  border="0" align="center" cellpadding="2" cellspacing="2" id="needset" style="border:1px solid #cfcfcf;background:#ffffff;">
+  <table class="table_content js_table_content" id="needset">
     <tr>
       <td height="24" colspan="4" class="bline">
       	<table width="800" border="0" cellspacing="0" cellpadding="0">
@@ -229,8 +247,62 @@ function checkSubmit()
         </table></td>
     </tr>
   </table>
+  <table class="table_content js_table_content" id="photo" style="display:none">
+    <tr>
+        <td width="100%" height="24" colspan="4" class="bline">
+        <table width="800" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="80" height="40">&nbsp;<b>手工上传：</b></td>
+              <td>
+              <div style="display: inline; border: solid 1px #7FAAFF; background-color: #C5D9FF; padding: 2px;">
+                                  <span id="spanButtonPlaceholder"></span>
+                          </div>
+              </td>
+            </tr>
+          </table></td>
+      </tr>
+      <tr id="handfield">
+        <td colspan="4" class="bline" style="background:url(images/albviewbg.gif) #fff 0 20px no-repeat;">
+             <table width='100%' height='160' style="margin:0 0 20px 0">
+                 <tr>
+                     <td>
+                         <div id="divFileProgressContainer" style="height:75px;"></div>
+                               <div id="thumbnails"></div>
+                          </td>
+                      </tr>
+                  </table>
+        </td>
+      </tr>
+  </table>
+  <table class="table_content js_table_content" id="Honor" style="display:none">
+    <tr>
+        <td width="100%" height="24" colspan="4" class="bline">
+        <table width="800" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="80" height="40">&nbsp;<b>手工上传：</b></td>
+              <td>
+              <div style="display: inline; border: solid 1px #7FAAFF; background-color: #C5D9FF; padding: 2px;">
+                                  <span id="spanButtonPlaceholder"></span>
+                          </div>
+              </td>
+            </tr>
+          </table></td>
+      </tr>
+      <tr id="handfield">
+        <td colspan="4" class="bline" style="background:url(images/albviewbg.gif) #fff 0 20px no-repeat;">
+             <table width='100%' height='160' style="margin:0 0 20px 0">
+                 <tr>
+                     <td>
+                         <div id="divFileProgressContainer" style="height:75px;"></div>
+                               <div id="thumbnails"></div>
+                          </td>
+                      </tr>
+                  </table>
+        </td>
+      </tr>
+  </table>
   <!-- //高级参数 -->
-  <table width="98%"  border="0" align="center" cellpadding="2" cellspacing="2" id="adset" style="border:1px solid #cfcfcf;background:#ffffff;display:none">
+  <table class="table_content js_table_content" id="adset" style="display:none">
   <tr>
    <td height="24" colspan="4" class="bline">
       <table width="800" border="0" cellspacing="0" cellpadding="0">
@@ -377,5 +449,18 @@ function checkSubmit()
   </tr>
 </table>
 </form>
+
+<script src="js/plugins/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(function(){
+    $('.js_tabs_hd').on('click',function(){
+        var $this = $(this),
+            target = $this.data('target');
+        $this.addClass('cur').siblings().removeClass('cur')
+        $('.js_table_content').hide()
+        $('#'+target).show()
+    })
+})
+</script>
 </body>
 </html>
