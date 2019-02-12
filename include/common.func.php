@@ -351,6 +351,83 @@ function tp_json($msg, $status, $gourl)
 }
 
 /**
+ * 将字符串转换为数组
+ */
+function string2array($data)
+{
+    if ($data == '') return array();
+    return unserialize($data);
+}
+
+/**
+ * 将数组转换为字符串
+ */
+function array2string($data, $isformdata = 1)
+{
+    if ($data == '') return '';
+    if ($isformdata) $data = new_stripslashes($data);
+    return serialize($data);
+}
+
+function field_files($name, $content = '', $setting = '')
+    {
+        $type = $setting['type'];
+        $txt = $setting['buttontxt']?$setting['buttontxt']:'上传文件';
+        $size = $setting['size'] * 1024;
+        $js = "<script>
+        var uploader = WebUploader.create({
+            auto: true,
+            fileVal:'upfile',
+            duplicate :true,
+            multiple: false,
+            fileSingleSizeLimit:{$size}*1024,
+            server: 'web_uploader.php?c=uploadfile&a=ueditor&action=uploadfile',
+            pick: '#filePicker_{$name}',
+            accept: {
+                title: 'Images',
+                extensions: '{$type}'
+            }
+        });
+        uploader.on( 'uploadSuccess', function( file, ret) {
+            htmlList('" . $name . "',ret.url,file,'" . $preview . "');
+        });
+        uploader.on( 'error', function( file) {
+            if (file == 'Q_TYPE_DENIED') {
+                alert('请上传{$type}格式文件');
+            } else if (file == 'F_EXCEED_SIZE') {
+                alert('文件大小不能超过 {$setting['size']} M,请压缩');
+            }else {
+                alert('上传出错！请检查后重新上传！错误代码'+file);
+            }
+        });
+            </script>";
+        $preview = $setting['preview'] ? 'onmouseover="showImg(this)"  onmouseout="hideImg(this)"' : '';
+        $str = '
+      <fieldset class="blue pad-10">
+        <legend>上传文件列表</legend>
+        <div class="picList" id="list_' . $name . '_files"><ul id="' . $name . '-sort-items">';
+        if ($content) {
+            $content = json_decode($content);
+            $fileurl = $content->fileurl;
+            $filename = $content->filename;
+            if (is_array($fileurl) && !empty($fileurl)) {
+                foreach ($fileurl as $id => $path) {
+                    $str .= '<li id="files_' . $name . '_' . $id . '">';
+                    $str .= '<img src="' . $fileurl[$id] . '">';
+                    $str .= '<input type="hidden" value="' . $fileurl[$id] . '" name="' . $name . '[fileurl][]"  id="' . $name . $id . '" ' . $preview . '>';
+                    $str .= '<input type="text" class="input-text" style="width:160px;" value="' . $filename[$id] . '" name="' . $name . '[filename][]">';
+                    $str .= '<a href="javascript:removediv(\'' . $name . '_' . $id . '\');">删除</a></li>';
+                }
+            }
+        }
+        $str .= '</ul></fieldset>
+        <div class="bk10"></div>
+        <span id="filePicker_' . $name . '"  >'.$txt.'</span>
+        ';
+    return $str . $js;
+}
+
+/**
  *  获取验证码的session值
  *
  * @return    string
