@@ -12,6 +12,11 @@
 >   * `include/webuploader/Uploadfile.class.php`
 >   * `dede/web_uploader.php`，自定义常量及参数
 >
+> * 字段模板
+>
+>   * `include/common.func.php`函数`field_files()`,
+>   * 参考：**xiaocms**中`core/library/field.class.php`的 `files()`
+>
 > * 前端：
 >
 >   ```html
