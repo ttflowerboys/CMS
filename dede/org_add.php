@@ -205,13 +205,36 @@ color,writer,source,litpic,pubdate,senddate,mid,voteid,notpost,description,keywo
         exit();
     }
 
+    // 额外处理字段
+    $photos = '';
+    // if (is_array($photo) && !empty($photo)) {
+    //     $fileurl = $photo['fileurl'];
+    //     $filename = $photo['filename'];
+    //     if (is_array($fileurl) && !empty($fileurl)) {
+    //         foreach ($fileurl as $key => $path) {
+    //             $photos .= "{dede:link text='$fileurl[$key]'} $filename[$key] {/dede:link}\r\n";
+    //         }
+    //     }
+    // }
+    if (is_array($photo) && !empty($photo)) {
+        $photos = json_encode($photo);
+    }
+    $photos = addslashes($photos);
+
+    // 额外处理字段
+    $honors = '';
+    if (is_array($honor) && !empty($honor)) {
+        $honors = json_encode($honor);
+    }
+    $honors = addslashes($honors);
+
     //保存到附加表
     $cts = $dsql->GetOne("SELECT addtable FROM `#@__channeltype` WHERE id='$channelid' ");
     $addtable = trim($cts['addtable']);
     if(!empty($addtable))
     {
         $useip = GetIP();
-        $query = "INSERT INTO `{$addtable}`(aid,typeid,redirecturl,photos,userip{$inadd_f}) Values('$arcID','$typeid','$redirecturl','$imgurls','$useip'{$inadd_v})";
+        $query = "INSERT INTO `{$addtable}`(aid,typeid,redirecturl,photo,honor,userip{$inadd_f}) Values('$arcID','$typeid','$redirecturl','$photos','$honors','$useip'{$inadd_v})";
         if(!$dsql->ExecuteNoneQuery($query))
         {
             $gerr = $dsql->GetError();

@@ -45,6 +45,15 @@ if($dopost!='save')
     }
     $addtable = $cInfos['addtable'];
     $addRow = $dsql->GetOne("SELECT * FROM `$addtable` WHERE aid='$aid'");
+
+    // 处理字段， 20190213 by leon
+    $setting = array(
+        'type' => 'gif,png,jpg',
+        'size' => '2048'
+    );
+    $nPhoto = field_files('photo', $addRow['photo'], $setting);
+    $nHonor = field_files('honor', $addRow['honor'], $setting);;
+
     $channelid = $arcRow['channel'];
     $tags = GetTags($aid);
     include DedeInclude("templets/org_edit.htm");
@@ -192,12 +201,25 @@ else if($dopost=='save')
         exit();
     }
 
+    // copy from org_add.php
+    $photos = '';
+    if (is_array($photo) && !empty($photo)) {
+        $photos = json_encode($photo);
+    }
+    $photos = addslashes($photos);
+
+    $honors = '';
+    if (is_array($honor) && !empty($honor)) {
+        $honors = json_encode($honor);
+    }
+    $honors = addslashes($honors);
+
     $cts = $dsql->GetOne("SELECT addtable From `#@__channeltype` WHERE id='$channelid' ");
     $addtable = trim($cts['addtable']);
     if($addtable!='')
     {
         $useip = GetIP();
-        $iquery = "UPDATE `$addtable` SET typeid='$typeid'{$inadd_f},redirecturl='$redirecturl',userip='$useip' WHERE aid='$id' ";
+        $iquery = "UPDATE `$addtable` SET typeid='$typeid'{$inadd_f},redirecturl='$redirecturl',photo='$photos',honor='$honors',userip='$useip' WHERE aid='$id' ";
         if(!$dsql->ExecuteNoneQuery($iquery))
         {
             ShowMsg("更新附加表 `$addtable`  时出错，请检查原因！","javascript:;");

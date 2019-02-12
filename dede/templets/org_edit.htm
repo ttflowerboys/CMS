@@ -7,37 +7,6 @@
 body { background-image: url(images/allbg.gif); }
 </style>
 <link href="css/base.css" rel="stylesheet" type="text/css">
-<style>
-  .tabs_table{
-      border:0;
-      text-align: center;
-      margin: 0 auto;
-      border-collapse: separate;
-      border-spacing: 0;
-      width: 98%;
-  }
-  .tabs_table td{padding: 0;}
-  .tabs_table .td{width: 84px;height: 24px;text-align: center;cursor: pointer; background: url(images/itemnote2.gif) no-repeat;}
-  .tabs_table .td.cur{background-image: url(images/itemnote1.gif);}
-  
-  .table_content{
-      text-align: center;
-      width: 98%;
-      margin: 0 auto;
-      border-collapse: separate;
-      border-spacing: 2;
-      border:1px solid #cfcfcf;
-      background-color: #fff;
-  }
-  .table_content td{padding: 2px;text-align: left;}
-  .swfuploadBox{
-      display: inline;
-      border: solid 1px #7FAAFF;
-      background-color: #C5D9FF;
-      padding: 2px;
-      vertical-align: top;
-  }
-  </style>
 
 <script language="javascript" src="../include/js/dedeajax2.js"></script>
 <script language="javascript" src="js/main.js"></script>
@@ -52,6 +21,10 @@ function checkSubmit()
   }
 }
 </script>
+<script src="js/plugins/jquery/1.12.4/jquery.min.js"></script>
+<!-- upload -->
+<script type="text/javascript" src="/include/ueditor/third-party/webuploader/webuploader.min.js"></script>
+<!-- upload end -->
 </head>
 <body topmargin="8">
   <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -70,7 +43,7 @@ function checkSubmit()
                         <tr>
                             <td class="js_tabs_hd td cur" data-target="needset">&nbsp;常规信息&nbsp;</td>
                             <td class="js_tabs_hd td" data-target="photo">相册</td>
-                            <td class="js_tabs_hd td">荣誉</td>
+                            <td class="js_tabs_hd td" data-target="Honor">荣誉</td>
                             <td class="js_tabs_hd td" data-target="adset">高级参数</td>
                         </tr>
                     </tbody>
@@ -80,11 +53,11 @@ function checkSubmit()
     </tbody>
 </table>
 
-<form name="form1" action="archives_edit.php" enctype="multipart/form-data" method="post" onSubmit="return checkSubmit();">
+<form name="form1" action="org_edit.php" enctype="multipart/form-data" method="post" onSubmit="return checkSubmit();">
 <input type="hidden" name="channelid" value="<?php echo $channelid?>" />
 <input type="hidden" name="id" value="<?php echo $aid?>" />
 <input type="hidden" name="dopost" value="save" />
-  <table width="98%"  border="0" align="center" cellpadding="2" cellspacing="2" id="needset" style="border:1px solid #cfcfcf;background:#ffffff;">
+  <table class="table_content js_table_content" id="needset">
     <tr>
       <td height="24" class="bline"><table width="800" border="0" cellspacing="0" cellpadding="0">
         <tr>
@@ -218,7 +191,7 @@ if($cfg_need_typeid2=='Y') {
     <tr>
      <td>
       <?php
-        PrintAutoFieldsEdit($cInfos['fieldset'],$addRow);
+        PrintAutoFieldsEdit($cInfos['fieldset'],$addRow, 'autofield');
       ?>
     </td>
    </tr>
@@ -236,8 +209,22 @@ if($cfg_need_typeid2=='Y') {
         </table></td>
     </tr>
   </table>
+  <table class="table_content js_table_content" id="photo" style="display:none">
+    <tr>
+      <td width="100%" height="24" colspan="4" class="bline">
+        <?php echo $nPhoto; ?>
+      </td>
+    </tr>
+  </table>
+  <table class="table_content js_table_content" id="Honor" style="display:none">
+    <tr>
+      <td width="100%" height="24" colspan="4" class="bline">
+        <?php echo $nHonor; ?>
+      </td>
+    </tr>
+  </table>
   <!-- //高级参数 -->
-  <table width="98%"  border="0" align="center" cellpadding="2" cellspacing="2" id="adset" style="border:1px solid #cfcfcf;background:#ffffff;display:none">
+  <table class="table_content js_table_content" id="adset">
     <tr>
    <td height="24" colspan="4" class="bline">
       <table width="800" border="0" cellspacing="0" cellpadding="0">
@@ -378,8 +365,20 @@ if($cfg_need_typeid2=='Y') {
   </tr>
 </table>
 </form>
-<script src="js/plugins/jquery/1.12.4/jquery.min.js"></script>
 <script>
+function removediv(fileid) {
+    $("#files_" + fileid).remove()
+}
+function htmlList(obj, data, file, p) {
+    var id = parseInt(Math.random() * 1000);
+    var html = '<li id="files_' + obj + '_' + id + '">';
+    html += '<img src="' + data + '" style="width: 200px;height: 200px;">';
+    html += '<input type="hidden" class="input-text" value="' + data + '" name="' + obj + '[fileurl][]" ' + p + ">";
+    html += '<input type="text" class="input-text" style="width:160px;" value="' + file.name + '" name="' + obj + '[filename][]">';
+    html += "<a href=\"javascript:removediv('" + obj + "_" + id + "');\">删除</a></li>";
+    $("#" + obj + "-sort-items").append(html)
+}
+
 $(function(){
     $('.js_tabs_hd').on('click',function(){
         var $this = $(this),
