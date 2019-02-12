@@ -7,7 +7,6 @@
 body { background-image: url(images/allbg.gif); }
 </style>
 <link href="css/base.css" rel="stylesheet" type="text/css">
-<link href="css/swfupload.css" rel="stylesheet" type="text/css" />
 
 <style>
 .tabs_table{
@@ -55,100 +54,6 @@ function checkSubmit()
 	   return false;
   }
 }
-</script>
-<script type="text/javascript" src="js/album.js"></script>
-<script type="text/javascript"src="js/handlers.js"></script>
-<script type="text/javascript" src="../images/swfupload/swfupload.js"></script>
-<script language="javascript">
-var swfu = null;
-var vcc = 0;
-function LoadTestDiv()
-{
-	var posLeft = 100; var posTop = 100;
-	var newobj = $Obj('_myhtml');
-	$Obj('imagebody').value = $Obj('copyhtml').innerHTML;
-	var dfstr = '粘贴到这里...';
-	if($Obj('imagebody').value.length <= dfstr.length)
-	{
-		alert('您还没有粘贴任何东西到编辑框哦！');
-		return;
-	}
-	if(!newobj){
-		newobj = document.createElement("DIV");
-		newobj.id = '_myhtml';
-		newobj.style.position='absolute';
-		newobj.className = "dlg2";
-		newobj.style.top = posTop;
-		newobj.style.left = posLeft;
-		document.body.appendChild(newobj);
-	}
-	else{
-		newobj.style.display = "block";
-	}
-	var myajax = new DedeAjax(newobj,false,true,'-','-','...');
-	var v = $Obj('imagebody').value;
-	vcc++;
-	<?php
-	if(strtolower(substr($cfg_soft_lang, 0, 3)) == 'utf') {
-		?>
-		//utf8
-		myajax.AddKeyUtf8('myhtml',v);
-		myajax.AddKeyUtf8('vcc',vcc);
-		myajax.SendPost2('album_testhtml.php');
-	<?php
-	}
-	elseif (strtolower(substr($cfg_soft_lang, 0, 2)) == 'gb') {
-	?>
-	//gbk
-	myajax.SendGet2("album_testhtml.php?vcc="+vcc+"&myhtml="+v);
-	<?php
-	}
-	?>
-	DedeXHTTP = null;
-}
-window.onload = function ()
-{
-			swfu = new SWFUpload(
-			{
-				// Backend Settings
-				upload_url: "swfupload.php",
-				post_params: {"PHPSESSID": "<?php echo session_id(); ?>", "dopost" : ""},
-
-				// File Upload Settings
-				file_size_limit : "2 MB",	// 2MB
-				file_types : "*.jpg; *.gif; *.png",
-				file_types_description : "选择 JPEG/GIF/PNG 格式图片",
-				file_upload_limit : "0",
-
-				file_queue_error_handler : fileQueueError,
-				file_dialog_complete_handler : fileDialogComplete,
-				upload_progress_handler : uploadProgress,
-				upload_error_handler : uploadError,
-				upload_success_handler : uploadSuccess,
-				upload_complete_handler : uploadComplete,
-
-				button_image_url : "../images/SmallSpyGlassWithTransperancy_17x18.png",
-				button_placeholder_id : "spanButtonPlaceholder",
-				button_width: 250,
-				button_height: 18,
-				button_text : '<span class="button">选择本地图片 <span class="buttonSmall">(单图最大为 2 MB，支持多选)</span></span>',
-				button_text_style : '.button { font-family: Helvetica, Arial, sans-serif; font-size: 12pt; } .buttonSmall { font-size: 10pt; }',
-				button_text_top_padding: 0,
-				button_text_left_padding: 18,
-				button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
-				button_cursor: SWFUpload.CURSOR.HAND,
-				
-				// Flash Settings
-				flash_url : "../images/swfupload/swfupload.swf",
-
-				custom_settings : {
-					upload_target : "divFileProgressContainer"
-				},
-				
-				// Debug Settings
-				debug: false
-			});
-};
 </script>
 </head>
 <body topmargin="8">
@@ -352,57 +257,17 @@ window.onload = function ()
   </table>
   <table class="table_content js_table_content" id="photo" style="display:none">
     <tr>
-        <td width="100%" height="24" colspan="4" class="bline">
-        <table width="800" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td width="80" height="40">&nbsp;<b>手工上传：</b></td>
-              <td>
-              <div class="swfuploadBox" >
-                                  <span id="spanButtonPlaceholder"></span>
-                          </div>
-              </td>
-            </tr>
-          </table></td>
-      </tr>
-      <tr id="handfield">
-        <td colspan="4" class="bline" style="background:url(images/albviewbg.gif) #fff 0 20px no-repeat;">
-             <table width='100%' height='160' style="margin:0 0 20px 0">
-                 <tr>
-                     <td>
-                         <div id="divFileProgressContainer" style="height:75px;"></div>
-                               <div id="thumbnails"></div>
-                          </td>
-                      </tr>
-                  </table>
-        </td>
-      </tr>
+      <td width="100%" height="24" colspan="4" class="bline">
+        
+      </td>
+    </tr>
   </table>
   <table class="table_content js_table_content" id="Honor" style="display:none">
-    <!-- <tr>
-        <td width="100%" height="24" colspan="4" class="bline">
-        <table width="800" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td width="80" height="40">&nbsp;<b>手工上传：</b></td>
-              <td>
-              <div style="display: inline; border: solid 1px #7FAAFF; background-color: #C5D9FF; padding: 2px;">
-                                  <span id="spanButtonPlaceholder"></span>
-                          </div>
-              </td>
-            </tr>
-          </table></td>
-      </tr>
-      <tr id="handfield">
-        <td colspan="4" class="bline" style="background:url(images/albviewbg.gif) #fff 0 20px no-repeat;">
-             <table width='100%' height='160' style="margin:0 0 20px 0">
-                 <tr>
-                     <td>
-                         <div id="divFileProgressContainer" style="height:75px;"></div>
-                               <div id="thumbnails"></div>
-                          </td>
-                      </tr>
-                  </table>
-        </td>
-      </tr>  -->
+    <tr>
+      <td width="100%" height="24" colspan="4" class="bline">
+      
+      </td>
+    </tr> 
   </table>
   <!-- //高级参数 -->
   <table class="table_content js_table_content" id="adset" style="display:none">
