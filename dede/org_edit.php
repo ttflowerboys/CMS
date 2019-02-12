@@ -52,7 +52,7 @@ if($dopost!='save')
         'size' => '2048'
     );
     $nPhoto = field_files('photo', $addRow['photo'], $setting);
-    $nHonor = field_files('honor', $addRow['honor'], $setting);;
+    $nHonor = field_files('honor', $addRow['honor'], $setting);
 
     $channelid = $arcRow['channel'];
     $tags = GetTags($aid);

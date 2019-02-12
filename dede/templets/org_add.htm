@@ -232,80 +232,14 @@ function checkSubmit()
   <table class="table_content js_table_content" id="photo" style="display:none">
     <tr>
       <td width="100%" height="24" colspan="4" class="bline">
-        <fieldset class="blue pad-10">
-            <legend>上传相册列表</legend>
-            <div class="picList" id="list_photo_files"><ul id="photo-sort-items"></ul>
-        </fieldset>
-        <div class="bk10"></div>
-        <!-- <input type="button" class="custom_button custom_button_orgin" value="添加地址" name="delete" onClick="add_null_file('photo')" > -->
-        <span id="filePicker_photo">上传文件</span>
-        <script>
-            var uploader = WebUploader.create({
-                auto: true,
-                fileVal:'upfile',
-                duplicate :true,
-                multiple: false,
-                fileSingleSizeLimit:2048*1024,
-                server: 'web_uploader.php?c=uploadfile&a=ueditor&action=uploadfile',
-                pick: '#filePicker_photo',
-                accept: {
-                    title: 'Images',
-                    extensions: 'gif,png,jpg'
-                }
-            });
-            uploader.on( 'uploadSuccess', function( file, ret) {
-                htmlPicList('photo',ret.url,file,'');
-            });
-            uploader.on( 'error', function( file) {
-                if (file == 'Q_TYPE_DENIED') {
-                    alert('请上传gif,png,jpg格式文件');
-                } else if (file == 'F_EXCEED_SIZE') {
-                    alert('文件大小不能超过 2 M,请压缩');
-                }else {
-                    alert('上传出错！请检查后重新上传！错误代码'+file);
-                }
-            });
-        </script>
+          <?php echo $nPhoto; ?>
       </td>
     </tr>
   </table>
   <table class="table_content js_table_content" id="Honor" style="display:none">
     <tr>
       <td width="100%" height="24" colspan="4" class="bline">
-          <fieldset class="blue pad-10">
-              <legend>上传荣誉列表</legend>
-              <div class="picList" id="list_honor_files"><ul id="honor-sort-items"></ul>
-          </fieldset>
-          <div class="bk10"></div>
-          <!-- <input type="button" class="custom_button custom_button_orgin" value="添加地址" name="delete" onClick="add_null_file('honor')" > -->
-          <span id="filePicker_honor">上传文件</span>
-          <script>
-              var uploaderHonor = WebUploader.create({
-                  auto: true,
-                  fileVal:'upfile',
-                  duplicate :true,
-                  multiple: false,
-                  fileSingleSizeLimit:2048*1024,
-                  server: 'web_uploader.php?c=uploadfile&a=ueditor&action=uploadfile',
-                  pick: '#filePicker_honor',
-                  accept: {
-                      title: 'Images',
-                      extensions: 'gif,png,jpg'
-                  }
-              });
-              uploaderHonor.on( 'uploadSuccess', function( file, ret) {
-                  htmlPicList('honor',ret.url,file,'');
-              });
-              uploaderHonor.on( 'error', function( file) {
-                  if (file == 'Q_TYPE_DENIED') {
-                      alert('请上传gif,png,jpg格式文件');
-                  } else if (file == 'F_EXCEED_SIZE') {
-                      alert('文件大小不能超过 2 M,请压缩');
-                  }else {
-                      alert('上传出错！请检查后重新上传！错误代码'+file);
-                  }
-              });
-          </script>
+          <?php echo $nHonor; ?>
       </td>
     </tr> 
   </table>
@@ -462,23 +396,7 @@ function checkSubmit()
 function removediv(fileid) {
     $("#files_" + fileid).remove()
 }
-function add_null_file(obj) {
-    var id = parseInt(Math.random() * 1000);
-    var c = '<li id="files_' + obj + '_' + id + '">';
-    c += '<input type="text" class="input-text" style="width:310px;" value="" name="' + obj + '[fileurl][]">';
-    c += '<input type="text" class="input-text" style="width:160px;" value="" name="' + obj + '[filename][]">';
-    c += "<a href=\"javascript:removediv('" + obj + "_" + id + "');\">删除</a></li>";
-    $("#" + obj + "-sort-items").append(c)
-}
 function htmlList(obj, data, file, p) {
-    var id = parseInt(Math.random() * 1000);
-    var html = '<li id="files_' + obj + '_' + id + '">';
-    html += '<input type="text" class="input-text" style="width:310px;" value="' + data + '" name="' + obj + '[fileurl][]" ' + p + ">";
-    html += '<input type="text" class="input-text" style="width:160px;" value="' + file.name + '" name="' + obj + '[filename][]">';
-    html += "<a href=\"javascript:removediv('" + obj + "_" + id + "');\">删除</a></li>";
-    $("#" + obj + "-sort-items").append(html)
-}
-function htmlPicList(obj, data, file, p) {
     var id = parseInt(Math.random() * 1000);
     var html = '<li id="files_' + obj + '_' + id + '">';
     html += '<img src="' + data + '" style="width: 200px;height: 200px;">';

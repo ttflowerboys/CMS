@@ -43,6 +43,14 @@ if($dopost != 'save')
     $channelid = $cInfos['id'];
     //获取文章最大id以确定当前权重
     $maxWright = $dsql->GetOne("SELECT COUNT(*) AS cc FROM #@__archives");
+
+    $setting = array(
+        'type' => 'gif,png,jpg',
+        'size' => '2048'
+    );
+    $nPhoto = field_files('photo', '', $setting);
+    $nHonor = field_files('honor', '', $setting);
+
     include DedeInclude('templets/org_add.htm');
     exit();
 }
@@ -207,15 +215,6 @@ color,writer,source,litpic,pubdate,senddate,mid,voteid,notpost,description,keywo
 
     // 额外处理字段
     $photos = '';
-    // if (is_array($photo) && !empty($photo)) {
-    //     $fileurl = $photo['fileurl'];
-    //     $filename = $photo['filename'];
-    //     if (is_array($fileurl) && !empty($fileurl)) {
-    //         foreach ($fileurl as $key => $path) {
-    //             $photos .= "{dede:link text='$fileurl[$key]'} $filename[$key] {/dede:link}\r\n";
-    //         }
-    //     }
-    // }
     if (is_array($photo) && !empty($photo)) {
         $photos = json_encode($photo);
     }
