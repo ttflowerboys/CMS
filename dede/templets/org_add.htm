@@ -467,7 +467,7 @@ function add_null_file(obj) {
     var c = '<li id="files_' + obj + '_' + id + '">';
     c += '<input type="text" class="input-text" style="width:310px;" value="" name="' + obj + '[fileurl][]">';
     c += '<input type="text" class="input-text" style="width:160px;" value="" name="' + obj + '[filename][]">';
-    c += "<a href=\"javascript:removediv('" + id + "');\">删除</a></li>";
+    c += "<a href=\"javascript:removediv('" + obj + "_" + id + "');\">删除</a></li>";
     $("#" + obj + "-sort-items").append(c)
 }
 function htmlList(obj, data, file, p) {
@@ -475,7 +475,7 @@ function htmlList(obj, data, file, p) {
     var html = '<li id="files_' + obj + '_' + id + '">';
     html += '<input type="text" class="input-text" style="width:310px;" value="' + data + '" name="' + obj + '[fileurl][]" ' + p + ">";
     html += '<input type="text" class="input-text" style="width:160px;" value="' + file.name + '" name="' + obj + '[filename][]">';
-    html += "<a href=\"javascript:removediv('" + id + "');\">删除</a></li>";
+    html += "<a href=\"javascript:removediv('" + obj + "_" + id + "');\">删除</a></li>";
     $("#" + obj + "-sort-items").append(html)
 }
 </script>

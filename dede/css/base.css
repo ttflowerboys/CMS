@@ -38,7 +38,8 @@ input.custom_button_orgin {
     color: #fff;
 }
 .webuploader-container {
-	position: relative;
+    position: relative;
+    display: inline-block;
 }
 .webuploader-element-invisible {
 	position: absolute !important;
@@ -46,16 +47,19 @@ input.custom_button_orgin {
     clip: rect(1px,1px,1px,1px);
 }
 .webuploader-pick {
+    padding: 6px 15px;
+    height: 18px;
+    width: 60px;
     vertical-align: middle;
     position: relative;
     display: inline-block;
     cursor: pointer;
     background: #42aba6;
-    padding: 6px 15px;
 	color: #fff;
 	text-align: center;
 	border-radius: 3px;
-	overflow: hidden;
+    overflow: hidden;
+    
 }
 .webuploader-pick-hover {
 	background: #2d8e89;
