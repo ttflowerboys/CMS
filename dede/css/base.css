@@ -14,7 +14,9 @@
 
 body fieldset{border:1px solid #d8d8d8;padding:10px}
 body fieldset legend{padding:3px 8px}
-.picList li{padding:0 0 8px}
+.picList ul{margin-left: -12px;overflow: hidden;}
+.picList li{padding:0 0 8px;width: 200px;float: left;margin-left: 12px;}
+.picList li img{width: 200px;height: 200px;border-radius: 6px;}
 .input-text-c, .input-text, textarea, input.date {
     height: 18px;
     margin: 0 5px 0 0;
