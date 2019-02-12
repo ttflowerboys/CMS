@@ -8,37 +8,6 @@ body { background-image: url(images/allbg.gif); }
 </style>
 <link href="css/base.css" rel="stylesheet" type="text/css">
 
-<style>
-.tabs_table{
-    border:0;
-    text-align: center;
-    margin: 0 auto;
-    border-collapse: separate;
-    border-spacing: 0;
-    width: 98%;
-}
-.tabs_table td{padding: 0;}
-.tabs_table .td{width: 84px;height: 24px;text-align: center;cursor: pointer; background: url(images/itemnote2.gif) no-repeat;}
-.tabs_table .td.cur{background-image: url(images/itemnote1.gif);}
-
-.table_content{
-    text-align: center;
-    width: 98%;
-    margin: 0 auto;
-    border-collapse: separate;
-    border-spacing: 2;
-    border:1px solid #cfcfcf;
-    background-color: #fff;
-}
-.table_content td{padding: 2px;text-align: left;}
-.swfuploadBox{
-    display: inline;
-    border: solid 1px #7FAAFF;
-    background-color: #C5D9FF;
-    padding: 2px;
-    vertical-align: top;
-}
-</style>
 <script language="javascript" src="../include/js/dedeajax2.js"></script>
 <script language='javascript' src="js/main.js"></script>
 <script type="text/javascript" src="js/calendar/calendar.js"></script>
@@ -55,6 +24,11 @@ function checkSubmit()
   }
 }
 </script>
+<script src="js/plugins/jquery/1.12.4/jquery.min.js"></script>
+<!-- upload -->
+<script type="text/javascript" src="/include/ueditor/third-party/webuploader/webuploader.min.js"></script>
+<!-- upload end -->
+
 </head>
 <body topmargin="8">
   <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -73,7 +47,7 @@ function checkSubmit()
                             <tr>
                                 <td class="js_tabs_hd td cur" data-target="needset">&nbsp;常规信息&nbsp;</td>
                                 <td class="js_tabs_hd td" data-target="photo">相册</td>
-                                <td class="js_tabs_hd td">荣誉</td>
+                                <td class="js_tabs_hd td" data-target="Honor">荣誉</td>
                                 <td class="js_tabs_hd td" data-target="adset">高级参数</td>
                             </tr>
                         </tbody>
@@ -258,14 +232,80 @@ function checkSubmit()
   <table class="table_content js_table_content" id="photo" style="display:none">
     <tr>
       <td width="100%" height="24" colspan="4" class="bline">
-        
+        <fieldset class="blue pad-10">
+            <legend>上传相册列表</legend>
+            <div class="picList" id="list_photo_files"><ul id="photo-sort-items"></ul>
+        </fieldset>
+        <div class="bk10"></div>
+        <input type="button" class="custom_button custom_button_orgin" value="添加地址" name="delete" onClick="add_null_file('photo')" >
+        <span id="filePicker_photo">上传文件</span>
+        <script>
+            var uploader = WebUploader.create({
+                auto: true,
+                fileVal:'upfile',
+                duplicate :true,
+                multiple: false,
+                fileSingleSizeLimit:2048*1024,
+                server: 'web_uploader.php?c=uploadfile&a=ueditor&action=uploadfile',
+                pick: '#filePicker_photo',
+                accept: {
+                    title: 'Images',
+                    extensions: 'gif,png,jpg'
+                }
+            });
+            uploader.on( 'uploadSuccess', function( file, ret) {
+                htmlList('photo',ret.url,file,'');
+            });
+            uploader.on( 'error', function( file) {
+                if (file == 'Q_TYPE_DENIED') {
+                    alert('请上传gif,png,jpg格式文件');
+                } else if (file == 'F_EXCEED_SIZE') {
+                    alert('文件大小不能超过 2 M,请压缩');
+                }else {
+                    alert('上传出错！请检查后重新上传！错误代码'+file);
+                }
+            });
+        </script>
       </td>
     </tr>
   </table>
   <table class="table_content js_table_content" id="Honor" style="display:none">
     <tr>
       <td width="100%" height="24" colspan="4" class="bline">
-      
+          <fieldset class="blue pad-10">
+              <legend>上传荣誉列表</legend>
+              <div class="picList" id="list_honor_files"><ul id="honor-sort-items"></ul>
+          </fieldset>
+          <div class="bk10"></div>
+          <input type="button" class="custom_button custom_button_orgin" value="添加地址" name="delete" onClick="add_null_file('honor')" >
+          <span id="filePicker_honor">上传文件</span>
+          <script>
+              var uploaderHonor = WebUploader.create({
+                  auto: true,
+                  fileVal:'upfile',
+                  duplicate :true,
+                  multiple: false,
+                  fileSingleSizeLimit:2048*1024,
+                  server: 'web_uploader.php?c=uploadfile&a=ueditor&action=uploadfile',
+                  pick: '#filePicker_honor',
+                  accept: {
+                      title: 'Images',
+                      extensions: 'gif,png,jpg'
+                  }
+              });
+              uploaderHonor.on( 'uploadSuccess', function( file, ret) {
+                  htmlList('honor',ret.url,file,'');
+              });
+              uploaderHonor.on( 'error', function( file) {
+                  if (file == 'Q_TYPE_DENIED') {
+                      alert('请上传gif,png,jpg格式文件');
+                  } else if (file == 'F_EXCEED_SIZE') {
+                      alert('文件大小不能超过 2 M,请压缩');
+                  }else {
+                      alert('上传出错！请检查后重新上传！错误代码'+file);
+                  }
+              });
+          </script>
       </td>
     </tr> 
   </table>
@@ -418,7 +458,27 @@ function checkSubmit()
 </table>
 </form>
 
-<script src="js/plugins/jquery/1.12.4/jquery.min.js"></script>
+<script>
+function removediv(fileid) {
+    $("#files_" + fileid).remove()
+}
+function add_null_file(obj) {
+    var id = parseInt(Math.random() * 1000);
+    var c = '<li id="files_' + obj + '_' + id + '">';
+    c += '<input type="text" class="input-text" style="width:310px;" value="" name="' + obj + '[fileurl][]">';
+    c += '<input type="text" class="input-text" style="width:160px;" value="" name="' + obj + '[filename][]">';
+    c += "<a href=\"javascript:removediv('" + id + "');\">删除</a></li>";
+    $("#" + obj + "-sort-items").append(c)
+}
+function htmlList(obj, data, file, p) {
+    var id = parseInt(Math.random() * 1000);
+    var html = '<li id="files_' + obj + '_' + id + '">';
+    html += '<input type="text" class="input-text" style="width:310px;" value="' + data + '" name="' + obj + '[fileurl][]" ' + p + ">";
+    html += '<input type="text" class="input-text" style="width:160px;" value="' + file.name + '" name="' + obj + '[filename][]">';
+    html += "<a href=\"javascript:removediv('" + id + "');\">删除</a></li>";
+    $("#" + obj + "-sort-items").append(html)
+}
+</script>
 <script>
 $(function(){
     $('.js_tabs_hd').on('click',function(){
@@ -428,6 +488,8 @@ $(function(){
         $('.js_table_content').hide()
         $('#'+target).show()
     })
+
+
 })
 </script>
 </body>
