@@ -36,16 +36,53 @@
                     </div>
                 </div>
                 <div class="Items" style="display: none;">
-                    
+                        
                 </div>
                 <div class="Items" style="display: none;">
-                    
-                    
+                        
                 </div>
                 <div class="Items" style="display: none;">
-                    
+                    <!-- {dede:field.photo/} -->
+                    <ul class="photoList clearfix">
+                        {dede:php}
+                            $photo = $refObj->Fields['photo'];
+                            $str = '';
+                            if ($photo) {
+                                $photo = json_decode($photo);
+                                $fileurl = $photo->fileurl;
+                                $filename = $photo->filename;
+                                if (is_array($fileurl) && !empty($fileurl)) {
+                                    foreach ($fileurl as $id => $path) {
+                                        $str .= '<li data-fancybox="gallery" href="' . $fileurl[$id] . '" data-caption="' . $filename[$id] . '">';
+                                        $str .= '<div class="pic"><img src="' . $fileurl[$id] . '" alt=" . $filename[$id] . "></div>';
+                                        $str .= '<div class="title">' . $filename[$id] .'</div>';
+                                    }
+                                }
+                            }
+                            echo $str;
+                        {/dede:php}
+                    </ul>
                 </div>
                 <div class="Items" style="display: none;">
+                    <ul class="photoList clearfix">
+                        {dede:php}
+                            $honor = $refObj->Fields['honor'];
+                            $str = '';
+                            if ($honor) {
+                                $honor = json_decode($honor);
+                                $fileurl = $honor->fileurl;
+                                $filename = $honor->filename;
+                                if (is_array($fileurl) && !empty($fileurl)) {
+                                    foreach ($fileurl as $id => $path) {
+                                        $str .= '<li data-fancybox="honor" href="' . $fileurl[$id] . '" data-caption="' . $filename[$id] . '">';
+                                        $str .= '<div class="pic"><img src="' . $fileurl[$id] . '" alt=" . $filename[$id] . "></div>';
+                                        $str .= '<div class="title">' . $filename[$id] .'</div>';
+                                    }
+                                }
+                            }
+                            echo $str;
+                        {/dede:php}
+                    </ul>
                 </div>
                 <div class="Items" style="display: none;">
                 </div>
@@ -57,6 +94,10 @@
     </div>
 
     {dede:include filename="footer.htm"/}
+
+    <link href="https://cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+
     <script>
         $(function () {
             $('.js_article_tabs_list').on('click', 'li', function () {

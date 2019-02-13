@@ -460,3 +460,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 .wszl .titleImg img{ display:block; margin:0 auto;}
 .wszl .infor{ padding:15px 20px 20px; line-height:30px; font-size:16px; color:#7a7a7a; text-align:center;}
 .wszl .btn a{ display:block; width:196px; height:50px; line-height:50px;background:#1bc1cd; border-radius:25px; margin:0 auto; font-size:20px; color:#fff; text-align:center;}
+
+/* photoList */
+.photoList{margin-left: -25px;}
+.photoList li{width: 256px;float: left;margin-left: 25px;overflow: hidden;border-radius: 12px;}
+.photoList li .pic{width: 100%;height: 280px;line-height: 280px;border-radius: 12px;margin-bottom: 6px; text-align: center;background: #e2e2e2;overflow: hidden;}
+.photoList li img{max-width: 100%;max-height: 100%;cursor: pointer;vertical-align: middle;display: inline-block;}
+.photoList li .title{font-size: 14px;line-height: 22px;color: #5e5e5e;text-align: center;}
