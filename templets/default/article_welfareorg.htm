@@ -19,11 +19,11 @@
         <div class="article_tabs">
             <div class="article_tabs_list js_article_tabs_list">
                 <ul class="w clearfix">
-                    <li class="cur"><a href="javascript:;">简介</a></li>
-                    <li><a href="javascript:;">最新动态</a></li>
-                    <li><a href="javascript:;">最新需求</a></li>
-                    <li><a href="javascript:;">相册</a></li>
-                    <li><a href="javascript:;">荣誉</a></li>
+                    <li class="js_items cur"><a href="javascript:;">简介</a></li>
+                    <li class="js_items"><a href="javascript:;">最新动态</a></li>
+                    <li class="js_items"><a href="javascript:;">最新需求</a></li>
+                    <li class="js_items"><a href="javascript:;">相册</a></li>
+                    <li class="js_items"><a href="javascript:;">荣誉</a></li>
                     <li><a href="javascript:;">我要报名</a></li>
                 </ul>
             </div>
@@ -84,8 +84,6 @@
                         {/dede:php}
                     </ul>
                 </div>
-                <div class="Items" style="display: none;">
-                </div>
             </div>
 
             <a class="book_button">立即报名</a>
@@ -100,7 +98,7 @@
 
     <script>
         $(function () {
-            $('.js_article_tabs_list').on('click', 'li', function () {
+            $('.js_article_tabs_list').on('click', '.js_items', function () {
                 var $this = $(this),
                     $index = $this.index();
                 $this.addClass('cur').siblings().removeClass('cur')
