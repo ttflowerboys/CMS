@@ -71,6 +71,7 @@ else if($dopost=="save" && $isarc == 1)
         $litpic = $thumb;
     }
 
+    $body = addslashes(stripslashes($body));
     //处理body字段自动摘要、自动提取缩略图等
     $inQuery = "INSERT INTO #@__org_news(title,pubdate,click,body,oid,project,litpic)
     VALUES('$title','$pubDate',$click,'$body','$oid','$project','$litpic'); ";

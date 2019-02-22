@@ -54,6 +54,37 @@ if($dopost!='save')
     $nPhoto = field_files('photo', $addRow['photo'], $setting);
     $nHonor = field_files('honor', $addRow['honor'], $setting);
 
+    // 最新动态 - 列表
+    $newsList = '';
+    $listSetting = array(
+        'title' => '最新动态',
+        'field' => array(
+            'aid' => 'ID',
+            'title' => '标题',
+            'litpic' => '缩略图',
+            'pubdate' => '发布时间',
+            'actions' => '操作'
+        )
+    );
+    $dsql->Execute('news',"SELECT aid,title,pubdate,litpic FROM `#@__org_news` WHERE oid='$aid' ORDER BY pubdate DESC");
+    
+    $newsRow = '';
+    while($arr = $dsql->GetArray('news'))
+    {
+        $newsRow .= '<tr align="center" bgcolor="#FFFFFF" height="24">';
+
+        $newsRow .= "<td>{$arr['aid']}</td>";
+        $newsRow .= "<td>{$arr['title']}</td>";
+        $newsRow .= "<td><img src='{$arr['litpic']}' height='52'></td>";
+        $newsRow .= "<td>".MyDate('Y-m-d H:i:s',$arr['pubdate'])."</td>";
+        $newsRow .= "<td><a href='javascript:;' onclick='editNews(".$arr['aid'].")'>编辑</a></td>";
+        //  &nbsp;<a href='javascript:;' onclick='delNews(".$arr['aid'].")'>删除</a></td>";
+
+        $newsRow .= '</tr>';
+    }
+
+    $newsList = field_org_news($newsRow, $listSetting);
+
     $channelid = $arcRow['channel'];
     $tags = GetTags($aid);
     include DedeInclude("templets/org_edit.htm");
