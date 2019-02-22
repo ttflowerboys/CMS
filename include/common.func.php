@@ -468,6 +468,27 @@ function field_files($name, $content = '', $setting = '')
     return $str . $js;
 }
 
+function field_org_news($content='', $setting = ''){
+    $str = '';
+    $head = '';
+    $head .= '<table width="98%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#D6D6D6" class="table_tac">
+    <tr><td height="28" background="images/tbg.gif" colspan="5"> <b>&nbsp;'.$setting['title'].'</b></td></tr>';
+    if($setting['field']){
+        $head .= '<tr align="center" bgcolor="#F9FCEF" height="24">';
+        foreach($setting['field'] as $key => $val){
+            $head .= '<th>'.$val.'</th>';
+        }
+        $head .= '</tr>';
+    }
+
+    $str = '<tr><td colspan="100" style="text-align: center;height: 100px;background: #fff;font-size: 16px;">暂无数据！</td><tr>';
+    if ($content) {
+        $str = $content;
+    }
+    $str .= '</table>';
+    return $head.$str;
+}
+
 /**
  *  获取验证码的session值
  *
