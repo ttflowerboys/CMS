@@ -369,6 +369,47 @@ function array2string($data, $isformdata = 1)
     return serialize($data);
 }
 
+/**
+ * 单文件上传
+ */
+function field_file($name, $content = '', $setting = '')
+{
+    $type = $setting['type'];
+    $txt = $setting['buttontxt']?$setting['buttontxt']:'上传文件';
+    $size = $setting['size'] * 1024;
+    $js = "<script>
+    var uploader = WebUploader.create({
+        auto: true,
+        fileVal:'upfile',
+        duplicate :true,
+        multiple: false,
+        fileSingleSizeLimit:{$size}*1024,
+        server: 'web_uploader.php?c=uploadfile&a=ueditor&action=uploadfile',
+        pick: '#filePicker_{$name}',
+        accept: {
+            title: 'Images',
+            extensions: '{$type}'
+        }
+    });
+    uploader.on( 'uploadSuccess', function( file, ret) {
+        $('#{$name}').attr('value', ret.url);
+    });
+    uploader.on( 'error', function( file) {
+        if (file == 'Q_TYPE_DENIED') {
+            alert('请上传{$type}格式文件');
+        } else if (file == 'F_EXCEED_SIZE') {
+            alert('文件大小不能超过 {$setting['size']} M,请压缩');
+        }else {
+            alert('上传出错！请检查后重新上传！错误代码'+file);
+        }
+    });
+        </script>";
+    $preview = $setting['preview'] ? 'onmouseover="showImg(this)"  onmouseout="hideImg(this)"' : '';
+    return '<input type="text" class="input-text"  size="50" value="' . $content . '" name="'. $name . '" id="' . $name . '" ' . $preview . '><span id="filePicker_' . $name . '"  >'.$txt.'</span>'.$js;
+}
+/**
+ * 多文件上传
+ * */
 function field_files($name, $content = '', $setting = '')
     {
         $type = $setting['type'];
