@@ -136,7 +136,7 @@ function tb_show(caption, url, refParent)
             else if(url.indexOf('TB_iframe') != -1)
             {
                     tb_position();
-                    if($.browser.safari){//safari needs help because it will not fire iframe onload
+                    if($.browser && $.browser.safari){//safari needs help because it will not fire iframe onload
                         $("#TB_load").remove();
                         $("#TB_window").css({display:"block"});
                     }
@@ -248,7 +248,7 @@ function tb_position()
 {
   $("#TB_window").css({marginLeft: '-' + parseInt((TB_WIDTH / 2),10) + 'px', width: TB_WIDTH + 'px'});
     // take away IE6
-    if ( !(jQuery.browser.msie && jQuery.browser.version < 7))
+    if ( !(jQuery.browser && jQuery.browser.msie && jQuery.browser.version < 7))
     {
          $("#TB_window").css({marginTop: '-' + parseInt((TB_HEIGHT / 2),10) + 'px'});
     }

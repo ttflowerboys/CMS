@@ -71,3 +71,6 @@ input.custom_button_orgin {
 	opacity: 0.6;
 	pointer-events:none;
 }
+.send_button{
+    background: url(../images/control_bg_fixed.gif?V=V6_0_2017_10_14) no-repeat -62px -129px;
+    display: block; text-align: center;color: #fff!important;width: 70px;height: 26px;padding-top: 36px;font-size: 12px;}
