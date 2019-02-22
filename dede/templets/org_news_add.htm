@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $cfg_soft_lang; ?>">
+    <title>发布最新动态</title>
+    <link href="css/base.css" rel="stylesheet" type="text/css">
+<script src="js/plugins/jquery/1.12.4/jquery.min.js"></script>
+<!-- <script language="javascript" src="../include/js/jquery/jquery.js"></script> -->
+    <script src="../include/js/webcalendar.js" type="text/javascript"></script>
+    <script language="javascript">
+        function checkSubmit() {
+            if (document.form1.title.value == "") {
+                alert("标题不能为空！");
+                document.form1.title.focus();
+                return false;
+            }
+        }
+    </script>
+    <!-- upload -->
+    <script type="text/javascript" src="/include/ueditor/third-party/webuploader/webuploader.min.js"></script>
+    <!-- upload end -->
+    <script>
+        function showImg(_this) {
+            if (!_this.value) {
+                return false
+            }
+            $("body").append("<div id='Previewthumb' style='position: absolute; z-index:20000000; '><img src=" + _this.value + " style='max-width:450px;min-width:150px;border:2px #ccc solid;'></div>");
+            $("#" + _this.id).mousemove(function(e) {
+                $("#Previewthumb").css({
+                    "top": (e.pageY + 5) + "px",
+                    "left": (e.pageX + 2) + "px"
+                })
+            })
+        }
+        function hideImg(_this) {
+            $("#Previewthumb").remove()
+        }
+    </script>
+</head>
+
+<body background="images/allbg.gif" leftmargin='8' topmargin='8'>
+    <form name="form1" method="post" action="org_news_add.php" enctype="multipart/form-data" onSubmit="return checkSubmit()">
+        <input type='hidden' name='dopost' value='save'>
+        <input type="hidden" name="isarc" value="<?php echo $isarc; ?>" />
+        <input type="hidden" name="aid" value="<?php echo $aid; ?>" />
+        <input type="hidden" name="project" value="<?php echo $project; ?>" />
+
+        
+        <table width="98%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#D6D6D6">
+            <tr>
+                <td height="200" bgcolor="#FFFFFF" valign="top">
+                    <table width="100%" border="0" cellspacing="4" cellpadding="4">
+                        <tr>
+                            <td width="15%" align="center">标题：</td>
+                            <td width="85%" colspan="3"> <input name="title" type="text" id="title" style="width:388px"></td>
+                        </tr>
+                        <tr>
+                            <td width="15%" align="center">缩略图：</td>
+                            <td width="85%" colspan="3">
+                                <?php echo $Thumbs; ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="100%" id="arcBody" colspan="4">
+                                <?php GetEditor("body",$body, 220); ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="bline">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td width="90" height="22">&nbsp;发布时间：</td>
+                                            <td width="240">
+                                                <input name="pubDate" type="text" id="pubDate" value="<?php echo $pubDate?>"
+                                                    class="dateico" onClick="SelectDate(this,'yyyy-MM-dd hh:mm:ss',80,0)"></td>
+                                            <td width="90">浏览次数：</td>
+                                            <td>
+                                                <input type='text' name='click' value='<?php echo ($cfg_arc_click=='
+                                                    -1' ? mt_rand(50, 200) : $cfg_arc_click); ?>' style='width:100px;'
+                                                />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="47">&nbsp;</td>
+                            <td>
+                                <input name="Submit" type="image" src="images/button_save.gif" width="60" height="22"
+                                    class="np" border="0" style="cursor:pointer;">
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
