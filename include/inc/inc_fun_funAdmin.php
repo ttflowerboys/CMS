@@ -186,8 +186,8 @@ function SpGetEditor($fname,$fvalue,$nheight="350",$etype="Basic",$gtype="print"
     {
         $fvalue = $fvalue=='' ? '<p></p>' : $fvalue;
         $code = '<script type="text/javascript" charset="utf-8" src="'.$GLOBALS["cfg_cmspath"].'/include/ueditor/ueditor.config.js"></script><script type="text/javascript" charset="utf-8" src="'.$GLOBALS["cfg_cmspath"].'/include/ueditor/ueditor.all.js"></script><link rel="stylesheet" type="text/css" href="'.$GLOBALS["cfg_cmspath"].'/include/ueditor/themes/default/css/ueditor.css"/>
-        <textarea name="'.$fname.'" id="'.$fname.'" style="width:100%;height: 460px;">'.$fvalue.'</textarea>
-        <script type="text/javascript">var ue = new baidu.editor.ui.Editor();ue.render("'.$fname.'");</script>';
+        <textarea name="'.$fname.'" id="'.$fname.'" style="width:100%;height: '.$nheight.'px">'.$fvalue.'</textarea>
+        <script type="text/javascript">var ue = new baidu.editor.ui.Editor({ initialFrameHeight:'. $nheight .' , toolbars:[ ["fullscreen", "source", "fontfamily", "fontsize", "forecolor", "backcolor", "|", "undo", "redo", "|", "bold", "italic", "underline", "strikethrough", "pasteplain", "|", "justifyleft", "justifycenter", "justifyright", "justifyjustify", "|", "insertimage", "insertvideo", "map", "link", "unlink" ] ] });ue.render("'.$fname.'");</script>';
         if($gtype=="print")
         {
             echo $code;
