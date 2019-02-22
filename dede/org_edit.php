@@ -85,6 +85,35 @@ if($dopost!='save')
 
     $newsList = field_org_news($newsRow, $listSetting);
 
+    // 最新需求 - 列表
+    $demandList = '';
+    $demandSetting = array(
+        'title' => '最新需求',
+        'field' => array(
+            'aid' => 'ID',
+            'title' => '标题',
+            'litpic' => '缩略图',
+            'pubdate' => '发布时间',
+            'actions' => '操作'
+        )
+    );
+    $dsql->Execute('demand',"SELECT aid,title,pubdate,litpic FROM `#@__org_demand` WHERE oid='$aid' ORDER BY pubdate DESC");
+    
+    $demandRow = '';
+    while($arr = $dsql->GetArray('demand'))
+    {
+        $demandRow .= '<tr align="center" bgcolor="#FFFFFF" height="24">';
+
+        $demandRow .= "<td>{$arr['aid']}</td>";
+        $demandRow .= "<td>{$arr['title']}</td>";
+        $demandRow .= "<td><img src='{$arr['litpic']}' height='52'></td>";
+        $demandRow .= "<td>".MyDate('Y-m-d H:i:s',$arr['pubdate'])."</td>";
+        $demandRow .= "<td><a href='javascript:;' onclick='editDemand(".$arr['aid'].")'>编辑</a></td>";
+
+        $demandRow .= '</tr>';
+    }
+    $demandList = field_org_news($demandRow, $demandSetting);
+
     $channelid = $arcRow['channel'];
     $tags = GetTags($aid);
     include DedeInclude("templets/org_edit.htm");

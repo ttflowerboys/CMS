@@ -233,7 +233,7 @@ if($cfg_need_typeid2=='Y') {
   <table class="table_content js_table_content" id="news" style="display:none">
     <tr>
       <td width="1%" height="24" style="padding: 20px;">
-        <a href="javascript:;" class="send_button" onclick="addNews()">发布</a>
+        <a href="javascript:;" class="send_button" onclick="addNews()">发布动态</a>
       </td>
       <td>
           <?php echo $newsList; ?>
@@ -243,8 +243,11 @@ if($cfg_need_typeid2=='Y') {
   <!-- 最新需求 -->
   <table class="table_content js_table_content" id="demand" style="display:none">
       <tr>
+        <td width="1%" height="24" style="padding: 20px;">
+          <a href="javascript:;" class="send_button" onclick="addDemand()">发布需求</a>
+        </td>
         <td width="100%" height="24" colspan="4" class="bline">
-          最新需求
+            <?php echo $demandList; ?>
         </td>
       </tr> 
     </table>
@@ -392,14 +395,23 @@ if($cfg_need_typeid2=='Y') {
 </form>
 
 <script>
-function addNews(cid)
+function addNews()
 {
-    tb_show('发布最新动态', 'org_news_add.php?isarc=1&channelid=<?php echo $channelid;?>&aid=<?php echo $aid;?>&TB_iframe=true&height=490&width=800', false);
+    tb_show('发布动态', 'org_news_add.php?isarc=1&channelid=<?php echo $channelid;?>&aid=<?php echo $aid;?>&TB_iframe=true&height=490&width=800', false);
 }
 
 function editNews(aid)
 {
     tb_show('编辑动态', 'org_news_edit.php?isarc=1&channelid=<?php echo $channelid;?>&cid=<?php echo $aid;?>&aid='+aid+'&TB_iframe=true&height=490&width=800', false);
+}
+
+function addDemand()
+{
+    tb_show('发布需求', 'org_demand_add.php?isarc=1&channelid=<?php echo $channelid;?>&aid=<?php echo $aid;?>&TB_iframe=true&height=490&width=800', false);
+}
+function editDemand(aid)
+{
+    tb_show('编辑需求', 'org_demand_edit.php?isarc=1&channelid=<?php echo $channelid;?>&cid=<?php echo $aid;?>&aid='+aid+'&TB_iframe=true&height=490&width=800', false);
 }
 </script>
 

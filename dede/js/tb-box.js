@@ -194,7 +194,7 @@ function tb_showmsg(msg, caption, talign, ww, wh)
         $("#TB_window").css({top: topx + "px"});
         $("#TB_window")[0].style.width = ww;
         $("#TB_window")[0].style.height = wh;
-		$("#TB_window").draggable(); //支持窗口拖动
+		// $("#TB_window").draggable(); //支持窗口拖动
             
       document.onkeyup = function(e){ kc = (e == null ? event.keyCode : e.which); if(kc == 27){ tb_remove(); } };
 }

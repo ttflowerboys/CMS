@@ -1,0 +1,49 @@
+{dede:config.pagesize value='20'/}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $cfg_soft_lang; ?>">
+<title>动态管理</title>
+<link href="css/base.css" rel="stylesheet" type="text/css">
+</head>
+<script language='javascript' src="js/main.js"></script>
+<script language="javascript" src="../include/js/jquery/jquery.js"></script>
+<script language="javascript" src="../include/js/jquery/ui.core.js"></script>
+<script language="javascript" src="../include/js/jquery/ui.draggable.js"></script>
+<script language='javascript' src='js/tb-box.js'></script>
+
+<body background='images/allbg.gif' leftmargin='8' topmargin='8'>
+<form id="form1" name="form1" method="post" action="">
+<table width="98%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#D6D6D6">
+  <tr>
+   <td height="28" background="images/tbg.gif" colspan="5">
+     <b>列表</b></td>
+</tr>
+  <tr align="center" bgcolor="#F9FCEF" height="24"> 
+
+      <td width="8%">ID</td>
+      <td width="18%">标题</td>
+      <td width="20%">缩略图</td>
+      <td width="20%">发布时间</td>
+	  <!-- <td width="10%">操作</td> -->
+  </tr>
+        {dede:datalist}
+         <tr align="center" bgcolor="#FFFFFF" height="24" 
+         	onMouseMove="javascript:this.bgColor='#f4fbf4';" onMouseOut="javascript:this.bgColor='#FFFFFF';"> 
+          <td <?php if($fields['aid'] == $aid) echo "style='color:red'";?>>{dede:field.aid /}</td>
+          <td <?php if($fields['aid'] == $aid) echo "style='color:red'";?>> {dede:field.title /}</td>
+          <td><img src="{dede:field.litpic /}" height="65"></td>
+          <td <?php if($fields['aid'] == $aid) echo "style='color:red'";?>>{dede:field name='pubdate' function="MyDate('Y-m-d H:i:s',@me)"/}</td>
+		  <!-- <td><a href="javascript:DelNews({dede:field.aid/});" id="TB_closeWindowButton">编辑 删除</a></td> -->
+        </tr>
+		{/dede:datalist}
+     <tr align="center" bgcolor="#F9FCEF" height="24"> 
+      <td colspan="5">{dede:pagelist listsize='6'/}</td>
+     </tr>
+   </table>
+   </td>
+</tr>
+</table>
+</form>
+</body>
+</html>
