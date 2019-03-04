@@ -1,5 +1,5 @@
 $(function () {
-    $("#loginSubmitBtn").click(function () {
+    $(".js_loginSubmitBtn").click(function () {
         var $this = $(this);
         var uname = $("#uname").val();
         var password = $("#password").val();

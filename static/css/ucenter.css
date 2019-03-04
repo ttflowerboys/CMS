@@ -38,8 +38,9 @@
 
 .UCenterForm{width: 800px;margin: 0 auto;}
 .UCenterForm .Items{margin-bottom: 20px;overflow: hidden;line-height: 50px;padding-left: 412px;}
-.UCenterForm .Items .label{width: 398px;height: 50px;font-size: 19px;line-height: 50px;margin-left: -412px;color: #fff;padding-left: 60px; border-radius: 4px;display: block;float: left;background: #fff url(../images/ucenter_label.png) right top no-repeat;}
-.UCenterForm .Items:nth-child(even) .label{background-image: none;color: #000;}
+.UCenterForm .Items .label{width: 398px;height: 50px;font-size: 19px;line-height: 50px;margin-left: -412px;color: #fff;padding-left: 60px; border-radius: 4px;display: block;float: left;background: url(../images/ucenter_label.png) right top no-repeat;}
+.UCenterForm .Items .text{font-size: 18px;}
+.UCenterForm .Items:nth-child(even) .label{background: none;color: #000;}
 .UCenterForm .Items .label span{font-size: 14px;margin-left: 5px;}
 .UCenterForm .Items.Items-small{padding-left: 312px;}
 .UCenterForm .Items.Items-small .label{margin-left: -312px;width: 298px;padding-left: 45px;}
@@ -52,7 +53,8 @@
 .UCenterForm .Items .ipt-checkbox{font-size: 18px;line-height: 32px;color: #000;cursor: pointer;display: block;margin-bottom: 12px;}
 .UCenterForm .Tips{font-size: 18px;margin: 32px auto;color: #000;}
 .UCenterForm .Tips span{font-size: 16px;color: #666;}
-.UCenterForm .ipt-submit{height: 50px;width: 160px;text-align: center;font-weight: bold;cursor: pointer; font-size: 22px;color: #fff;display: block;margin: 0 auto;border-radius: 25px; background: #42a4f7;}
+.UCenterForm .ipt-submit,
+.blue-ipt-submit{height: 50px;padding: 0 32px;text-align: center;font-weight: bold;cursor: pointer; font-size: 22px;color: #fff;display: block;margin: 0 auto;border-radius: 25px; background: #42a4f7;}
 .UCenterForm .subItems{padding-left: 80px;padding-right: 10px;margin-bottom: 10px;}
 .UCenterForm .subItems span{margin-left: -80px;font-size: 18px; color: #000;}
 .UCenterForm .subItems .ipt-text{}
@@ -61,3 +63,61 @@
 .ucenter-table{width: 100%;}
 .ucenter-table th{padding: 10px 0;border-bottom: 1px solid #ccc;color: #333;font: normal 16px/30px 'Microsoft YaHei';}
 .ucenter-table td{padding: 20px 0;text-align: center;font-size: 14px;background: url(../images/orderline.jpg) repeat-x bottom;}
+
+
+
+.submitOrder .titleBox{ margin-top:40px;}
+.submitOrder .titleBox h3{ height:34px; line-height:34px; background:url(../images/submitOrderTit.jpg) no-repeat center center; text-align:center;}
+.submitOrder .titleBox h3 span{ display:inline-block; height:34px; line-height:34px; font-size:28px; color:#53a4f7; font-weight:normal; padding-left:40px; background:url(../images/suborderh3.jpg) no-repeat 0 center;}
+.submitOrder h4{ height:44px; line-height:44px; font-size:28px; color:#53a4f7; text-align:center; font-weight:normal;}
+.submitOrder .submitOrderMenu{ height:52px; background:#777; border:1px solid #53a4f7; margin-top:20px;}
+.submitOrder .submitOrderMenu p { width:20%; height:50px; line-height:50px; float:left; text-align:center; font-size:17px; color:#fff; cursor: pointer;}
+.submitOrder .submitOrderMenu p.cur { background:#53a4f7;}
+.submitOrder .submitOrderMenu p.old{ background:#fff; color:#53a4f7;}
+
+.SubmitInformation{ width:1100px;margin:0px auto 0; }
+.SubmitInformation ul { background:#f9f9f9;width:800px;padding:0px 150px;float:left;margin-bottom:10px; }
+.SubmitInformation .titleBox{ width:100%;height:54px; line-height:54px; font-family:Arial; font-size:23px; color:#000; float:left;}
+.SubmitInformation .SubInDiv{ width:100%; float:left; margin-bottom:10px; }
+.SubmitInformation .SubInDiv .SubInLeft{ width:338px; height:51px; line-height:51px; margin-bottom:10px; float:left; padding-left:60px; font-size:19px;}
+.SubmitInformation .SubInDiv .SubInLeft i{ font-style:normal; color:#f00;}
+.SubmitInformation .SubInDiv .SubInLeft01{ background:url(../images/tab2.png) no-repeat 0 0; color:#fff;}
+.SubmitInformation .SubInDiv .SubInLeft02{ color:#000;}
+.SubmitInformation .SubInDiv .SubInRight{ margin-left:412px;}
+.SubmitInformation .SubInDiv .SubInRight .llSelect{ margin-bottom:10px;}
+.SubmitInformation .SubInDiv .SubInRight .llSel{ display:block; width:100%; height:51px; margin-bottom:10px; border:1px solid #929292; border-radius:5px; font-size:15px;padding:0px 8px;}
+.SubmitInformation .SubInDiv .SubInRight .SubInTxt{ line-height:30px; padding:11px 0 10px; font-size:17px; padding-left:37px; color:#000; margin-bottom:10px;}
+
+.SubInDate{ margin-bottom:10px; border:1px solid #929292; border-radius:5px;}
+.SubInDate .SubInDate_top td{ line-height:30px; background:#53a4f7; text-align:center; color:#fff; font-size:15px;}
+.SubInDate .SubInDate_bottom td{ line-height:38px; text-align:center; font-size:15px; color:#4a4a4a;}
+.SubInDate .SubInDate_bottom td img{vertical-align: middle;}
+
+.SubmitInformation .SubInDiv .SubInRight .SubInOptions{ margin:0 0 10px 17px;}
+.SubmitInformation .SubInDiv .SubInRight .SubInOptions span{ line-height:24px; margin-right:10px; font-size:17px; color:#000;}
+.SubmitInformation .SubInDiv .SubInRight .weeks{ margin-left:128px; height:31px; line-height:31px; padding:10px 0; font-size:19px; color:#000;}
+.SubmitInformation .SubInDiv .SubInRight .weeks span{ color:#ff7e00;}
+.SubmitInformation .SubInDiv .SubInRight .SubInInput{ margin-bottom:10px;}
+.SubmitInformation .SubInDiv .SubInRight .SubInInput textarea.txtM{ width:346px; height:130px; line-height:26px; padding:10px 20px; border:1px solid #929292;border-radius:5px; font-size:15px;	}
+.SubmitInformation .SubInDiv .SubInRight .SubInInput input.txt{ width:346px; height:49px; line-height:49px; border:1px solid #929292; padding:0 20px; border-radius:5px; font-size:15px;}
+.SubmitInformation .SubInDiv .SubInRight .FormCheck02{ overflow:hidden; padding:10px 0;}
+.SubmitInformation .SubInDiv .SubInRight .FormCheck02 label{ height:31px; line-height:31px; font-size:18px; color:#000; float:left; margin-right:25px;}
+.SubmitInformation .SubInDiv .SubInRight .FormCheck02 label input{ float:left; margin:10px 10px 0 0;}
+.SubmitInformation .SubInDiv .SubInRight .FormCheck03 .FormCheck03Div{ overflow:hidden; margin-bottom:10px;}
+.SubmitInformation .SubInDiv .SubInRight .FormCheck03 .FormCheck03Div label{ height:51px; line-height:51px; font-size:17px; color:#000; float:left;margin-left:4px;}
+.SubmitInformation .SubInDiv .SubInRight .FormCheck03 .FormCheck03Div label input{ float:left; margin:20px 5px 0 0;}
+.SubmitInformation .SubInDiv .SubInRight .FormCheck03 .FormCheck03Div input.txt{ width:80px; height:49px; line-height:49px; padding:0 10px; border:1px solid #929292; border-radius:5px; margin-left:88px; display:block;}
+.SubmitInformation .SubInDiv .SubInRight .FormCheck03 .FormCheck03Div textarea.txt{ width:272px; height:100px; line-height:30px; font-size:16px; color:#000; padding:0 10px; border:1px solid #929292; border-radius:5px; margin-left:90px; display:block;}
+.SubmitInformation .SubInDiv .SubInRight .SubInInputYzm{ position:relative;}
+.SubmitInformation .SubInDiv .SubInRight .SubInInputYzm input.txt{width:200px;padding-right:166px;}
+.SubmitInformation .SubInDiv .SubInRight .SubInInputYzm input.yzbtn{ width:146px; height:49px; line-height:49px; background:fff; border:none; position:absolute; top:1px; right:1px; border-radius:0 5px 5px 0; font-size:16px; color:#000;}
+.SubmitInformation .SubInDiv .SubInRight .bandphoneLink{ line-height:51px; margin-bottom:10px;}
+.SubmitInformation .SubInDiv .SubInRight .bandphoneLink a{ font-size:14px; text-decoration:underline; margin:0 15px; font-weight:bold;}
+.SubmitInformation .SubInDiv .SubInRight .bandphoneLink a.link01{ color:#888;}
+.SubmitInformation .SubInDiv .SubInRight .bandphoneLink a.link02{ color:#53a4f7;}
+.SubmitInformation .SubInBtn{ margin-top:30px;}
+.SubmitInformation .SubInBtn input.btn{ height:46px; line-height:46px; padding:0 30px; font-size:26px; color:#fff; font-family:Arial; font-weight:bold; background:#53a4f7; border:none; margin:0 auto; border-radius:23px; display:block; margin:0 auto; cursor:pointer;}
+.SubmitInformation .SubInBtn02{ margin-top:50px;}
+.SubmitInformation .SubInBtn02 input.btn{ height:56px; line-height:56px; background:#53a4f7; border:none; display:block; width:100%; font-size:16px; color:#fff; cursor:pointer;}
+.colorff7e00{ color:#ff7e00 !important;}
+.color1bc1cd{ color:#53a4f7 !important;}

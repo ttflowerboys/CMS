@@ -31,8 +31,19 @@ if($uid=='')
     }
     else
     {
+        $sql = "SELECT mp.*,m.email FROM `#@__member_person` mp
+                LEFT JOIN `#@__member` m ON mp.mid=m.mid
+                WHERE mp.mid='".$cfg_ml->M_ID."'; ";
+        $minfos = $dsql->GetOne($sql);
+
         $dpl = new DedeTemplate();
         switch ($type) {
+            case 'add':
+                $aFiled = 'country';
+                $aChannel = 18;
+                
+                $tpl = dirname(__FILE__)."/templets/orders_add.htm";
+                break;
             default:
                 $tpl = dirname(__FILE__)."/templets/orders_myself.htm";
                 break;

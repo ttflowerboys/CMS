@@ -15,6 +15,7 @@ i{ font-style: normal;}
 .rel{position: relative;}.abs{position: absolute;}.fl{float: left;}.fr{float: right;}
 .w{width: 1200px;min-width:1200px;margin: 0 auto;position: relative;}
 .w1000{width: 1000px;min-width:1000px;margin: 0 auto;position: relative;}
+.w1100{width: 1100px;margin: 0 auto;position: relative;}
 a{color: #666;}a:hover{transition : color 0.2s linear 0s,background-color 0.3s linear 0s;color: #63b2f5;}
 .clearfix:after{content:'\0020';display:block;height:0;clear:both;visibility:hidden;}
 .clearfix{*zoom:1;}
@@ -23,6 +24,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 .block60{clear: both;height: 60px;}
 .block12{clear: both;height: 12px;}
 .grayBg{background-color: #f4f4f4;}
+.whiteBg{background-color: #fff;}
 .t-blue{color: #42a4f7;}
 /* header style */
 .header{

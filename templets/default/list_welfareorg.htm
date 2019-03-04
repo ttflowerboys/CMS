@@ -25,8 +25,9 @@
                     <div class="swiper-container js-pic-swiper-container">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide"><a href=""><img src="/uploads/181229/1-1Q229103PCQ.jpg" alt="" width="570"></a></div>
-                            <div class="swiper-slide"><a href=""><img src="/uploads/181229/1-1Q2291102512Q.jpg" alt="" width="570"></a></div>
-                            <div class="swiper-slide"><a href=""><img src="/uploads/181227/1-1Q22H13546342.jpg" alt="" width="570"></a></div>
+                            {dede:sql sql="SELECT * FROM timer_org_news"}
+                            <div class="swiper-slide"><a href=""><img src="[field:litpic/]" alt="[field:title/]" width="570"></a></div>
+                            {/dede:sql}
                         </div>
                         <div class="swiper-pagination"></div>
                     </div>
@@ -35,9 +36,15 @@
                     <div class="OrgTitle">最新需求</div>
                     <div class="swiper-container js-text-swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">1</div>
-                            <div class="swiper-slide">2</div>
-                            <div class="swiper-slide">3</div>
+                            {dede:sql sql="SELECT * FROM timer_org_demand"}
+                            <div class="swiper-slide">
+                                <div class="title"><a href="[field:arcurl/]">[field:title/]</a></div>
+                                <div class="number">阅读：<span>[field:click/]</span></div>
+                                <span class="time">[field:pubdate function="GetDateTimeMK(@me)"/]</span>
+                            </div>
+                            {/dede:sql}
+                            
+                            
                         </div>
                         <div class="swiper-pagination"></div>
                     </div>

@@ -32,7 +32,10 @@ if($uid=='')
     }
     else
     {
-        $minfos = $dsql->GetOne("SELECT * FROM `#@__member_person` WHERE mid='".$cfg_ml->M_ID."'; ");
+        $sql = "SELECT mp.*,m.email FROM `#@__member_person` mp
+                LEFT JOIN `#@__member` m ON mp.mid=m.mid
+                WHERE mp.mid='".$cfg_ml->M_ID."'; ";
+        $minfos = $dsql->GetOne($sql);
         $dpl = new DedeTemplate();
         $tpl = dirname(__FILE__)."/templets/ucenter_account.htm";
         $dpl->LoadTemplate($tpl);

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>会员中心_
+        <?php echo $cfg_webname; ?>
+    </title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/ucenter.css">
+    <style>
+        .header{ border-bottom: 2px solid #42a4f7;}
+        .UCenterForm .Items .select{width: 160px;float: left;}
+    </style>
+    <!-- member/templets/archives_add.htm -->
+</head>
+
+<body>
+    <?php pasterTempletDiy("head.htm"); ?>
+    <div class="block60"></div>
+    <div class="w1100">
+        <div class="submitOrder">
+            <div class="titleBox"><h3><span>提交资料</span></h3><h4>Program Application</h4></div>
+            <div class="block60"></div>
+            <div class="submitOrderMenu">
+                <p class="cur">提交资料</p>
+                <p>预付押金</p>
+                <p>航班资料填写</p>
+                <p>项目总费用</p>
+            </div>
+        </div>
+        <div class="grayBg">
+            <div class="block60"></div>
+            <form action="/member/ajax_orders.php" enctype="multipart/form-data"></form>
+                <div class="UCenterForm">
+                    <div class="Items">
+                        <label class="label">项目国家<span class="t-blue">（请选择游记所在城市）</span></label>
+                        {dede:php}AddFilter($aChannel,3,'country');{/dede:php}
+                    </div>
+                    <div class="Items"><label class="label">Visa Requirement</label><p class="text">You need a valid visa to stay.</p></div>
+                    <div class="Items"><label class="label">Frequency</label><p class="text">Every Monday</p></div>
+                    <div class="Items">
+                        <label class="label">Available Travel Period</label>
+                        <div class="SubInDate">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr class="SubInDate_top"><td>Valid From</td><td>&nbsp;</td><td>Valid Till</td></tr>
+                                <tr class="SubInDate_bottom">
+                                    <td>Today</td><td><img src="/static/images/bm2.png" /></td>
+                                    <td id="SubInDate_bottom_end">2019-06-02</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- <div class="Items"><label class="label">Program Options</label><p class="text">英文教学项目[A]</p></div> -->
+                    <div class="Items">
+                        <label class="label">Start Date*</label>
+                        <input type="text" class="ipt-text hasDateIcon js_laydate" name="startDate">
+                    </div>
+                    <div class="Items">
+                        <label class="label">Duration*</label>
+                        <select class="select" name="duration" style="width: 100px;">
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                        <p class="text">&nbsp;&nbsp; Weeks <span style="color: #ff7e00;">(Minimum Weeks)</span></p>
+                    </div>
+                    <div class="Items">
+                        <label class="label">Price</label>
+                        <p class="text">￥0</p>
+                    </div>
+                    <div class="Items">
+                        <label class="label">Special Requirements</label>
+                        <textarea class="ipt-textarea" name="experience" placeholder="Please Use English to describe"></textarea>
+                    </div>
+                </div>
+                <div style="height: 12px;background: #fff;clear: both;"></div>
+                <div class="UCenterForm">
+                    <div class="block60"></div>
+                    <div class="Items"><label class="label">中文姓名<span class="t-red">*</span></label><input type="text" name="uname" class="ipt-text" value="<?php echo $minfos['uname']; ?>"></div>
+                    <div class="Items"><label class="label">Full Name<span class="t-red">*</span></label><input type="text" name="fullname" class="ipt-text" value="<?php echo $minfos['surname'] .' '.$minfos['givenname']; ?>"></div>
+                    <div class="Items"><label class="label">Passport<span class="t-red">*</span></label><input type="text" name="passportno" class="ipt-text" value="<?php echo $minfos['passportno']; ?>"></div>
+                    <div class="Items"><label class="label">Email Address<span class="t-red">*</span></label><input type="text" name="email" class="ipt-text" value="<?php echo $minfos['email'];?>"></div>
+                    <div class="Items"><label class="label">Contact No.<span class="t-red">*</span></label><input type="text" name="contactno" class="ipt-text" value="<?php echo $minfos['contactno']; ?>"></div>
+                    <div class="Items"><label class="label">Emergency Contact<span class="t-red">*</span></label><input type="text" name="emename" class="ipt-text" value="<?php echo $minfos['emename']; ?>"></div>
+                </div>
+                    <div class="block60"></div>
+                    <input type="hidden" name="dopost" value="save">
+                <div class="whiteBg">
+                    <div class="block60"></div>
+                    <button type="button" class="blue-ipt-submit js_update_travelnotes">Submit New Application</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<div class="block60"></div>
+<?php pasterTempletDiy("footer.htm"); ?>
+
+<script src="/static/js/plugins/laydate/laydate.js"></script>
+<script>
+$(function () {
+    laydate.render({
+        elem: '.js_laydate'
+        ,format: 'yyyy-MM-dd'
+        ,lang: 'en'
+    });
+})
+</script>
+<script src="/static/js/tools.js"></script>
+
+<script>
+$(function(){
+
+    $('.js_update_travelnotes').on('click',function(){
+        var $this = $(this),
+            FormDOM = $this.closest('form');
+
+        var postCountry = $.trim(FormDOM.find("[name='country']").val()),
+            postDesc = $.trim(FormDOM.find("[name=startDate]").val());
+
+            if(!postCountry.length){
+                layer.alert('请选择国家区域!', { icon: 2 }, function(index){ layer.close(index); });return false;
+            }
+            if(!postDesc.length){
+                layer.alert('Please select Start Date!', { icon: 2 }, function(index){ layer.close(index); });return false;
+            }
+        
+        // 处理
+        var formData = new FormData($('form')[0]);
+        
+        $.ajax({
+            url: FormDOM.attr('action'),
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            beforeSend: function(){
+                tools.loading_show($this)
+            },
+            complete: function(){
+                tools.loading_hide($this)
+            }
+        }).done(function(res){
+            var result = JSON.parse(res);
+            if(result.status == 1){
+                layer.alert(result.msg, { icon: 1 }, function(index){
+                    layer.close(index);
+                    var URL = result.url;
+                    if(URL){
+                        setTimeout(function(){
+                            window.location = result.url
+                        }, 10)
+                    }
+                })
+            }else{
+                layer.alert(result.msg, { icon: 2 }, function(index){
+                    layer.close(index);
+                })
+            }
+        })
+    })
+})
+</script>
+</body>
+</html>
