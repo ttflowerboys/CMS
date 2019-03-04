@@ -405,6 +405,64 @@ else if($fmdo=='moodmsg')
         }
     }
 }
+else if($fmdo=='getpass'){
+    if($dopost=="getpass")
+    {
+        if(!CheckEmail($email))
+        {
+            tp_json('Email格式不正确！', 0);
+            exit();
+        }
+        $row = $dsql->GetOne("SELECT mid,email,userid FROM `#@__member` WHERE email LIKE '$email' ");
+        if(!is_array($row))
+        {
+            tp_json('对不起，您还没有注册成我们的用户！', 0);
+            exit();
+        }
+
+        ########
+        # 参数 #
+        ########
+        $t = time();
+        $exptime = strtotime("+20 minutes", $t);
+        $token = base64_encode(md5(md5($exptime.'getpass'.$email)));
+        
+        ###########
+        # 找回密码 #
+        ###########
+        $dsql->ExecuteNoneQuery("UPDATE `#@__member` SET `passexptime`='{$exptime}',`passtoken`='{$token}' WHERE `mid`='{$row['mid']}'");
+
+        $url = $cfg_basehost.(empty($cfg_cmspath) ? '/' : $cfg_cmspath)."/member/setmypass.php?token={$token}";
+        $url = preg_replace("#http:\/\/#i", '', $url);
+        $url = 'http://'.preg_replace("#\/\/#", '/', $url);
+        $mailtitle = "Retrieve password";
+        $mailbody = '';
+        $mailbody .= "Dear {$row['userid']},<br><br>";
+        $mailbody .= "Please click on the link below to change your password before ". date('Y-m-d H:i:s', $exptime) ."：<br><br>";
+        $mailbody .= "<a href=\"{$url}\">{$url}</a><br><br><br>";
+        $mailbody .= "Or you can copy the link below to change your password in the browser:<br><br>";
+        $mailbody .= "<a href=\"{$url}\">{$url}</a><br><br>";
+    
+        $headers = "From: ".$cfg_adminemail."\r\nReply-To: ".$cfg_adminemail;
+        if($cfg_sendmail_bysmtp == 'Y' && !empty($cfg_smtp_server))
+        {        
+            $mailtype = 'HTML';
+            require_once(DEDEINC.'/mail.class.php');
+            $smtp = new smtp($cfg_smtp_server,$cfg_smtp_port,true,$cfg_smtp_usermail,$cfg_smtp_password);
+            $smtp->debug = false;
+            if(!$smtp->smtp_sockopen($cfg_smtp_server)){
+                tp_json('邮件发送失败,请联系管理员!',0); exit();
+            }
+            $smtp->sendmail($email,$cfg_webname,$cfg_smtp_usermail, $mailtitle, $mailbody, $mailtype);
+        }
+        else
+        {
+            @mail($email, $mailtitle, $mailbody, $headers);
+        }
+        tp_json('找回密码安全链接已发送到：'.$row['email'].'，链接20分钟内有效！',1);
+        exit();
+    }
+}
 else
 {
     ShowMsg("本页面禁止返回!","index.php");
