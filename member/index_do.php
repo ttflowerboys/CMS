@@ -70,7 +70,7 @@ else if($fmdo=='checkMail')
         ShowMsg('你的效验串不合法！', '-1');
         exit();
     }
-    if($row['spacesta'] != -10)
+    if($row['spacesta'] == -10)
     {
         $dsql->ExecuteNoneQuery("UPDATE `#@__member` SET spacesta=0 WHERE mid='{$mid}' ");
     }
