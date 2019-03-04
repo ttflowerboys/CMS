@@ -1,8 +1,9 @@
 $(function () {
     $(".js_loginSubmitBtn").click(function () {
-        var $this = $(this);
-        var uname = $("#uname").val();
-        var password = $("#password").val();
+        var $this = $(this),
+            FormDOM = $this.closest('form');
+        var uname = FormDOM.find('input[name="userid"]').val();
+        var password = FormDOM.find('input[name="pwd"]').val();
         if (!IsEmpty(uname)) {
             layer.alert('请输入用户名！', { icon: 2 }, function (index) {
                 layer.close(index);
@@ -15,7 +16,6 @@ $(function () {
             })
             return false;
         }
-        var FormDOM = $('#loginFORM');
         $.ajax({
             url: FormDOM.attr('action'),
             type: 'POST',

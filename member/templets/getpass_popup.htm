@@ -1,0 +1,32 @@
+<div id="lgFromBoxs" class="alertBoxs floatmain pie">
+    <!--登录框开始-->
+    <table class="floatboxs">
+        <tr>
+            <td>&nbsp;</td>
+            <td valign="middle" width="404" height="100%">
+                <div class="lktcDiv pie">
+                    <a class="closeBtn closeAlertBoxs closeCz" href="javascript:;"></a>
+                    <div class="dlzc">
+                        <div class="dlzcTit">
+                            <h3>找回密码</h3>
+                        </div>
+                        <div class="dlzcForm">
+                            <form name="loginFORM" id="loginFORM" method="post" action="/member/ajax_index_do.php">
+                                <input type="hidden" name="fmdo" value="getpass">
+                                <input type="hidden" name="dopost" value="getpass">
+                                <div class="inputDiv">
+                                    <p class="icon"><img src="/static/images/dlIcon01.jpg" width="50" height="47" /></p>
+                                    <input class="txt" name="email" id="email" type="text" placeholder="请输入注册邮箱" />
+                                </div>
+                                <div class="inputBtn"><button type="button" class="submitBtn js_getPassBtns">下一步，安全验证</button></div>
+                            </form>
+                        </div>
+                        <div class="ht35"></div>
+                    </div>
+                </div>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+    <script src="/static/js/getpass.js"></script>
+</div>
