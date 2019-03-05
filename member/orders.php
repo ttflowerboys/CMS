@@ -39,6 +39,7 @@ if($uid=='')
         $dpl = new DedeTemplate();
         switch ($type) {
             case 'add':
+                CheckRank(0,0);
                 $aFiled = 'country';
                 $aChannel = 18;
                 

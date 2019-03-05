@@ -14,7 +14,7 @@
         <div class="Register">
             <h3>用户登录</h3>
             <div class="otherLink">没有账号？<a href="/member/register.php">免费注册</a></div>
-            <div class="dlzcForm">
+            <div class="dlzcForm dlzc">
                 <form name="loginFORM" id="loginFORM" method="post" action="/member/ajax_index_do.php">
                     <input type="hidden" name="fmdo" value="login">
                     <input type="hidden" name="dopost" value="login">
@@ -26,6 +26,10 @@
                 <div class="inputDiv">
                     <p class="icon"><img src="/static/images/dlIcon04.jpg" width="50" height="47"></p>
                     <input class="txt" name="pwd" id="password" type="password" placeholder="设置密码">
+                </div>
+                <div class="dlczCz">
+                    <div class="xieyi"><label><input type="checkbox" checked="" value="2592000" name="keeptime">自动登录</label></div>
+                    <a href="javascript:;" data-url="/plus/getpass.php" data-do="close" class="showAlertBtn forget js_showAlertBtn">忘记密码?</a>
                 </div>
                 <div class="inputBtn">
                     <button type="button" class="LoginSubmitBtn SubmitBtn js_loginSubmitBtn">提交</button>
