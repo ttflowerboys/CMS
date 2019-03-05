@@ -7,7 +7,7 @@
  * @link           http://www.dedecms.com
  */
 require_once(dirname(__FILE__)."/config.php");
-CheckRank(0,0);
+CheckRank(0,0,false);
 $menutype = 'config';
 if(!isset($dopost))
 {
