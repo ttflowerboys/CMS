@@ -24,10 +24,9 @@
                     <div class="OrgTitle">最新动态</div>
                     <div class="swiper-container js-pic-swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><a href=""><img src="/uploads/181229/1-1Q229103PCQ.jpg" alt="" width="570"></a></div>
-                            {dede:sql sql="SELECT * FROM timer_org_news"}
-                            <div class="swiper-slide"><a href=""><img src="[field:litpic/]" alt="[field:title/]" width="570"></a></div>
-                            {/dede:sql}
+                            {dede:arclist row='5' titlelen='50' typeid='6' flag='p'}
+                                <div class="swiper-slide"><a href="view.php?aid=[field:id/]" title="[field:title/]" target="_blank"><img src="[field:litpic/]" alt="[field:title/]" width="570"></a></div>
+                            {/dede:arclist}
                         </div>
                         <div class="swiper-pagination"></div>
                     </div>
@@ -36,13 +35,21 @@
                     <div class="OrgTitle">最新需求</div>
                     <div class="swiper-container js-text-swiper-container">
                         <div class="swiper-wrapper">
-                            {dede:sql sql="SELECT * FROM timer_org_demand"}
+                            <!-- {dede:sql sql="SELECT * FROM timer_org_demand"}
                             <div class="swiper-slide">
                                 <div class="title"><a href="[field:arcurl/]">[field:title/]</a></div>
                                 <div class="number">阅读：<span>[field:click/]</span></div>
                                 <span class="time">[field:pubdate function="GetDateTimeMK(@me)"/]</span>
                             </div>
-                            {/dede:sql}
+                            {/dede:sql} -->
+                            {dede:arclist row='5' titlelen='50' typeid='7'}
+                                <div class="swiper-slide">
+                                    <a href="[field:arcurl/]" title="[field:title/]">
+                                        <div class="title">[field:title/]</div>
+                                        <div class="description">[field:description/]</div>
+                                    </a>
+                                </div>
+                            {/dede:arclist}
                             
                             
                         </div>

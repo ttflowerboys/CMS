@@ -372,7 +372,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 /* .OrgLeft .swiper-slide{width: 570px;height: 300px;background: #f8f8f8;overflow: hidden;} */
 .OrgLeft .swiper-slide img{min-width: 100%;}
 .OrgLeft .swiper-slide,
-.OrgRight .swiper-slide{width: 570px;height: 252px;background: #f8f8f8;}
+.OrgRight .swiper-slide{width: 570px;height: 252px;background: #f8f8f8;overflow: hidden;}
+
+.OrgRight .swiper-slide .title{font-size: 16px;padding: 12px;}
+.OrgRight .swiper-slide .description{font-size: 14px;padding: 0 12px;line-height: 18px;}
 
 .PostMain{padding: 20px 36px;background: #fff;overflow: hidden;}
 .PostMain img{max-width: 100%;}
@@ -380,8 +383,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, 
 .PostMain .meta{font-size: 14px;color: #999;line-height: 20px;text-align: center;margin: 12px auto 52px;}
 .PostMain .meta .t-blue{color: #42a4f7;}
 .PostMain .meta .name{color: #eb7135;margin-right: 12px;padding: 0 10px;border: 1px solid #eb7135;border-radius: 3px;display: inline-block;}
+.PostMain .content{min-height: 520px;overflow: hidden;}
+.PostMain .content img{max-width: 100%;}
 
-
+.Pager{border-top: 1px solid #ccc;padding-top: 12px;color: #666;}
+.Pager a{color: #3597eb;}
 /**浮动样式**/
 .floatmain {
 	width:100%;height:100%;position:fixed;top:0%;left:0%;float:left;z-index:1000;
