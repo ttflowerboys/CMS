@@ -463,6 +463,29 @@ else if($fmdo=='getpass'){
         exit();
     }
 }
+else if($fmdo=='setpass'){
+    if($dopost=="setpass"){
+        $userpwd = trim($userpwd);
+        if($userpwd==''){ tp_json("Please enter old password.",0); exit(); }
+
+        $userpwdok = trim($userpwdok);
+        if($userpwdok==''){ tp_json("Please input the new password again.",0); exit(); }
+
+        if($userpwd != $userpwdok) { tp_json('你两次输入的新密码不一致！',0);exit(); }
+
+        //检查帐号
+        if(empty($email)) $email = '';
+        $pwd = md5($userpwd);
+        if(!$email){
+            $query = "UPDATE `#@__member` SET pwd='$pwd' where email='".$email."' ";
+            $dsql->ExecuteNoneQuery($query);
+        }
+
+        // 清除会员缓存
+        tp_json('恭喜您，设置成功！',1,'/');
+        exit();
+    }
+}
 else
 {
     ShowMsg("本页面禁止返回!","index.php");
