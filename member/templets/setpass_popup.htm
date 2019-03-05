@@ -1,0 +1,37 @@
+<div id="lgFromBoxs" class="alertBoxs floatmain pie">
+    <!--登录框开始-->
+    <table class="floatboxs">
+        <tr>
+            <td>&nbsp;</td>
+            <td valign="middle" width="404" height="100%">
+                <div class="lktcDiv pie">
+                    <a class="closeBtn closeAlertBoxs closeCz" href="javascript:;"></a>
+                    <div class="dlzc">
+                        <div class="dlzcTit">
+                            <h3>重置密码</h3>
+                        </div>
+                        <div class="dlzcForm">
+                            <form name="loginFORM" method="post" action="/member/ajax_index_do.php">
+                                <input type="hidden" name="fmdo" value="setpass">
+                                <input type="hidden" name="dopost" value="setpass">
+                                <input type="hidden" name="email" value="<?php echo $email;?>">
+                                <div class="inputDiv">
+                                    <p class="icon"><img src="/static/images/dlIcon04.jpg" width="50" height="47"></p>
+                                    <input class="txt" name="userpwd" type="password" placeholder="设置密码">
+                                </div>
+                                <div class="inputDiv">
+                                    <p class="icon"><img src="/static/images/dlIcon02.jpg" width="50" height="47"></p>
+                                    <input class="txt" name="userpwdok" type="password" placeholder="确认密码">
+                                </div>
+                                <div class="inputBtn"><button type="button" class="submitBtn js_setPassBtns">确认设置</button></div>
+                            </form>
+                        </div>
+                        <div class="ht35"></div>
+                    </div>
+                </div>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+    <script src="/static/js/setpass.js"></script>
+</div>
