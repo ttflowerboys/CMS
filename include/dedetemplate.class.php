@@ -336,12 +336,14 @@ class DedeTemplate
      * @param     string  $tmpfile  模板文件
      * @return    void
      */
-    function LoadTemplate($tmpfile)
+    function LoadTemplate($tmpfile,$flag)
     {
-        if(!file_exists($tmpfile))
-        {
-            echo " Template Not Found! ";
-            exit();
+        if(!$flag){
+            if(!file_exists($tmpfile))
+            {
+                echo " Template Not Found! ";
+                exit();
+            }
         }
         $tmpfile = preg_replace("/[\\/]{1,}/", "/", $tmpfile);
         $tmpfiles = explode('/',$tmpfile);

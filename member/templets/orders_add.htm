@@ -39,8 +39,8 @@
                         <label class="label">项目国家<span class="t-blue">（请选择游记所在城市）</span></label>
                         {dede:php}AddFilter($aChannel,3,'country');{/dede:php}
                     </div>
-                    <div class="Items"><label class="label">Visa Requirement</label><p class="text">You need a valid visa to stay.</p></div>
-                    <div class="Items"><label class="label">Frequency</label><p class="text">Every Monday</p></div>
+                    <!-- <div class="Items"><label class="label">Visa Requirement</label><p class="text">You need a valid visa to stay.</p></div>
+                    <div class="Items"><label class="label">Frequency</label><p class="text">Every Monday</p></div> -->
                     <div class="Items">
                         <label class="label">Available Travel Period</label>
                         <div class="SubInDate">
@@ -61,6 +61,7 @@
                     <div class="Items">
                         <label class="label">Duration*</label>
                         <select class="select" name="duration" style="width: 100px;">
+                            <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>

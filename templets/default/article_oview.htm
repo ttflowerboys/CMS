@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title><?php echo $minfos['title'];?>_<?php echo $cfg_webname; ?></title>
+  <meta name="keywords" content="{dede:field name='keywords'/}" />
+  <meta name="description" content="{dede:field name='description' function='html2text(@me)'/}" />
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <?php pasterTempletDiy("head.htm"); ?>
+  
+  <div class="grayBg">
+    <div class="block60"></div>
+    <div class="w PostMain">
+        <h1 class="title"><?php echo $minfos['title'];?></h1>
+        <div class="meta">
+          阅读:<span class="t-blue"><?php echo $minfos['click'];?></span>
+          <span class="name">作者</span><span class="t-blue"><?php echo $minfos['writer'];?></span>
+          <?php echo $pubdate;?>
+        </div>
+        <div class="content">
+            <?php echo $minfos['body'];?>
+        </div>
+    </div>
+    <div class="block60"></div>
+  </div>
+
+  <?php pasterTempletDiy("footer.htm"); ?>
+</body>
+</html>
