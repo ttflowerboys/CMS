@@ -395,7 +395,7 @@ function checkSubmit()
 <script>
 $(function(){
     $('.js_add_items').on('click',function(){
-        $('.js_price_content').append('<div class="lh36">项目总时长：<input type="text" name="priceitem[]" style="width:280px">  项目费用：<input type="text" name="pricenum[]" style="width:150px"> <button type="button" class="default_button js_del_items">删除</button></div>');
+        $('.js_price_content').append('<div class="lh36">项目总时长：<input type="text" name="priceitem[label][]" style="width:280px">  项目费用：<input type="text" name="priceitem[num][]" style="width:150px"> <button type="button" class="default_button js_del_items">删除</button></div>');
         $('.js_del_items').off('click').on('click',function(){
             $(this).closest('div').remove()
         })

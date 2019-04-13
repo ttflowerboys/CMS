@@ -47,22 +47,17 @@ if($dopost!='save')
     $addRow = $dsql->GetOne("SELECT * FROM `$addtable` WHERE aid='$aid'");
     // 处理费用说明
     $nForm = '';
-    if($addRow['pricelists'] != '')
-    {
-        $dtp = new DedeTagParse();
-        $dtp->LoadSource($addRow['pricelists']);
-        if(is_array($dtp->CTags))
-        {
-            foreach($dtp->CTags as $ctag)
-            {
-                if($ctag->GetName()=='link')
-                {
-                    $nForm .= '<div class="lh36">项目总时长：<input type="text" name="priceitem[]" style="width:280px" value="'.$ctag->GetAtt("text").'">
-                    项目费用：<input type="text" name="pricenum[]" value="'.trim($ctag->GetInnerText()).'" style="width:150px"> <button type="button" class="default_button js_del_items">删除</button></div>';
-                }
+    $addPrice = $addRow['pricelists'];
+    if($addPrice){
+        $addPrice = json_decode($addPrice);
+        $priceitem = $addPrice->label;
+        $pricenum = $addPrice->num;
+        if (is_array($priceitem) && !empty($priceitem)) {
+            foreach ($priceitem as $id => $path) {
+                $nForm .= '<div class="lh36">项目总时长：<input type="text" name="priceitem[label][]" style="width:280px" value="'. $priceitem[$id] . '">';
+                $nForm .= '项目费用：<input type="text" name="priceitem[num][]" value="' . $pricenum[$id] . '" style="width:150px"> <button type="button" class="default_button js_del_items">删除</button></div>';
             }
         }
-        $dtp->Clear();
     }
 
     $channelid = $arcRow['channel'];
@@ -216,18 +211,11 @@ else if($dopost=='save')
 
     // 处理费用说明
     $prices = '';
-    foreach($priceitem as $key => $v){
-        if(!empty($v)){
-            // 价格周期
-            $priceitems = stripslashes($v);
-            // 价格
-            $pricenums = stripslashes($pricenum[$key]);
-            if($priceitems){
-                $prices .= "{dede:link text='$priceitems'} $pricenums {/dede:link}\r\n";
-            }
-        }
+    if (is_array($priceitem) && !empty($priceitem)) {
+        $prices = json_encode($priceitem);
     }
     $prices = addslashes($prices);
+    
     
     $cts = $dsql->GetOne("SELECT addtable From `#@__channeltype` WHERE id='$channelid' ");
     $addtable = trim($cts['addtable']);

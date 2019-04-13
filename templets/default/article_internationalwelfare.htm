@@ -98,30 +98,28 @@
                         <div class="titleBox"><img src="/static/images/fy1.jpg" width="399" height="36"></div>
                         <div class="projectcostsTable">
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                <tbody>
+                                <thead>
                                     <tr>
                                         <th width="400">项目总时长</th>
                                         <th>项目费用</th>
                                         <th width="300">我要报名</th>
                                     </tr>
-                                    <tr>
-                                        <td>两周</td>
-                                        <td>2900.00</td>
-                                        <td><a class="go_book" href="">立即报名</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>三周</td>
-                                        <td>4350.00</td>
-                                        <td><a class="go_book" href="">立即报名</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>四周</td>
-                                        <td>5800.00</td>
-                                        <td><a class="go_book" href="">立即报名</a></td>
-                                    </tr>
-                                </tbody>
+                                </thead>
+                                <tbody class="js_tbody"></tbody>
                             </table>
                         </div>
+                        <script>
+                            var tpl = '';
+                            var priceArr = {dede:field name='pricelists'/};
+                            console.log(priceArr)
+                            $priceitem = priceArr['label'];
+                            $pricenum = priceArr['num'];
+                            
+                            for(var i = 0; i < $priceitem.length; i++){
+                                tpl += '<tr><td>'+ $priceitem[i] +'</td><td>' + $pricenum[i] + '</td><td><a class="go_book" href="/member/orders.php?type=add">立即报名</a></td></tr>';
+                            }
+                            $('.js_tbody').html(tpl);
+                        </script>
                     </div>
                     <div class="oncosts">
                         <div class="titleBox" style="margin-top:20px;"><img src="/static/images/fy2.jpg" width="339"

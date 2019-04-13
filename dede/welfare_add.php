@@ -178,17 +178,20 @@ color,writer,source,litpic,pubdate,senddate,mid,voteid,notpost,description,keywo
     // 处理费用说明
     $prices = '';
     //其它链接处理
-    foreach($priceitem as $key => $v){
-        if(!empty($v)){
-            // 价格周期
-            $priceitems = stripslashes($v);
-            // 价格
-            $pricenums = stripslashes($pricenum[$key]);
+    // foreach($priceitem as $key => $v){
+    //     if(!empty($v)){
+    //         // 价格周期
+    //         $priceitems = stripslashes($v);
+    //         // 价格
+    //         $pricenums = stripslashes($pricenum[$key]);
 
-            if($priceitems){
-                $prices .= "{dede:link text='$priceitems'} $pricenums {/dede:link}\r\n";
-            }
-        }
+    //         if($priceitems){
+    //             $prices .= "{dede:link text='$priceitems'} $pricenums {/dede:link}\r\n";
+    //         }
+    //     }
+    // }
+    if (is_array($priceitem) && !empty($priceitem)) {
+        $prices = json_encode($priceitem);
     }
     $prices = addslashes($prices);
 
